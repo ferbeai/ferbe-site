@@ -130,7 +130,7 @@
   }
   .hero-inner {
     max-width: 1200px; margin: 0 auto; width: 100%;
-    display: grid; grid-template-columns: 1fr 1fr;
+    display: grid; grid-template-columns: minmax(0,1fr) minmax(0,1fr);
     gap: 80px; align-items: center;
   }
   .hero-eyebrow {
@@ -242,10 +242,17 @@
   }
   .avatar:first-child { margin-left: 0; }
 
-  /* ── HERO VISUAL (Compliance Score Ring) ── */
+  /* ── HERO VISUAL ── */
   .hero-visual {
     position: relative;
-    display: flex; align-items: center; justify-content: center;
+    display: flex; align-items: flex-start; justify-content: center;
+    flex-direction: column;
+    min-width: 0; /* prevent overflow from expanding grid */
+    overflow: hidden;
+  }
+  /* Prevent hero text column from ever reflowing due to right column changes */
+  .hero-inner > *:first-child {
+    contain: layout style;
   }
   .dashboard-mock {
     background: var(--navy-card);
@@ -1117,12 +1124,12 @@
     <!-- HERO VISUAL: Tabbed Product Switcher (Monday.com style) -->
     <div class="hero-visual">
       <!-- Tab switcher -->
-      <div style="display:flex;gap:6px;margin-bottom:12px;flex-wrap:wrap;">
-        <button onclick="switchTab(0)" id="tab-0" style="padding:6px 14px;border-radius:100px;font-size:12px;font-weight:600;border:1.5px solid #0D7C66;background:#0D7C66;color:#fff;cursor:pointer;transition:all 0.2s;">Dashboard</button>
-        <button onclick="switchTab(1)" id="tab-1" style="padding:6px 14px;border-radius:100px;font-size:12px;font-weight:600;border:1.5px solid #E2E8F0;background:#fff;color:#94A3B8;cursor:pointer;transition:all 0.2s;">Documents</button>
-        <button onclick="switchTab(2)" id="tab-2" style="padding:6px 14px;border-radius:100px;font-size:12px;font-weight:600;border:1.5px solid #E2E8F0;background:#fff;color:#94A3B8;cursor:pointer;transition:all 0.2s;">Internal Audit</button>
-        <button onclick="switchTab(3)" id="tab-3" style="padding:6px 14px;border-radius:100px;font-size:12px;font-weight:600;border:1.5px solid #E2E8F0;background:#fff;color:#94A3B8;cursor:pointer;transition:all 0.2s;">My Tasks</button>
-        <button onclick="switchTab(4)" id="tab-4" style="padding:6px 14px;border-radius:100px;font-size:12px;font-weight:600;border:1.5px solid rgba(124,58,237,0.3);background:#FAF5FF;color:#7C3AED;cursor:pointer;transition:all 0.2s;">✦ AI</button>
+      <div style="display:flex;gap:6px;margin-bottom:12px;flex-wrap:nowrap;overflow:hidden;">
+        <button onclick="switchTab(0)" id="tab-0" style="padding:6px 14px;border-radius:100px;font-size:12px;font-weight:600;border:1.5px solid #0D7C66;background:#0D7C66;color:#fff;cursor:pointer;transition:background 0.2s,border-color 0.2s,color 0.2s;white-space:nowrap;flex-shrink:0;">Dashboard</button>
+        <button onclick="switchTab(1)" id="tab-1" style="padding:6px 14px;border-radius:100px;font-size:12px;font-weight:600;border:1.5px solid #E2E8F0;background:#fff;color:#94A3B8;cursor:pointer;transition:background 0.2s,border-color 0.2s,color 0.2s;white-space:nowrap;flex-shrink:0;">Documents</button>
+        <button onclick="switchTab(2)" id="tab-2" style="padding:6px 14px;border-radius:100px;font-size:12px;font-weight:600;border:1.5px solid #E2E8F0;background:#fff;color:#94A3B8;cursor:pointer;transition:background 0.2s,border-color 0.2s,color 0.2s;white-space:nowrap;flex-shrink:0;">Internal Audit</button>
+        <button onclick="switchTab(3)" id="tab-3" style="padding:6px 14px;border-radius:100px;font-size:12px;font-weight:600;border:1.5px solid #E2E8F0;background:#fff;color:#94A3B8;cursor:pointer;transition:background 0.2s,border-color 0.2s,color 0.2s;white-space:nowrap;flex-shrink:0;">My Tasks</button>
+        <button onclick="switchTab(4)" id="tab-4" style="padding:6px 14px;border-radius:100px;font-size:12px;font-weight:600;border:1.5px solid rgba(124,58,237,0.3);background:#FAF5FF;color:#7C3AED;cursor:pointer;transition:background 0.2s,border-color 0.2s,color 0.2s;white-space:nowrap;flex-shrink:0;">✦ AI</button>
       </div>
       <!-- Screen panels -->
       <div id="screen-0" class="hero-screen" style="transition:opacity 0.3s;"><div style="background:#fff;border:1px solid #E2E8F0;border-radius:14px;overflow:hidden;box-shadow:0 8px 40px rgba(15,23,42,0.10);">
@@ -1745,18 +1752,23 @@
   }
 
 
-  // Hero product tab switcher
-  const tabColors = ['#0D7C66','#0D7C66','#7C3AED','#7C3AED','#7C3AED'];
+  // Hero product tab switcher — layout-stable version
+  // Active styles per tab (index 4 = AI = purple)
+  const TAB_ACTIVE   = ['#0D7C66','#0D7C66','#0D7C66','#0D7C66','#FAF5FF'];
+  const TAB_BORDER_A = ['#0D7C66','#0D7C66','#0D7C66','#0D7C66','rgba(124,58,237,0.5)'];
+  const TAB_COLOR_A  = ['#fff','#fff','#fff','#fff','#7C3AED'];
+
   function switchTab(n) {
     for(let i=0;i<5;i++){
       const tab = document.getElementById('tab-'+i);
       const screen = document.getElementById('screen-'+i);
       if(i===n){
-        tab.style.background = i===4 ? '#FAF5FF' : '#0D7C66';
-        tab.style.borderColor = i===4 ? 'rgba(124,58,237,0.5)' : '#0D7C66';
-        tab.style.color = i===4 ? '#7C3AED' : '#fff';
+        tab.style.background = TAB_ACTIVE[i];
+        tab.style.borderColor = TAB_BORDER_A[i];
+        tab.style.color = TAB_COLOR_A[i];
         screen.style.display = 'block';
-        setTimeout(()=>screen.style.opacity='1',10);
+        // Use requestAnimationFrame to avoid layout thrash
+        requestAnimationFrame(()=>{ screen.style.opacity='1'; });
       } else {
         tab.style.background = '#fff';
         tab.style.borderColor = '#E2E8F0';
@@ -1764,6 +1776,13 @@
         screen.style.display = 'none';
         screen.style.opacity = '0';
       }
+    }
+    // Restore AI tab to its purple-tinted inactive state
+    if(n!==4){
+      const aiTab = document.getElementById('tab-4');
+      aiTab.style.background = '#FAF5FF';
+      aiTab.style.borderColor = 'rgba(124,58,237,0.3)';
+      aiTab.style.color = '#7C3AED';
     }
   }
   // Auto-rotate tabs every 4 seconds
