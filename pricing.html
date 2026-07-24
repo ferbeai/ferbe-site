@@ -1,0 +1,1169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pricing — Ferbe ISO 27001 ISMS Platform</title>
+<meta name="description" content="Transparent pricing for Ferbe — the ISO 27001:2022 ISMS platform built for Malaysian and Southeast Asian businesses. Start free, no credit card required.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg:          #F8FAFC;
+    --card:        #FFFFFF;
+    --border:      #E2E8F0;
+    --teal:        #0D7C66;
+    --teal-hi:     #0A9070;
+    --teal-faint:  rgba(13,124,102,0.07);
+    --yellow:      #D4FF00;
+    --yellow-dark: #8FAF00;
+    --yellow-faint:rgba(212,255,0,0.10);
+    --purple:      #7C3AED;
+    --purple-hi:   #A855F7;
+    --purple-faint:rgba(124,58,237,0.07);
+    --text:        #0F172A;
+    --muted:       #475569;
+    --dim:         #94A3B8;
+    --green:       #16A34A;
+    --red:         #DC2626;
+    --amber:       #D97706;
+    --radius:      14px;
+    --font-display:'Plus Jakarta Sans', sans-serif;
+    --font-body:   'Inter', sans-serif;
+    --font-mono:   'JetBrains Mono', monospace;
+  }
+
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--font-body);
+    font-size: 15px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: sticky; top: 0; z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 0 48px; height: 68px;
+    background: rgba(248,250,252,0.94);
+    backdrop-filter: blur(16px);
+    border-bottom: 1px solid var(--border);
+  }
+  .nav-logo {
+    display: flex; align-items: center; gap: 10px;
+    text-decoration: none;
+  }
+  .nav-logo img { height: 32px; }
+  .nav-logo-fallback {
+    font-family: var(--font-display); font-weight: 800; font-size: 22px;
+    color: var(--text); letter-spacing: -0.01em;
+    display: flex; align-items: center; gap: 10px;
+  }
+  .logo-mark {
+    width: 34px; height: 34px; border-radius: 8px;
+    background: linear-gradient(135deg, var(--teal), var(--teal-hi));
+    display: flex; align-items: center; justify-content: center;
+    font-size: 16px; font-weight: 800; color: var(--yellow);
+  }
+  .nav-links { display: flex; gap: 32px; list-style: none; }
+  .nav-links a {
+    color: var(--muted); text-decoration: none;
+    font-size: 14px; font-weight: 500; transition: color 0.2s;
+  }
+  .nav-links a:hover, .nav-links a.active { color: var(--text); }
+  .nav-links a.active { font-weight: 600; }
+  .nav-cta { display: flex; gap: 12px; align-items: center; }
+  .btn-ghost {
+    background: none; border: 1px solid var(--border);
+    color: var(--muted); padding: 8px 18px; border-radius: 8px;
+    font-size: 14px; font-weight: 500; cursor: pointer;
+    text-decoration: none; transition: all 0.2s;
+  }
+  .btn-ghost:hover { border-color: var(--teal); color: var(--text); }
+  .btn-primary {
+    background: var(--teal); color: #fff;
+    padding: 9px 20px; border-radius: 8px;
+    font-size: 14px; font-weight: 600; border: none;
+    cursor: pointer; text-decoration: none; transition: all 0.2s;
+  }
+  .btn-primary:hover { background: var(--teal-hi); }
+
+  /* ── HERO ── */
+  .hero {
+    text-align: center;
+    padding: 80px 40px 60px;
+    position: relative; overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute; top: -80px; left: 50%; transform: translateX(-50%);
+    width: 700px; height: 400px;
+    background: radial-gradient(ellipse, rgba(124,58,237,0.06) 0%, rgba(212,255,0,0.04) 50%, transparent 70%);
+    pointer-events: none;
+  }
+  .hero-eyebrow {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: var(--yellow-faint);
+    border: 1px solid rgba(212,255,0,0.35);
+    border-radius: 100px; padding: 5px 14px 5px 8px;
+    font-family: var(--font-mono); font-size: 12px; font-weight: 600;
+    color: var(--yellow-dark); margin-bottom: 20px;
+  }
+  .eyebrow-dot {
+    width: 7px; height: 7px; border-radius: 50%;
+    background: var(--yellow); box-shadow: 0 0 5px var(--yellow);
+    animation: pulse 2s infinite;
+  }
+  @keyframes pulse {
+    0%,100% { opacity:1; transform:scale(1); }
+    50%      { opacity:0.5; transform:scale(0.8); }
+  }
+  .hero h1 {
+    font-family: var(--font-display);
+    font-size: clamp(34px, 5vw, 54px);
+    font-weight: 800; line-height: 1.1;
+    letter-spacing: -0.02em; color: var(--text);
+    margin-bottom: 16px;
+  }
+  .hero h1 .t { color: var(--teal); }
+  .hero p {
+    font-size: 18px; color: var(--muted);
+    max-width: 520px; margin: 0 auto 36px;
+    line-height: 1.7;
+  }
+  .hero-trust {
+    display: flex; align-items: center; justify-content: center;
+    gap: 24px; flex-wrap: wrap;
+    font-size: 13px; color: var(--dim);
+  }
+  .trust-item {
+    display: flex; align-items: center; gap: 6px;
+  }
+  .trust-item::before { content: '✓'; color: var(--teal); font-weight: 700; }
+
+  /* ── BILLING TOGGLE ── */
+  .billing-wrap {
+    display: flex; align-items: center; justify-content: center;
+    gap: 14px; margin-bottom: 52px;
+    font-size: 14px; font-weight: 500; color: var(--muted);
+  }
+  .toggle-track {
+    width: 52px; height: 28px; border-radius: 14px;
+    background: var(--teal); cursor: pointer;
+    position: relative; transition: background 0.2s;
+    border: none; outline: none;
+  }
+  .toggle-knob {
+    position: absolute; top: 3px; left: 3px;
+    width: 22px; height: 22px; border-radius: 11px;
+    background: #fff; transition: transform 0.2s;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.15);
+  }
+  .toggle-track.monthly .toggle-knob { transform: translateX(0); }
+  .toggle-track.annual  .toggle-knob { transform: translateX(24px); }
+  .billing-label { font-weight: 600; color: var(--text); }
+  .save-pill {
+    background: var(--yellow-faint);
+    border: 1px solid rgba(212,255,0,0.4);
+    color: var(--yellow-dark);
+    font-family: var(--font-mono); font-size: 11px; font-weight: 600;
+    padding: 3px 10px; border-radius: 100px;
+  }
+
+  /* ── PRICING GRID ── */
+  .pricing-outer { max-width: 1160px; margin: 0 auto; padding: 0 40px 80px; }
+
+  .plans-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    margin-bottom: 20px;
+  }
+  .plan-card {
+    background: var(--card);
+    border: 1.5px solid var(--border);
+    border-radius: 20px;
+    padding: 32px 28px 28px;
+    position: relative;
+    transition: box-shadow 0.2s, transform 0.2s;
+    display: flex; flex-direction: column;
+  }
+  .plan-card:hover {
+    box-shadow: 0 8px 40px rgba(15,23,42,0.08);
+    transform: translateY(-2px);
+  }
+  .plan-card.featured {
+    border-color: var(--purple);
+    background: linear-gradient(165deg, #FAFAFF 0%, #fff 50%);
+    box-shadow: 0 4px 32px rgba(124,58,237,0.10);
+  }
+  .plan-card.featured:hover {
+    box-shadow: 0 12px 48px rgba(124,58,237,0.16);
+  }
+
+  /* Popular badge */
+  .popular-badge {
+    position: absolute; top: -13px; left: 50%; transform: translateX(-50%);
+    background: var(--yellow);
+    color: #0F172A;
+    font-family: var(--font-mono); font-size: 10px; font-weight: 700;
+    padding: 4px 14px; border-radius: 100px;
+    letter-spacing: 0.08em; white-space: nowrap;
+    box-shadow: 0 2px 8px rgba(212,255,0,0.4);
+  }
+
+  .plan-tier {
+    font-family: var(--font-mono); font-size: 11px; font-weight: 600;
+    text-transform: uppercase; letter-spacing: 0.1em;
+    margin-bottom: 10px;
+  }
+  .tier-starter { color: var(--teal); }
+  .tier-growth  { color: var(--purple); }
+  .tier-pro     { color: var(--amber); }
+
+  .plan-name {
+    font-family: var(--font-display);
+    font-size: 22px; font-weight: 800;
+    color: var(--text); margin-bottom: 6px;
+  }
+  .plan-tagline {
+    font-size: 13px; color: var(--muted);
+    margin-bottom: 24px; line-height: 1.5;
+    min-height: 40px;
+  }
+
+  .plan-price-block { margin-bottom: 8px; }
+  .price-myr {
+    font-family: var(--font-display);
+    font-size: 44px; font-weight: 800;
+    color: var(--text); line-height: 1;
+  }
+  .price-myr sup {
+    font-size: 20px; font-weight: 600;
+    color: var(--muted); vertical-align: super;
+    margin-right: 2px;
+  }
+  .price-cycle { font-size: 13px; color: var(--dim); margin-bottom: 4px; }
+  .price-usd {
+    font-family: var(--font-mono); font-size: 12px;
+    color: var(--dim); margin-bottom: 20px;
+  }
+  .price-annual-note {
+    font-size: 12px; color: var(--teal); font-weight: 500;
+    background: var(--teal-faint); border-radius: 6px;
+    padding: 4px 10px; display: inline-block;
+    margin-bottom: 6px;
+  }
+  .price-seats {
+    font-size: 13px; color: var(--muted);
+    margin-bottom: 20px;
+    display: flex; align-items: center; gap: 6px;
+  }
+  .price-seats::before { content: '👥'; font-size: 14px; }
+
+  .plan-divider { height: 1px; background: var(--border); margin-bottom: 20px; }
+
+  .plan-cta {
+    display: block; width: 100%;
+    padding: 13px; border-radius: 10px;
+    font-family: var(--font-display); font-size: 15px; font-weight: 700;
+    text-align: center; text-decoration: none;
+    cursor: pointer; transition: all 0.2s; margin-bottom: 20px;
+  }
+  .cta-teal {
+    background: var(--teal); color: #fff; border: none;
+    box-shadow: 0 4px 16px rgba(13,124,102,0.25);
+  }
+  .cta-teal:hover { background: var(--teal-hi); }
+  .cta-purple {
+    background: var(--purple); color: #fff; border: none;
+    box-shadow: 0 4px 16px rgba(124,58,237,0.25);
+  }
+  .cta-purple:hover { background: var(--purple-hi); }
+  .cta-dark {
+    background: var(--text); color: #fff; border: none;
+    box-shadow: 0 4px 16px rgba(15,23,42,0.15);
+  }
+  .cta-dark:hover { background: #1E293B; }
+
+  .plan-features { list-style: none; display: flex; flex-direction: column; gap: 11px; flex: 1; }
+  .feat-item {
+    display: flex; align-items: flex-start; gap: 10px;
+    font-size: 13.5px; color: var(--muted);
+    line-height: 1.45;
+  }
+  .feat-check {
+    width: 18px; height: 18px; border-radius: 5px;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0; margin-top: 1px; font-size: 10px; font-weight: 700;
+  }
+  .check-teal   { background: rgba(13,124,102,0.10); color: var(--teal); }
+  .check-purple { background: rgba(124,58,237,0.10); color: var(--purple); }
+  .check-dark   { background: rgba(15,23,42,0.08); color: var(--text); }
+  .feat-off .feat-check { background: #F1F5F9; color: var(--dim); }
+  .feat-off span { color: var(--dim); }
+
+  .feat-ai-tag {
+    display: inline-flex; align-items: center; gap: 4px;
+    font-family: var(--font-mono); font-size: 10px; font-weight: 600;
+    padding: 1px 7px; border-radius: 100px;
+    vertical-align: middle; margin-left: 5px;
+  }
+  .ai-tag-purple {
+    background: var(--purple-faint);
+    border: 1px solid rgba(124,58,237,0.2);
+    color: var(--purple);
+  }
+
+  /* Enterprise card — full width */
+  .enterprise-card {
+    background: linear-gradient(135deg, #0F172A 0%, #1E1040 100%);
+    border: 1.5px solid rgba(124,58,237,0.3);
+    border-radius: 20px;
+    padding: 36px 40px;
+    display: flex; align-items: center; justify-content: space-between;
+    gap: 40px; flex-wrap: wrap;
+    box-shadow: 0 4px 32px rgba(15,23,42,0.12);
+  }
+  .enterprise-left {}
+  .enterprise-tier {
+    font-family: var(--font-mono); font-size: 11px; font-weight: 600;
+    color: var(--purple-hi); letter-spacing: 0.1em;
+    text-transform: uppercase; margin-bottom: 8px;
+  }
+  .enterprise-name {
+    font-family: var(--font-display);
+    font-size: 26px; font-weight: 800; color: #FFFFFF;
+    margin-bottom: 6px;
+  }
+  .enterprise-desc {
+    font-size: 14px; color: rgba(255,255,255,0.5);
+    max-width: 480px; line-height: 1.65;
+  }
+  .enterprise-features {
+    display: flex; flex-wrap: wrap; gap: 10px; margin-top: 20px;
+  }
+  .ent-chip {
+    display: flex; align-items: center; gap: 6px;
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 8px; padding: 6px 12px;
+    font-size: 13px; color: rgba(255,255,255,0.7);
+  }
+  .ent-chip::before { content: '✓'; color: var(--yellow); font-weight: 700; }
+  .enterprise-cta {
+    display: flex; flex-direction: column; gap: 12px; align-items: flex-end;
+  }
+  .btn-ent-primary {
+    background: var(--yellow); color: #0F172A;
+    padding: 14px 28px; border-radius: 10px;
+    font-family: var(--font-display); font-size: 15px; font-weight: 700;
+    text-decoration: none; text-align: center; white-space: nowrap;
+    transition: all 0.2s;
+    box-shadow: 0 4px 16px rgba(212,255,0,0.3);
+  }
+  .btn-ent-primary:hover { background: #C8F200; transform: translateY(-1px); }
+  .btn-ent-ghost {
+    background: none; border: 1px solid rgba(255,255,255,0.2);
+    color: rgba(255,255,255,0.6);
+    padding: 12px 28px; border-radius: 10px;
+    font-family: var(--font-display); font-size: 14px; font-weight: 600;
+    text-decoration: none; text-align: center; white-space: nowrap;
+    transition: all 0.2s;
+  }
+  .btn-ent-ghost:hover { border-color: rgba(255,255,255,0.4); color: #fff; }
+
+  /* ── COMPARISON TABLE ── */
+  .compare-section { max-width: 1160px; margin: 0 auto; padding: 0 40px 100px; }
+  .compare-title {
+    font-family: var(--font-display);
+    font-size: 28px; font-weight: 800;
+    color: var(--text); margin-bottom: 8px; text-align: center;
+    letter-spacing: -0.01em;
+  }
+  .compare-sub {
+    font-size: 15px; color: var(--muted);
+    text-align: center; margin-bottom: 40px;
+  }
+
+  .compare-table {
+    width: 100%; border-collapse: collapse;
+    border: 1px solid var(--border); border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 4px 20px rgba(15,23,42,0.05);
+  }
+  .compare-table th {
+    padding: 0; background: var(--card);
+    border-bottom: 1px solid var(--border);
+    vertical-align: bottom;
+  }
+  .th-inner {
+    padding: 20px 18px 18px;
+    text-align: center;
+  }
+  .th-plan {
+    font-family: var(--font-mono); font-size: 11px; font-weight: 600;
+    text-transform: uppercase; letter-spacing: 0.08em;
+    margin-bottom: 4px;
+  }
+  .th-price {
+    font-family: var(--font-display);
+    font-size: 20px; font-weight: 800; color: var(--text);
+    line-height: 1;
+  }
+  .th-price sub { font-size: 11px; font-weight: 500; color: var(--dim); vertical-align: baseline; }
+  .th-feature { text-align: left; padding: 0 18px; }
+  .th-feature .th-inner { text-align: left; }
+  .th-feature .th-plan { color: var(--dim); }
+
+  .compare-table th.col-featured {
+    background: linear-gradient(180deg, #FAFAFF 0%, #fff 100%);
+    border-left: 2px solid var(--purple);
+    border-right: 2px solid var(--purple);
+  }
+  .compare-table th.col-featured .th-plan { color: var(--purple); }
+
+  .compare-table td {
+    padding: 0;
+    border-bottom: 1px solid #F1F5F9;
+    background: var(--card);
+    vertical-align: middle;
+  }
+  .compare-table tr:last-child td { border-bottom: none; }
+  .compare-table td.col-featured {
+    background: #FAFAFF;
+    border-left: 2px solid var(--purple);
+    border-right: 2px solid var(--purple);
+  }
+  .td-inner {
+    padding: 12px 18px; text-align: center;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .td-feature { text-align: left; }
+  .td-feature .td-inner { justify-content: flex-start; }
+
+  .row-group td, .row-group th {
+    background: #F8FAFC;
+    padding: 0;
+  }
+  .row-group .td-inner, .row-group .th-inner {
+    padding: 8px 18px;
+    font-family: var(--font-mono); font-size: 11px; font-weight: 600;
+    text-transform: uppercase; letter-spacing: 0.08em; color: var(--dim);
+    justify-content: flex-start;
+  }
+  .row-group td.col-featured { background: #F5F0FF; }
+
+  .feat-name { font-size: 13.5px; color: var(--muted); }
+  .feat-note { font-size: 11px; color: var(--dim); margin-top: 1px; }
+  .feat-ai {
+    display: inline-flex; align-items: center; gap: 3px;
+    font-family: var(--font-mono); font-size: 10px; font-weight: 600;
+    color: var(--purple); background: var(--purple-faint);
+    border: 1px solid rgba(124,58,237,0.15);
+    padding: 1px 6px; border-radius: 100px; margin-left: 6px;
+  }
+
+  .check { color: var(--teal); font-size: 17px; font-weight: 700; }
+  .check-p { color: var(--purple); font-size: 17px; font-weight: 700; }
+  .dash { color: var(--dim); font-size: 18px; }
+  .val { font-size: 13px; color: var(--text); font-weight: 600; }
+
+  /* Table bottom CTAs */
+  .table-cta-row td { border-top: 1px solid var(--border) !important; background: var(--card) !important; }
+  .table-cta-row td.col-featured { background: #FAFAFF !important; border-bottom: 2px solid var(--purple) !important; }
+
+  /* ── FAQ ── */
+  .faq-section { max-width: 760px; margin: 0 auto; padding: 0 40px 100px; }
+  .faq-title {
+    font-family: var(--font-display);
+    font-size: 28px; font-weight: 800;
+    text-align: center; margin-bottom: 8px;
+    letter-spacing: -0.01em;
+  }
+  .faq-sub {
+    font-size: 15px; color: var(--muted);
+    text-align: center; margin-bottom: 40px;
+  }
+  .faq-item {
+    border: 1px solid var(--border);
+    border-radius: 12px; margin-bottom: 10px;
+    overflow: hidden; background: var(--card);
+    transition: box-shadow 0.2s;
+  }
+  .faq-item:hover { box-shadow: 0 2px 12px rgba(15,23,42,0.06); }
+  .faq-q {
+    padding: 18px 20px;
+    display: flex; justify-content: space-between; align-items: center;
+    cursor: pointer; gap: 16px;
+  }
+  .faq-q-text {
+    font-family: var(--font-display);
+    font-size: 15px; font-weight: 700; color: var(--text);
+  }
+  .faq-icon {
+    width: 24px; height: 24px; border-radius: 6px;
+    background: var(--bg); border: 1px solid var(--border);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 14px; color: var(--muted); flex-shrink: 0;
+    transition: all 0.2s;
+  }
+  .faq-a {
+    padding: 0 20px 18px;
+    font-size: 14px; color: var(--muted); line-height: 1.7;
+    display: none;
+  }
+  .faq-item.open .faq-a { display: block; }
+  .faq-item.open .faq-icon { background: var(--teal); border-color: var(--teal); color: #fff; transform: rotate(45deg); }
+
+  /* ── FINAL CTA STRIP ── */
+  .cta-strip {
+    max-width: 1160px; margin: 0 auto 80px;
+    padding: 0 40px;
+  }
+  .cta-strip-inner {
+    background: linear-gradient(135deg, #0F172A 0%, #1B0E3A 100%);
+    border-radius: 24px; padding: 52px 60px;
+    display: flex; align-items: center; justify-content: space-between;
+    gap: 40px; flex-wrap: wrap;
+    position: relative; overflow: hidden;
+  }
+  .cta-strip-inner::before {
+    content: '';
+    position: absolute; top: -80px; right: -80px;
+    width: 300px; height: 300px;
+    background: radial-gradient(circle, rgba(124,58,237,0.2) 0%, transparent 65%);
+    pointer-events: none;
+  }
+  .cta-strip-inner::after {
+    content: '';
+    position: absolute; bottom: -60px; left: 30%;
+    width: 200px; height: 200px;
+    background: radial-gradient(circle, rgba(212,255,0,0.08) 0%, transparent 65%);
+    pointer-events: none;
+  }
+  .cta-left { position: relative; }
+  .cta-strip h2 {
+    font-family: var(--font-display);
+    font-size: 28px; font-weight: 800;
+    color: #fff; margin-bottom: 8px;
+    letter-spacing: -0.01em;
+  }
+  .cta-strip p { font-size: 15px; color: rgba(255,255,255,0.5); }
+  .cta-right {
+    display: flex; gap: 12px; align-items: center;
+    flex-wrap: wrap; position: relative;
+  }
+  .btn-strip-primary {
+    background: var(--yellow); color: #0F172A;
+    padding: 14px 28px; border-radius: 10px;
+    font-family: var(--font-display); font-size: 15px; font-weight: 700;
+    text-decoration: none; white-space: nowrap;
+    transition: all 0.2s; box-shadow: 0 4px 16px rgba(212,255,0,0.3);
+  }
+  .btn-strip-primary:hover { background: #C8F200; transform: translateY(-1px); }
+  .btn-strip-ghost {
+    background: none; border: 1px solid rgba(255,255,255,0.2);
+    color: rgba(255,255,255,0.7); padding: 13px 24px; border-radius: 10px;
+    font-family: var(--font-display); font-size: 14px; font-weight: 600;
+    text-decoration: none; white-space: nowrap; transition: all 0.2s;
+  }
+  .btn-strip-ghost:hover { border-color: rgba(255,255,255,0.45); color: #fff; }
+
+  /* ── FOOTER ── */
+  footer {
+    border-top: 3px solid transparent;
+    border-image: linear-gradient(90deg, var(--teal), var(--purple), var(--yellow)) 1;
+    padding: 48px 48px 32px;
+    background: var(--card);
+  }
+  .footer-inner { max-width: 1160px; margin: 0 auto; }
+  .footer-row {
+    display: flex; justify-content: space-between;
+    align-items: center; flex-wrap: wrap; gap: 16px;
+  }
+  .footer-links { display: flex; gap: 24px; flex-wrap: wrap; }
+  .footer-links a {
+    font-size: 13px; color: var(--dim);
+    text-decoration: none; transition: color 0.2s;
+  }
+  .footer-links a:hover { color: var(--muted); }
+  .footer-copy { font-size: 13px; color: var(--dim); }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 960px) {
+    nav { padding: 0 20px; }
+    .nav-links { display: none; }
+    .pricing-outer { padding: 0 20px 60px; }
+    .plans-grid { grid-template-columns: 1fr; }
+    .enterprise-card { flex-direction: column; }
+    .enterprise-cta { align-items: stretch; }
+    .compare-section { padding: 0 12px 60px; overflow-x: auto; }
+    .compare-table { min-width: 600px; }
+    .faq-section { padding: 0 20px 60px; }
+    .cta-strip { padding: 0 20px; }
+    .cta-strip-inner { padding: 36px 28px; flex-direction: column; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="index.html" class="nav-logo">
+    <div class="nav-logo-fallback">
+      <div class="logo-mark">F</div>
+      Ferbe
+    </div>
+  </a>
+  <ul class="nav-links">
+    <li><a href="index.html#features">Features</a></li>
+    <li><a href="index.html#ai">AI</a></li>
+    <li><a href="pricing.html" class="active">Pricing</a></li>
+    <li><a href="index.html#testimonials">Customers</a></li>
+    <li><a href="#">Blog</a></li>
+  </ul>
+  <div class="nav-cta">
+    <a href="#" class="btn-ghost">Sign in</a>
+    <a href="#" class="btn-primary">Start free trial</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-eyebrow">
+    <div class="eyebrow-dot"></div>
+    Simple, transparent pricing
+  </div>
+  <h1>The right plan for your<br><span class="t">compliance journey</span></h1>
+  <p>Start free for 14 days. No credit card. No setup fees. Priced in MYR for Malaysian businesses, with USD for regional teams.</p>
+  <div class="hero-trust">
+    <div class="trust-item">14-day free trial</div>
+    <div class="trust-item">No credit card required</div>
+    <div class="trust-item">Cancel anytime</div>
+    <div class="trust-item">Priced in MYR &amp; USD</div>
+  </div>
+</div>
+
+<!-- BILLING TOGGLE -->
+<div class="billing-wrap">
+  <span>Monthly</span>
+  <button class="toggle-track annual" id="billingToggle" onclick="toggleBilling()">
+    <div class="toggle-knob"></div>
+  </button>
+  <span class="billing-label">Annual</span>
+  <span class="save-pill" id="savePill">Save 20%</span>
+</div>
+
+<!-- PLANS GRID -->
+<div class="pricing-outer">
+  <div class="plans-grid">
+
+    <!-- STARTER -->
+    <div class="plan-card">
+      <div class="plan-tier tier-starter">Starter</div>
+      <div class="plan-name">For small teams</div>
+      <div class="plan-tagline">Everything you need to start and structure your ISMS — up to 5 users.</div>
+
+      <div class="plan-price-block">
+        <div class="price-myr"><sup>RM</sup><span class="price-val-starter" data-monthly="299" data-annual="239">239</span></div>
+      </div>
+      <div class="price-cycle">per month · billed annually</div>
+      <div class="price-usd">≈ USD <span class="price-usd-starter" data-monthly="65" data-annual="52">52</span> / month</div>
+      <div class="price-annual-note" id="note-starter">You save RM720 / year</div>
+      <div class="price-seats">Up to 5 users</div>
+
+      <a href="#" class="plan-cta cta-teal">Start free trial</a>
+      <div class="plan-divider"></div>
+
+      <ul class="plan-features">
+        <li class="feat-item"><div class="feat-check check-teal">✓</div><span>Full document lifecycle (74 ISO 27001 docs)</span></li>
+        <li class="feat-item"><div class="feat-check check-teal">✓</div><span>Version control &amp; document approval workflow</span></li>
+        <li class="feat-item"><div class="feat-check check-teal">✓</div><span>Forms &amp; evidence management</span></li>
+        <li class="feat-item"><div class="feat-check check-teal">✓</div><span>Statement of Applicability (SoA)</span></li>
+        <li class="feat-item"><div class="feat-check check-teal">✓</div><span>Compliance dashboard (RAG scorecard)</span></li>
+        <li class="feat-item"><div class="feat-check check-teal">✓</div><span>My Tasks — 13 task types</span></li>
+        <li class="feat-item"><div class="feat-check check-teal">✓</div><span>1 active audit programme</span></li>
+        <li class="feat-item"><div class="feat-check check-teal">✓</div><span>NC management (5-step closure)</span></li>
+        <li class="feat-item"><div class="feat-check check-teal">✓</div><span>Audit Trail with filters</span></li>
+        <li class="feat-item feat-off"><div class="feat-check">–</div><span>Management Review module</span></li>
+        <li class="feat-item feat-off"><div class="feat-check">–</div><span>ISMS Intelligence &amp; AI Assistant</span></li>
+        <li class="feat-item feat-off"><div class="feat-check">–</div><span>Unlimited audit programmes</span></li>
+      </ul>
+    </div>
+
+    <!-- GROWTH (featured) -->
+    <div class="plan-card featured">
+      <div class="popular-badge">⚡ MOST POPULAR</div>
+      <div class="plan-tier tier-growth">Growth</div>
+      <div class="plan-name">For growing teams</div>
+      <div class="plan-tagline">Full ISMS lifecycle — audits, management reviews, and everything in between. Up to 20 users.</div>
+
+      <div class="plan-price-block">
+        <div class="price-myr"><sup>RM</sup><span class="price-val-growth" data-monthly="799" data-annual="639">639</span></div>
+      </div>
+      <div class="price-cycle">per month · billed annually</div>
+      <div class="price-usd">≈ USD <span class="price-usd-growth" data-monthly="175" data-annual="140">140</span> / month</div>
+      <div class="price-annual-note" id="note-growth">You save RM1,920 / year</div>
+      <div class="price-seats">Up to 20 users</div>
+
+      <a href="#" class="plan-cta cta-purple">Start free trial</a>
+      <div class="plan-divider"></div>
+
+      <ul class="plan-features">
+        <li class="feat-item"><div class="feat-check check-purple">✓</div><span>Everything in Starter</span></li>
+        <li class="feat-item"><div class="feat-check check-purple">✓</div><span>Unlimited audit programmes</span></li>
+        <li class="feat-item"><div class="feat-check check-purple">✓</div><span>Management Review module (Clause 9.3)</span></li>
+        <li class="feat-item"><div class="feat-check check-purple">✓</div><span>FRM-15 minutes — auto-generated DOCX + PDF</span></li>
+        <li class="feat-item"><div class="feat-check check-purple">✓</div><span>IAR auto-generated with TM sign-off</span></li>
+        <li class="feat-item"><div class="feat-check check-purple">✓</div><span>98-control Annex A checklist</span></li>
+        <li class="feat-item"><div class="feat-check check-purple">✓</div><span>Advanced compliance scorecard</span></li>
+        <li class="feat-item"><div class="feat-check check-purple">✓</div><span>Configuration Centre (RAG thresholds)</span></li>
+        <li class="feat-item"><div class="feat-check check-purple">✓</div><span>People, Roles &amp; Access (PRA) management</span></li>
+        <li class="feat-item feat-off"><div class="feat-check">–</div><span>ISMS Intelligence dashboard <span class="feat-ai ai-tag-purple">AI</span></span></li>
+        <li class="feat-item feat-off"><div class="feat-check">–</div><span>AI Compliance Assistant <span class="feat-ai ai-tag-purple">AI</span></span></li>
+        <li class="feat-item feat-off"><div class="feat-check">–</div><span>Priority support</span></li>
+      </ul>
+    </div>
+
+    <!-- PROFESSIONAL -->
+    <div class="plan-card">
+      <div class="plan-tier tier-pro">Professional</div>
+      <div class="plan-name">For serious compliance</div>
+      <div class="plan-tagline">Everything in Growth, plus AI-powered intelligence and priority support. Up to 50 users.</div>
+
+      <div class="plan-price-block">
+        <div class="price-myr"><sup>RM</sup><span class="price-val-pro" data-monthly="1999" data-annual="1599">1,599</span></div>
+      </div>
+      <div class="price-cycle">per month · billed annually</div>
+      <div class="price-usd">≈ USD <span class="price-usd-pro" data-monthly="440" data-annual="352">352</span> / month</div>
+      <div class="price-annual-note" id="note-pro">You save RM4,800 / year</div>
+      <div class="price-seats">Up to 50 users</div>
+
+      <a href="#" class="plan-cta cta-dark">Start free trial</a>
+      <div class="plan-divider"></div>
+
+      <ul class="plan-features">
+        <li class="feat-item"><div class="feat-check check-dark">✓</div><span>Everything in Growth</span></li>
+        <li class="feat-item"><div class="feat-check check-dark">✓</div><span>ISMS Intelligence dashboard <span class="feat-ai ai-tag-purple">AI</span></span></li>
+        <li class="feat-item"><div class="feat-check check-dark">✓</div><span>AI Compliance Assistant <span class="feat-ai ai-tag-purple">AI</span></span></li>
+        <li class="feat-item"><div class="feat-check check-dark">✓</div><span>Auto-raise findings from Annex A <span class="feat-ai ai-tag-purple">AI</span></span></li>
+        <li class="feat-item"><div class="feat-check check-dark">✓</div><span>Priority email + chat support</span></li>
+        <li class="feat-item"><div class="feat-check check-dark">✓</div><span>Dedicated onboarding session (2hrs)</span></li>
+        <li class="feat-item"><div class="feat-check check-dark">✓</div><span>SLA response guarantee</span></li>
+        <li class="feat-item"><div class="feat-check check-dark">✓</div><span>Custom document templates</span></li>
+        <li class="feat-item"><div class="feat-check check-dark">✓</div><span>Early access to new features</span></li>
+        <li class="feat-item"><div class="feat-check check-dark">✓</div><span>Configuration Centre (all tabs)</span></li>
+        <li class="feat-item"><div class="feat-check check-dark">✓</div><span>Intake Wizard</span></li>
+        <li class="feat-item"><div class="feat-check check-dark">✓</div><span>ISMS Advisor (view-only) role</span></li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- ENTERPRISE -->
+  <div class="enterprise-card">
+    <div class="enterprise-left">
+      <div class="enterprise-tier">Enterprise</div>
+      <div class="enterprise-name">For large organisations &amp; consultancies</div>
+      <div class="enterprise-desc">Custom pricing for 50+ users, multi-entity licensing, consultant partner programme, white-glove onboarding, and dedicated account management.</div>
+      <div class="enterprise-features">
+        <div class="ent-chip">Unlimited users</div>
+        <div class="ent-chip">Multi-entity / group licensing</div>
+        <div class="ent-chip">Consultant partner programme</div>
+        <div class="ent-chip">Dedicated account manager</div>
+        <div class="ent-chip">Custom SLA</div>
+        <div class="ent-chip">SSO / SAML integration</div>
+        <div class="ent-chip">15% revenue share for partners</div>
+      </div>
+    </div>
+    <div class="enterprise-cta">
+      <a href="#" class="btn-ent-primary">Talk to sales</a>
+      <a href="#" class="btn-ent-ghost">Download partner deck</a>
+    </div>
+  </div>
+</div>
+
+<!-- COMPARISON TABLE -->
+<div class="compare-section">
+  <h2 class="compare-title">Compare every feature</h2>
+  <p class="compare-sub">Every plan includes a 14-day free trial — no commitment until you're ready.</p>
+
+  <table class="compare-table">
+    <thead>
+      <tr>
+        <th class="th-feature"><div class="th-inner"><span class="th-plan" style="color:var(--dim);">Features</span></div></th>
+        <th><div class="th-inner"><span class="th-plan tier-starter">Starter</span><div class="th-price">RM239<sub>/mo</sub></div></div></th>
+        <th class="col-featured"><div class="th-inner"><span class="th-plan tier-growth">Growth</span><div class="th-price">RM639<sub>/mo</sub></div></div></th>
+        <th><div class="th-inner"><span class="th-plan tier-pro">Professional</span><div class="th-price">RM1,599<sub>/mo</sub></div></div></th>
+      </tr>
+    </thead>
+    <tbody>
+      <!-- Users & Access -->
+      <tr class="row-group">
+        <td colspan="4"><div class="td-inner">Users &amp; Access</div></td>
+      </tr>
+      <tr>
+        <td class="td-feature"><div class="td-inner"><div><div class="feat-name">Users included</div></div></div></td>
+        <td><div class="td-inner"><span class="val">5</span></div></td>
+        <td class="col-featured"><div class="td-inner"><span class="val">20</span></div></td>
+        <td><div class="td-inner"><span class="val">50</span></div></td>
+      </tr>
+      <tr>
+        <td class="td-feature"><div class="td-inner"><div><div class="feat-name">Role-based access (Author, Reviewer, Approver, Implementer)</div></div></div></td>
+        <td><div class="td-inner"><span class="check">✓</span></div></td>
+        <td class="col-featured"><div class="td-inner"><span class="check-p">✓</span></div></td>
+        <td><div class="td-inner"><span class="check">✓</span></div></td>
+      </tr>
+      <tr>
+        <td class="td-feature"><div class="td-inner"><div><div class="feat-name">ISMS Advisor (view-only) role</div></div></div></td>
+        <td><div class="td-inner"><span class="dash">–</span></div></td>
+        <td class="col-featured"><div class="td-inner"><span class="dash">–</span></div></td>
+        <td><div class="td-inner"><span class="check">✓</span></div></td>
+      </tr>
+      <tr>
+        <td class="td-feature"><div class="td-inner"><div><div class="feat-name">People, Roles &amp; Access (PRA) management</div></div></div></td>
+        <td><div class="td-inner"><span class="check">✓</span></div></td>
+        <td class="col-featured"><div class="td-inner"><span class="check-p">✓</span></div></td>
+        <td><div class="td-inner"><span class="check">✓</span></div></td>
+      </tr>
+
+      <!-- Documents -->
+      <tr class="row-group">
+        <td colspan="4"><div class="td-inner">Document Management</div></td>
+      </tr>
+      <tr>
+        <td class="td-feature"><div class="td-inner"><div><div class="feat-name">ISO 27001-aligned documents</div><div class="feat-note">74 documents across 12 groups</div></div></div></td>
+        <td><div class="td-inner"><span class="check">✓</span></div></td>
+        <td class="col-featured"><div class="td-inner"><span class="check-p">✓</span></div></td>
+        <td><div class="td-inner"><span class="check">✓</span></div></td>
+      </tr>
+      <tr>
+        <td class="td-feature"><div class="td-inner"><div><div class="feat-name">Version control (v0.1 → v1.0 → v2.0)</div></div></div></td>
+        <td><div class="td-inner"><span class="check">✓</span></div></td>
+        <td class="col-featured"><div class="td-inner"><span class="check-p">✓</span></div></td>
+        <td><div class="td-inner"><span class="check">✓</span></div></td>
+      </tr>
+      <tr>
+        <td class="td-feature"><div class="td-inner"><div><div class="feat-name">Approval workflow &amp; full audit trail</div></div></div></td>
+        <td><div class="td-inner"><span class="check">✓</span></div></td>
+        <td class="col-featured"><div class="td-inner"><span class="check-p">✓</span></div></td>
+        <td><div class="td-inner"><span class="check">✓</span></div></td>
+      </tr>
+      <tr>
+        <td class="td-feature"><div class="td-inner"><div><div class="feat-name">Auto-generated DOCX + PDF</div></div></div></td>
+        <td><div class="td-inner"><span class="check">✓</span></div></td>
+        <td class="col-featured"><div class="td-inner"><span class="check-p">✓</span></div></td>
+        <td><div class="td-inner"><span class="check">✓</span></div></td>
+      </tr>
+      <tr>
+        <td class="td-feature"><div class="td-inner"><div><div class="feat-name">Forms &amp; evidence management</div></div></div></td>
+        <td><div class="td-inner"><span class="check">✓</span></div></td>
+        <td class="col-featured"><div class="td-inner"><span class="check-p">✓</span></div></td>
+        <td><div class="td-inner"><span class="check">✓</span></div></td>
+      </tr>
+      <tr>
+        <td class="td-feature"><div class="td-inner"><div><div class="feat-name">Custom document templates</div></div></div></td>
+        <td><div class="td-inner"><span class="dash">–</span></div></td>
+        <td class="col-featured"><div class="td-inner"><span class="dash">–</span></div></td>
+        <td><div class="td-inner"><span class="check">✓</span></div></td>
+      </tr>
+
+      <!-- Audit -->
+      <tr class="row-group">
+        <td colspan="4"><div class="td-inner">Internal Audit</div></td>
+      </tr>
+      <tr>
+        <td class="td-feature"><div class="td-inner"><div><div class="feat-name">Audit programmes</div></div></div></td>
+        <td><div class="td-inner"><span class="val">1 active</span></div></td>
+        <td class="col-featured"><div class="td-inner"><span class="val">Unlimited</span></div></td>
+        <td><div class="td-inner"><span class="val">Unlimited</span></div></td>
+      </tr>
+      <tr>
+        <td class="td-feature"><div class="td-inner"><div><div class="feat-name">98-control Annex A checklist (ISO 27001:2022)</div></div></div></td>
+        <td><div class="td-inner"><span class="check">✓</span></div></td>
+        <td class="col-featured"><div class="td-inner"><span class="check-p">✓</span></div></td>
+        <td><div class="td-inner"><span class="check">✓</span></div></td>
+      </tr>
+      <tr>
+        <td class="td-feature"><div class="td-inner"><div><div class="feat-name">NC management (5-step closure + CAP)</div></div></div></td>
+        <td><div class="td-inner"><span class="check">✓</span></div></td>
+        <td class="col-featured"><div class="td-inner"><span class="check-p">✓</span></div></td>
+        <td><div class="td-inner"><span class="check">✓</span></div></td>
+      </tr>
+      <tr>
+        <td class="td-feature"><div class="td-inner"><div><div class="feat-name">IAR auto-generated (Initial + Final, DOCX + PDF)</div></div></div></td>
+        <td><div class="td-inner"><span class="check">✓</span></div></td>
+        <td class="col-featured"><div class="td-inner"><span class="check-p">✓</span></div></td>
+        <td><div class="td-inner"><span class="check">✓</span></div></td>
+      </tr>
+      <tr>
+        <td class="td-feature"><div class="td-inner"><div><div class="feat-name">Auto-raise findings from checklist <span class="feat-ai">AI</span></div></div></div></td>
+        <td><div class="td-inner"><span class="dash">–</span></div></td>
+        <td class="col-featured"><div class="td-inner"><span class="dash">–</span></div></td>
+        <td><div class="td-inner"><span class="check">✓</span></div></td>
+      </tr>
+
+      <!-- Management Review -->
+      <tr class="row-group">
+        <td colspan="4"><div class="td-inner">Management Review (Clause 9.3)</div></td>
+      </tr>
+      <tr>
+        <td class="td-feature"><div class="td-inner"><div><div class="feat-name">Management Review module</div></div></div></td>
+        <td><div class="td-inner"><span class="dash">–</span></div></td>
+        <td class="col-featured"><div class="td-inner"><span class="check-p">✓</span></div></td>
+        <td><div class="td-inner"><span class="check">✓</span></div></td>
+      </tr>
+      <tr>
+        <td class="td-feature"><div class="td-inner"><div><div class="feat-name">9 mandatory Clause 9.3.2 agenda items (auto-populated)</div></div></div></td>
+        <td><div class="td-inner"><span class="dash">–</span></div></td>
+        <td class="col-featured"><div class="td-inner"><span class="check-p">✓</span></div></td>
+        <td><div class="td-inner"><span class="check">✓</span></div></td>
+      </tr>
+      <tr>
+        <td class="td-feature"><div class="td-inner"><div><div class="feat-name">FRM-15 minutes — DOCX + PDF with TM sign-off</div></div></div></td>
+        <td><div class="td-inner"><span class="dash">–</span></div></td>
+        <td class="col-featured"><div class="td-inner"><span class="check-p">✓</span></div></td>
+        <td><div class="td-inner"><span class="check">✓</span></div></td>
+      </tr>
+
+      <!-- AI -->
+      <tr class="row-group">
+        <td colspan="4"><div class="td-inner">AI Capabilities</div></td>
+      </tr>
+      <tr>
+        <td class="td-feature"><div class="td-inner"><div><div class="feat-name">RAG compliance scorecard (5 sections)</div></div></div></td>
+        <td><div class="td-inner"><span class="check">✓</span></div></td>
+        <td class="col-featured"><div class="td-inner"><span class="check-p">✓</span></div></td>
+        <td><div class="td-inner"><span class="check">✓</span></div></td>
+      </tr>
+      <tr>
+        <td class="td-feature"><div class="td-inner"><div><div class="feat-name">ISMS Intelligence dashboard <span class="feat-ai">AI</span></div><div class="feat-note">Live posture, trends, risk interpretation</div></div></div></td>
+        <td><div class="td-inner"><span class="dash">–</span></div></td>
+        <td class="col-featured"><div class="td-inner"><span class="dash">–</span></div></td>
+        <td><div class="td-inner"><span class="check">✓</span></div></td>
+      </tr>
+      <tr>
+        <td class="td-feature"><div class="td-inner"><div><div class="feat-name">AI Compliance Assistant <span class="feat-ai">AI</span></div><div class="feat-note">Ask anything about your live ISMS data</div></div></div></td>
+        <td><div class="td-inner"><span class="dash">–</span></div></td>
+        <td class="col-featured"><div class="td-inner"><span class="dash">–</span></div></td>
+        <td><div class="td-inner"><span class="check">✓</span></div></td>
+      </tr>
+      <tr>
+        <td class="td-feature"><div class="td-inner"><div><div class="feat-name">Configurable RAG thresholds (Green ≥ X%, Amber ≥ Y%)</div></div></div></td>
+        <td><div class="td-inner"><span class="dash">–</span></div></td>
+        <td class="col-featured"><div class="td-inner"><span class="check-p">✓</span></div></td>
+        <td><div class="td-inner"><span class="check">✓</span></div></td>
+      </tr>
+
+      <!-- Support -->
+      <tr class="row-group">
+        <td colspan="4"><div class="td-inner">Support &amp; Onboarding</div></td>
+      </tr>
+      <tr>
+        <td class="td-feature"><div class="td-inner"><div><div class="feat-name">Email support</div></div></div></td>
+        <td><div class="td-inner"><span class="check">✓</span></div></td>
+        <td class="col-featured"><div class="td-inner"><span class="check-p">✓</span></div></td>
+        <td><div class="td-inner"><span class="check">✓</span></div></td>
+      </tr>
+      <tr>
+        <td class="td-feature"><div class="td-inner"><div><div class="feat-name">Priority email + chat support</div></div></div></td>
+        <td><div class="td-inner"><span class="dash">–</span></div></td>
+        <td class="col-featured"><div class="td-inner"><span class="dash">–</span></div></td>
+        <td><div class="td-inner"><span class="check">✓</span></div></td>
+      </tr>
+      <tr>
+        <td class="td-feature"><div class="td-inner"><div><div class="feat-name">Dedicated onboarding session</div></div></div></td>
+        <td><div class="td-inner"><span class="dash">–</span></div></td>
+        <td class="col-featured"><div class="td-inner"><span class="dash">–</span></div></td>
+        <td><div class="td-inner"><span class="val">2 hrs</span></div></td>
+      </tr>
+      <tr>
+        <td class="td-feature"><div class="td-inner"><div><div class="feat-name">SLA response guarantee</div></div></div></td>
+        <td><div class="td-inner"><span class="dash">–</span></div></td>
+        <td class="col-featured"><div class="td-inner"><span class="dash">–</span></div></td>
+        <td><div class="td-inner"><span class="check">✓</span></div></td>
+      </tr>
+
+      <!-- CTA row -->
+      <tr class="table-cta-row">
+        <td class="td-feature"><div class="td-inner"></div></td>
+        <td><div class="td-inner" style="padding:18px;"><a href="#" style="display:block;padding:10px 0;background:var(--teal);color:#fff;border-radius:8px;font-family:var(--font-display);font-size:13px;font-weight:700;text-decoration:none;text-align:center;">Start free trial</a></div></td>
+        <td class="col-featured"><div class="td-inner" style="padding:18px;"><a href="#" style="display:block;padding:10px 0;background:var(--purple);color:#fff;border-radius:8px;font-family:var(--font-display);font-size:13px;font-weight:700;text-decoration:none;text-align:center;">Start free trial</a></div></td>
+        <td><div class="td-inner" style="padding:18px;"><a href="#" style="display:block;padding:10px 0;background:var(--text);color:#fff;border-radius:8px;font-family:var(--font-display);font-size:13px;font-weight:700;text-decoration:none;text-align:center;">Start free trial</a></div></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- FAQ -->
+<div class="faq-section">
+  <h2 class="faq-title">Common questions</h2>
+  <p class="faq-sub">Everything you need to know before you commit.</p>
+
+  <div class="faq-item open">
+    <div class="faq-q" onclick="toggleFaq(this)">
+      <span class="faq-q-text">Is there really no credit card required for the trial?</span>
+      <div class="faq-icon">+</div>
+    </div>
+    <div class="faq-a">Yes — your 14-day trial starts the moment you create an account. No card, no commitment. At the end of 14 days, choose a plan or your data is held for 30 days while you decide. We'll remind you 3 days before the trial ends.</div>
+  </div>
+
+  <div class="faq-item">
+    <div class="faq-q" onclick="toggleFaq(this)">
+      <span class="faq-q-text">Can I switch plans later?</span>
+      <div class="faq-icon">+</div>
+    </div>
+    <div class="faq-a">Yes. Upgrade or downgrade at any time. Upgrades take effect immediately — you'll be charged a prorated amount for the remainder of your billing cycle. Downgrades take effect at the next renewal date.</div>
+  </div>
+
+  <div class="faq-item">
+    <div class="faq-q" onclick="toggleFaq(this)">
+      <span class="faq-q-text">What payment methods do you accept?</span>
+      <div class="faq-icon">+</div>
+    </div>
+    <div class="faq-a">We accept all major credit and debit cards (Visa, Mastercard) via Stripe. For Malaysian customers, FPX online banking is available. Enterprise customers can pay via bank transfer with a purchase order.</div>
+  </div>
+
+  <div class="faq-item">
+    <div class="faq-q" onclick="toggleFaq(this)">
+      <span class="faq-q-text">Does Ferbe work without the AI module?</span>
+      <div class="faq-icon">+</div>
+    </div>
+    <div class="faq-a">Absolutely — and this is a core design principle. Every document, audit, evidence, and management review feature works fully without AI. The AI module (available on Professional) is a powerful enhancement layer — it adds intelligence and interpretation on top of what's already structured, not a dependency that the platform relies on.</div>
+  </div>
+
+  <div class="faq-item">
+    <div class="faq-q" onclick="toggleFaq(this)">
+      <span class="faq-q-text">Is my data stored in Malaysia?</span>
+      <div class="faq-icon">+</div>
+    </div>
+    <div class="faq-a">Ferbe is hosted on infrastructure with data residency options for Malaysian and Southeast Asian customers. We comply with Malaysia's PDPA and GDPR principles. Full details are in our Privacy Policy.</div>
+  </div>
+
+  <div class="faq-item">
+    <div class="faq-q" onclick="toggleFaq(this)">
+      <span class="faq-q-text">I'm an ISO 27001 consultant managing multiple clients — is there a partner plan?</span>
+      <div class="faq-icon">+</div>
+    </div>
+    <div class="faq-a">Yes. Our consultant partner programme gives you a 15% revenue share on every client you refer or manage through Ferbe. You also get access to a multi-client dashboard, white-labelling options, and a dedicated partner account manager. Talk to us about Enterprise or download our partner deck.</div>
+  </div>
+
+  <div class="faq-item">
+    <div class="faq-q" onclick="toggleFaq(this)">
+      <span class="faq-q-text">What happens to my data if I cancel?</span>
+      <div class="faq-icon">+</div>
+    </div>
+    <div class="faq-a">You can export all your documents, evidence, and audit records as PDF or ZIP at any time. After cancellation, your data is retained for 90 days — after which it is permanently deleted from our servers. We will never hold your compliance data hostage.</div>
+  </div>
+</div>
+
+<!-- FINAL CTA -->
+<div class="cta-strip">
+  <div class="cta-strip-inner">
+    <div class="cta-left">
+      <h2>Ready to run your ISMS properly?</h2>
+      <p>Start free. No credit card. Cancel anytime. Your ISO 27001 certification starts here.</p>
+    </div>
+    <div class="cta-right">
+      <a href="#" class="btn-strip-primary">Start your free 14-day trial</a>
+      <a href="#" class="btn-strip-ghost">Book a demo</a>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-row">
+      <span class="footer-copy">© 2026 Ferbe · ferbe.ai · All rights reserved</span>
+      <div class="footer-links">
+        <a href="#">Privacy Policy</a>
+        <a href="#">Terms of Service</a>
+        <a href="#">Refund Policy</a>
+        <a href="#">Cookie Policy</a>
+        <a href="#">Status</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // ── Billing toggle ──
+  let isAnnual = true;
+
+  function toggleBilling() {
+    isAnnual = !isAnnual;
+    const track = document.getElementById('billingToggle');
+    const pill  = document.getElementById('savePill');
+
+    track.classList.toggle('annual', isAnnual);
+    track.classList.toggle('monthly', !isAnnual);
+    pill.style.opacity = isAnnual ? '1' : '0.3';
+
+    const plans = [
+      { cls: 'price-val-starter', usdCls: 'price-usd-starter', noteId: 'note-starter' },
+      { cls: 'price-val-growth',  usdCls: 'price-usd-growth',  noteId: 'note-growth'  },
+      { cls: 'price-val-pro',     usdCls: 'price-usd-pro',     noteId: 'note-pro'     },
+    ];
+
+    plans.forEach(p => {
+      const el  = document.querySelector('.' + p.cls);
+      const usd = document.querySelector('.' + p.usdCls);
+      const note = document.getElementById(p.noteId);
+      if (!el) return;
+      const val = isAnnual ? el.dataset.annual : el.dataset.monthly;
+      const usdVal = isAnnual ? usd.dataset.annual : usd.dataset.monthly;
+      el.textContent  = Number(val).toLocaleString();
+      usd.textContent = Number(usdVal).toLocaleString();
+      if (note) note.style.display = isAnnual ? 'inline-block' : 'none';
+    });
+
+    // Update cycle text
+    document.querySelectorAll('.price-cycle').forEach(el => {
+      el.textContent = isAnnual ? 'per month · billed annually' : 'per month · billed monthly';
+    });
+
+    // Update table header prices
+    const tableHeaders = [
+      { sel: '.col-featured .th-price', annual: 'RM639', monthly: 'RM799' },
+    ];
+  }
+
+  // Init: show annual
+  document.getElementById('billingToggle').classList.add('annual');
+
+  // ── FAQ accordion ──
+  function toggleFaq(el) {
+    const item = el.closest('.faq-item');
+    const isOpen = item.classList.contains('open');
+    document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+    if (!isOpen) item.classList.add('open');
+  }
+
+  // ── Fade-up on scroll ──
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+  }, { threshold: 0.08 });
+  document.querySelectorAll('.plan-card, .enterprise-card').forEach(el => {
+    el.style.opacity = '0';
+    el.style.transform = 'translateY(20px)';
+    el.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+    observer.observe(el);
+  });
+  document.addEventListener('DOMContentLoaded', () => {
+    setTimeout(() => {
+      document.querySelectorAll('.plan-card, .enterprise-card').forEach((el, i) => {
+        setTimeout(() => { el.style.opacity='1'; el.style.transform='translateY(0)'; }, i * 80);
+      });
+    }, 200);
+  });
+</script>
+</body>
+</html>
