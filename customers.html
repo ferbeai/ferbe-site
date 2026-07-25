@@ -123,6 +123,272 @@ footer { border-top: 3px solid transparent; border-image: linear-gradient(90deg,
   .cta-strip { margin: 0 20px 60px; padding: 36px 28px; flex-direction: column; }
 }
 
+
+
+/* ── NAV MOBILE FIXES ── */
+@media (max-width: 768px) {
+  nav {
+    padding: 0 20px !important;
+    position: relative !important;
+  }
+  .nav-links { display: none !important; }
+  .nav-cta { display: none !important; }
+  .mobile-menu-btn {
+    display: flex !important;
+    margin-left: auto !important;
+  }
+}
+
+/* ═══════════════════════════════════════════════
+   FERBE MOBILE RESPONSIVE — injected fix
+   Breakpoints: 768px (tablet), 480px (phone)
+   ═══════════════════════════════════════════════ */
+
+/* ── Shared layout containers ── */
+@media (max-width: 768px) {
+  /* Section inner containers with hardcoded padding */
+  .section-inner,
+  [style*="max-width:1120px"],
+  [style*="max-width: 1120px"] {
+    padding-left: 20px !important;
+    padding-right: 20px !important;
+  }
+
+  /* All inline 2-col grids → single column */
+  [style*="grid-template-columns:1fr 1fr"],
+  [style*="grid-template-columns: 1fr 1fr"] {
+    grid-template-columns: 1fr !important;
+    gap: 32px !important;
+  }
+
+  /* All inline 2-col grids with explicit fractions */
+  [style*="grid-template-columns:1fr 320px"],
+  [style*="grid-template-columns:1fr 300px"],
+  [style*="grid-template-columns:1fr 280px"],
+  [style*="grid-template-columns:1fr 260px"] {
+    grid-template-columns: 1fr !important;
+    gap: 32px !important;
+  }
+
+  /* 3-col grids → 1 col */
+  [style*="grid-template-columns:repeat(3,1fr)"],
+  [style*="grid-template-columns: repeat(3,1fr)"],
+  [style*="grid-template-columns:repeat(3, 1fr)"] {
+    grid-template-columns: 1fr !important;
+    gap: 16px !important;
+  }
+
+  /* 4-col grids → 2 col */
+  [style*="grid-template-columns:repeat(4,1fr)"],
+  [style*="grid-template-columns: repeat(4,1fr)"] {
+    grid-template-columns: 1fr 1fr !important;
+    gap: 12px !important;
+  }
+
+  /* Sidebar + content layouts used in ISO guide, blog posts */
+  [style*="grid-template-columns:1fr 300px"],
+  [style*="display:grid;grid-template-columns:1fr"] {
+    grid-template-columns: 1fr !important;
+  }
+
+  /* Sticky sidebar — unstick on mobile */
+  [style*="position:sticky"],
+  [style*="position: sticky"] {
+    position: static !important;
+  }
+
+  /* Horizontal flex rows → column */
+  .hero-actions,
+  .cta-strip-actions {
+    flex-direction: column !important;
+    width: 100% !important;
+  }
+  .hero-actions a,
+  .cta-strip-actions a {
+    width: 100% !important;
+    text-align: center !important;
+    box-sizing: border-box !important;
+  }
+
+  /* Dark outcome strips: 4-col → 2-col */
+  [style*="grid-template-columns:repeat(4,1fr)"][style*="background:#0F172A"],
+  [style*="grid-template-columns:repeat(4,1fr)"][style*="gap:1px"] {
+    grid-template-columns: 1fr 1fr !important;
+  }
+
+  /* Padding fixes for dark full-bleed sections */
+  [style*="padding:48px"],
+  [style*="padding: 48px"],
+  [style*="padding:64px"],
+  [style*="padding:80px 48px"],
+  [style*="padding: 80px 48px"] {
+    padding: 40px 20px !important;
+  }
+  [style*="padding:40px 48px"] {
+    padding: 32px 20px !important;
+  }
+
+  /* Blog grid: 3-col → 1-col */
+  [style*="grid-template-columns:repeat(3,1fr)"] {
+    grid-template-columns: 1fr !important;
+  }
+
+  /* Industry tiles: 4-col → 2-col */
+  [style*="grid-template-columns:repeat(4,1fr)"] {
+    grid-template-columns: 1fr 1fr !important;
+    gap: 10px !important;
+  }
+
+  /* Features page stat rows */
+  [style*="grid-template-columns:repeat(2,1fr)"] {
+    grid-template-columns: 1fr !important;
+  }
+
+  /* Typography scale down */
+  .section-title {
+    font-size: clamp(22px, 6vw, 36px) !important;
+  }
+  .page-hero h1 {
+    font-size: clamp(26px, 7vw, 44px) !important;
+  }
+
+  /* Nav mobile burger (already hidden via .nav-links display:none) */
+  .nav-links { display: none !important; }
+
+  /* Pricing page: billing toggle layout */
+  [style*="display:flex"][style*="justify-content:center"][style*="margin-bottom:4"] {
+    flex-wrap: wrap !important;
+  }
+
+  /* CTA strip */
+  .cta-strip {
+    flex-direction: column !important;
+    gap: 24px !important;
+    text-align: center !important;
+  }
+}
+
+/* ── SCREEN MOCKS: hide on mobile, show placeholder ── */
+@media (max-width: 768px) {
+  /* Hero visual: hide tabbed screen switcher entirely */
+  .hero-visual { display: none !important; }
+
+  /* Customers page: hide screens paired with testimonials */
+  [style*="transform:scale(0.88)"],
+  [style*="transform:scale(0.82)"],
+  [style*="transform:scale(0.70)"],
+  [style*="transform:scale(0.7)"],
+  [style*="transform:scale(0.95)"] {
+    display: none !important;
+  }
+
+  /* Help page: category cards — hide internal screen thumbnails */
+  [style*="transform:scale(0.82)"][style*="transform-origin:top left"] {
+    display: none !important;
+  }
+
+  /* Blog article cards: hide screen thumbnail at top */
+  [style*="height:200px"][style*="overflow:hidden"] {
+    display: none !important;
+  }
+
+  /* Contact page demo preview screen */
+  .fade-up [style*="border:1px solid #E2E8F0"][style*="border-radius:14px"] {
+    display: none !important;
+  }
+
+  /* About page screens (journey + PRA) */
+  .fade-up {
+    display: none !important;
+  }
+
+  /* Screen chrome inside help cards */
+  [style*="overflow:hidden;box-shadow:0 8px 40px"] {
+    display: none !important;
+  }
+}
+
+/* ── PHONE-SPECIFIC (<480px) ── */
+@media (max-width: 480px) {
+  /* Hero headline */
+  .hero h1 { font-size: clamp(32px, 9vw, 48px) !important; }
+  .hero p { font-size: 16px !important; }
+
+  /* Page hero sections */
+  .page-hero { padding: 60px 20px 40px !important; }
+  .page-hero h1 { font-size: clamp(24px, 8vw, 38px) !important; }
+
+  /* Dark outcome numbers: 4→2→2 col maintained */
+  [style*="grid-template-columns:repeat(4,1fr)"] {
+    grid-template-columns: 1fr 1fr !important;
+  }
+
+  /* Stats chips in testimonials */
+  [style*="display:flex;gap:16px;flex-wrap:wrap"] {
+    gap: 8px !important;
+  }
+
+  /* Blog featured article: hide screen on phone too */
+  [style*="transform:scale(0.88)"],
+  [style*="transform:scale(0.82)"] {
+    display: none !important;
+  }
+
+  /* Pricing cards */
+  [style*="grid-template-columns:repeat(3,1fr)"] {
+    grid-template-columns: 1fr !important;
+  }
+
+  /* Checklist page 2-col layout */
+  [style*="grid-template-columns:1fr 1fr"] {
+    grid-template-columns: 1fr !important;
+  }
+
+  /* Logo strip */
+  .logos-row { flex-wrap: wrap !important; gap: 8px !important; }
+
+  /* Footer columns */
+  .footer-top { grid-template-columns: 1fr !important; }
+}
+
+/* ── HAMBURGER MENU ── */
+@media (max-width: 768px) {
+  .mobile-menu-btn {
+    display: flex !important;
+  }
+  .mobile-nav {
+    display: none;
+    position: fixed;
+    top: 64px; left: 0; right: 0;
+    background: #fff;
+    border-bottom: 1px solid #E2E8F0;
+    padding: 16px 20px;
+    flex-direction: column;
+    gap: 4px;
+    z-index: 999;
+    box-shadow: 0 8px 24px rgba(15,23,42,0.08);
+  }
+  .mobile-nav.open { display: flex; }
+  .mobile-nav a {
+    padding: 12px 16px;
+    font-size: 15px;
+    font-weight: 600;
+    color: #0F172A;
+    text-decoration: none;
+    border-radius: 8px;
+    transition: background 0.15s;
+  }
+  .mobile-nav a:hover { background: #F8FAFC; }
+  .mobile-nav .mobile-cta {
+    margin-top: 8px;
+    padding: 12px 16px;
+    background: #0D7C66;
+    color: #fff !important;
+    border-radius: 10px;
+    text-align: center;
+  }
+}
+
 </style>
 </head>
 <body>
@@ -142,7 +408,26 @@ footer { border-top: 3px solid transparent; border-image: linear-gradient(90deg,
     <a href="contact.html" class="btn-ghost">Book demo</a>
     <a href="#" class="btn-primary">Start free trial</a>
   </div>
+
+<button class="mobile-menu-btn" onclick="toggleMobileMenu()" aria-label="Menu" style="display:none;background:none;border:none;cursor:pointer;padding:8px;flex-direction:column;gap:5px;align-items:center;justify-content:center;">
+  <span style="display:block;width:22px;height:2px;background:#0F172A;border-radius:2px;transition:all 0.2s;"></span>
+  <span style="display:block;width:22px;height:2px;background:#0F172A;border-radius:2px;transition:all 0.2s;"></span>
+  <span style="display:block;width:22px;height:2px;background:#0F172A;border-radius:2px;transition:all 0.2s;"></span>
+</button>
 </nav>
+<div class="mobile-nav" id="mobile-nav">
+  <a href="index.html">Home</a>
+  <a href="features.html">Features</a>
+  <a href="pricing.html">Pricing</a>
+  <a href="customers.html">Customers</a>
+  <a href="about.html">About</a>
+  <a href="blog.html">Blog</a>
+  <a href="iso-27001-guide.html">ISO 27001 Guide</a>
+  <a href="checklist.html">Free Checklist</a>
+  <a href="contact.html">Contact</a>
+  <a href="#" class="mobile-cta">Start free trial</a>
+</div>
+
 
 <div class="page-hero" style="background:linear-gradient(170deg,#F8FAFC,#FAFAFF 50%,#FFF9E6 100%);">
   <div class="eyebrow"><div class="eyebrow-dot"></div>Customer Results</div>
@@ -393,6 +678,21 @@ footer { border-top: 3px solid transparent; border-image: linear-gradient(90deg,
     entries.forEach(e => { if (e.isIntersecting) e.target.classList.add("visible"); });
   }, { threshold: 0.1 });
   document.querySelectorAll(".fade-up").forEach(el => obs.observe(el));
+
+  // Mobile menu toggle
+  function toggleMobileMenu() {
+    const nav = document.getElementById('mobile-nav');
+    nav.classList.toggle('open');
+  }
+  // Close mobile menu on outside click
+  document.addEventListener('click', function(e) {
+    const nav = document.getElementById('mobile-nav');
+    const btn = document.querySelector('.mobile-menu-btn');
+    if (nav && btn && !nav.contains(e.target) && !btn.contains(e.target)) {
+      nav.classList.remove('open');
+    }
+  });
+
 </script>
 </body>
 </html>

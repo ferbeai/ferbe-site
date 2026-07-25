@@ -123,6 +123,272 @@ footer { border-top: 3px solid transparent; border-image: linear-gradient(90deg,
   .cta-strip { margin: 0 20px 60px; padding: 36px 28px; flex-direction: column; }
 }
 
+
+
+/* ── NAV MOBILE FIXES ── */
+@media (max-width: 768px) {
+  nav {
+    padding: 0 20px !important;
+    position: relative !important;
+  }
+  .nav-links { display: none !important; }
+  .nav-cta { display: none !important; }
+  .mobile-menu-btn {
+    display: flex !important;
+    margin-left: auto !important;
+  }
+}
+
+/* ═══════════════════════════════════════════════
+   FERBE MOBILE RESPONSIVE — injected fix
+   Breakpoints: 768px (tablet), 480px (phone)
+   ═══════════════════════════════════════════════ */
+
+/* ── Shared layout containers ── */
+@media (max-width: 768px) {
+  /* Section inner containers with hardcoded padding */
+  .section-inner,
+  [style*="max-width:1120px"],
+  [style*="max-width: 1120px"] {
+    padding-left: 20px !important;
+    padding-right: 20px !important;
+  }
+
+  /* All inline 2-col grids → single column */
+  [style*="grid-template-columns:1fr 1fr"],
+  [style*="grid-template-columns: 1fr 1fr"] {
+    grid-template-columns: 1fr !important;
+    gap: 32px !important;
+  }
+
+  /* All inline 2-col grids with explicit fractions */
+  [style*="grid-template-columns:1fr 320px"],
+  [style*="grid-template-columns:1fr 300px"],
+  [style*="grid-template-columns:1fr 280px"],
+  [style*="grid-template-columns:1fr 260px"] {
+    grid-template-columns: 1fr !important;
+    gap: 32px !important;
+  }
+
+  /* 3-col grids → 1 col */
+  [style*="grid-template-columns:repeat(3,1fr)"],
+  [style*="grid-template-columns: repeat(3,1fr)"],
+  [style*="grid-template-columns:repeat(3, 1fr)"] {
+    grid-template-columns: 1fr !important;
+    gap: 16px !important;
+  }
+
+  /* 4-col grids → 2 col */
+  [style*="grid-template-columns:repeat(4,1fr)"],
+  [style*="grid-template-columns: repeat(4,1fr)"] {
+    grid-template-columns: 1fr 1fr !important;
+    gap: 12px !important;
+  }
+
+  /* Sidebar + content layouts used in ISO guide, blog posts */
+  [style*="grid-template-columns:1fr 300px"],
+  [style*="display:grid;grid-template-columns:1fr"] {
+    grid-template-columns: 1fr !important;
+  }
+
+  /* Sticky sidebar — unstick on mobile */
+  [style*="position:sticky"],
+  [style*="position: sticky"] {
+    position: static !important;
+  }
+
+  /* Horizontal flex rows → column */
+  .hero-actions,
+  .cta-strip-actions {
+    flex-direction: column !important;
+    width: 100% !important;
+  }
+  .hero-actions a,
+  .cta-strip-actions a {
+    width: 100% !important;
+    text-align: center !important;
+    box-sizing: border-box !important;
+  }
+
+  /* Dark outcome strips: 4-col → 2-col */
+  [style*="grid-template-columns:repeat(4,1fr)"][style*="background:#0F172A"],
+  [style*="grid-template-columns:repeat(4,1fr)"][style*="gap:1px"] {
+    grid-template-columns: 1fr 1fr !important;
+  }
+
+  /* Padding fixes for dark full-bleed sections */
+  [style*="padding:48px"],
+  [style*="padding: 48px"],
+  [style*="padding:64px"],
+  [style*="padding:80px 48px"],
+  [style*="padding: 80px 48px"] {
+    padding: 40px 20px !important;
+  }
+  [style*="padding:40px 48px"] {
+    padding: 32px 20px !important;
+  }
+
+  /* Blog grid: 3-col → 1-col */
+  [style*="grid-template-columns:repeat(3,1fr)"] {
+    grid-template-columns: 1fr !important;
+  }
+
+  /* Industry tiles: 4-col → 2-col */
+  [style*="grid-template-columns:repeat(4,1fr)"] {
+    grid-template-columns: 1fr 1fr !important;
+    gap: 10px !important;
+  }
+
+  /* Features page stat rows */
+  [style*="grid-template-columns:repeat(2,1fr)"] {
+    grid-template-columns: 1fr !important;
+  }
+
+  /* Typography scale down */
+  .section-title {
+    font-size: clamp(22px, 6vw, 36px) !important;
+  }
+  .page-hero h1 {
+    font-size: clamp(26px, 7vw, 44px) !important;
+  }
+
+  /* Nav mobile burger (already hidden via .nav-links display:none) */
+  .nav-links { display: none !important; }
+
+  /* Pricing page: billing toggle layout */
+  [style*="display:flex"][style*="justify-content:center"][style*="margin-bottom:4"] {
+    flex-wrap: wrap !important;
+  }
+
+  /* CTA strip */
+  .cta-strip {
+    flex-direction: column !important;
+    gap: 24px !important;
+    text-align: center !important;
+  }
+}
+
+/* ── SCREEN MOCKS: hide on mobile, show placeholder ── */
+@media (max-width: 768px) {
+  /* Hero visual: hide tabbed screen switcher entirely */
+  .hero-visual { display: none !important; }
+
+  /* Customers page: hide screens paired with testimonials */
+  [style*="transform:scale(0.88)"],
+  [style*="transform:scale(0.82)"],
+  [style*="transform:scale(0.70)"],
+  [style*="transform:scale(0.7)"],
+  [style*="transform:scale(0.95)"] {
+    display: none !important;
+  }
+
+  /* Help page: category cards — hide internal screen thumbnails */
+  [style*="transform:scale(0.82)"][style*="transform-origin:top left"] {
+    display: none !important;
+  }
+
+  /* Blog article cards: hide screen thumbnail at top */
+  [style*="height:200px"][style*="overflow:hidden"] {
+    display: none !important;
+  }
+
+  /* Contact page demo preview screen */
+  .fade-up [style*="border:1px solid #E2E8F0"][style*="border-radius:14px"] {
+    display: none !important;
+  }
+
+  /* About page screens (journey + PRA) */
+  .fade-up {
+    display: none !important;
+  }
+
+  /* Screen chrome inside help cards */
+  [style*="overflow:hidden;box-shadow:0 8px 40px"] {
+    display: none !important;
+  }
+}
+
+/* ── PHONE-SPECIFIC (<480px) ── */
+@media (max-width: 480px) {
+  /* Hero headline */
+  .hero h1 { font-size: clamp(32px, 9vw, 48px) !important; }
+  .hero p { font-size: 16px !important; }
+
+  /* Page hero sections */
+  .page-hero { padding: 60px 20px 40px !important; }
+  .page-hero h1 { font-size: clamp(24px, 8vw, 38px) !important; }
+
+  /* Dark outcome numbers: 4→2→2 col maintained */
+  [style*="grid-template-columns:repeat(4,1fr)"] {
+    grid-template-columns: 1fr 1fr !important;
+  }
+
+  /* Stats chips in testimonials */
+  [style*="display:flex;gap:16px;flex-wrap:wrap"] {
+    gap: 8px !important;
+  }
+
+  /* Blog featured article: hide screen on phone too */
+  [style*="transform:scale(0.88)"],
+  [style*="transform:scale(0.82)"] {
+    display: none !important;
+  }
+
+  /* Pricing cards */
+  [style*="grid-template-columns:repeat(3,1fr)"] {
+    grid-template-columns: 1fr !important;
+  }
+
+  /* Checklist page 2-col layout */
+  [style*="grid-template-columns:1fr 1fr"] {
+    grid-template-columns: 1fr !important;
+  }
+
+  /* Logo strip */
+  .logos-row { flex-wrap: wrap !important; gap: 8px !important; }
+
+  /* Footer columns */
+  .footer-top { grid-template-columns: 1fr !important; }
+}
+
+/* ── HAMBURGER MENU ── */
+@media (max-width: 768px) {
+  .mobile-menu-btn {
+    display: flex !important;
+  }
+  .mobile-nav {
+    display: none;
+    position: fixed;
+    top: 64px; left: 0; right: 0;
+    background: #fff;
+    border-bottom: 1px solid #E2E8F0;
+    padding: 16px 20px;
+    flex-direction: column;
+    gap: 4px;
+    z-index: 999;
+    box-shadow: 0 8px 24px rgba(15,23,42,0.08);
+  }
+  .mobile-nav.open { display: flex; }
+  .mobile-nav a {
+    padding: 12px 16px;
+    font-size: 15px;
+    font-weight: 600;
+    color: #0F172A;
+    text-decoration: none;
+    border-radius: 8px;
+    transition: background 0.15s;
+  }
+  .mobile-nav a:hover { background: #F8FAFC; }
+  .mobile-nav .mobile-cta {
+    margin-top: 8px;
+    padding: 12px 16px;
+    background: #0D7C66;
+    color: #fff !important;
+    border-radius: 10px;
+    text-align: center;
+  }
+}
+
 </style>
 </head>
 <body>
@@ -142,7 +408,26 @@ footer { border-top: 3px solid transparent; border-image: linear-gradient(90deg,
     <a href="contact.html" class="btn-ghost">Book demo</a>
     <a href="#" class="btn-primary">Start free trial</a>
   </div>
+
+<button class="mobile-menu-btn" onclick="toggleMobileMenu()" aria-label="Menu" style="display:none;background:none;border:none;cursor:pointer;padding:8px;flex-direction:column;gap:5px;align-items:center;justify-content:center;">
+  <span style="display:block;width:22px;height:2px;background:#0F172A;border-radius:2px;transition:all 0.2s;"></span>
+  <span style="display:block;width:22px;height:2px;background:#0F172A;border-radius:2px;transition:all 0.2s;"></span>
+  <span style="display:block;width:22px;height:2px;background:#0F172A;border-radius:2px;transition:all 0.2s;"></span>
+</button>
 </nav>
+<div class="mobile-nav" id="mobile-nav">
+  <a href="index.html">Home</a>
+  <a href="features.html">Features</a>
+  <a href="pricing.html">Pricing</a>
+  <a href="customers.html">Customers</a>
+  <a href="about.html">About</a>
+  <a href="blog.html">Blog</a>
+  <a href="iso-27001-guide.html">ISO 27001 Guide</a>
+  <a href="checklist.html">Free Checklist</a>
+  <a href="contact.html">Contact</a>
+  <a href="#" class="mobile-cta">Start free trial</a>
+</div>
+
 <div style="background:linear-gradient(170deg,#F8FAFC,#FAFAFF);border-bottom:1px solid var(--border);padding:60px 48px 48px;"><div style="max-width:760px;"><div style="margin-bottom:14px;"><a href="blog.html" style="font-size:13px;color:var(--muted);text-decoration:none;" onmouseover="this.style.color='var(--teal)'" onmouseout="this.style.color='var(--muted)'">&#8592; Blog</a><span style="color:var(--dim);margin:0 8px;">/</span><span style="font-size:13px;color:var(--dim);">Standard Updates</span></div><span style="font-family:var(--font-mono);font-size:11px;font-weight:600;padding:3px 10px;border-radius:100px;background:#D9770618;color:#D97706;border:1px solid #D9770630;">Standard Updates</span><h1 style="font-family:var(--font-display);font-size:clamp(26px,4vw,40px);font-weight:800;color:var(--text);line-height:1.15;letter-spacing:-0.02em;margin:14px 0;">ISO 27001:2022 vs 2013 — what changed and what you need to do now</h1><p style="font-size:16px;color:var(--muted);line-height:1.7;margin-bottom:22px;">The 2022 update was the most significant change to ISO 27001 since 2013. 11 new controls. 4 themes instead of 14 domains. And a transition deadline that has now passed. Here is what it means for your certification.</p><div style="display:flex;align-items:center;gap:14px;flex-wrap:wrap;"><div style="display:flex;align-items:center;gap:8px;"><div style="width:34px;height:34px;border-radius:50%;background:linear-gradient(135deg,var(--teal),#0F9070);display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:800;color:var(--yellow);">FL</div><div><div style="font-family:var(--font-display);font-size:13px;font-weight:700;">Falco Lee</div><div style="font-size:11px;color:var(--dim);">Founder, Ferbe &middot; Energized Inc.</div></div></div><span style="color:var(--dim);">&middot;</span><span style="font-size:13px;color:var(--dim);">1 Jul 2026</span><span style="color:var(--dim);">&middot;</span><span style="font-size:13px;color:var(--dim);">10 min read</span></div></div></div><div style="max-width:1120px;margin:0 auto;padding:48px 48px 80px;display:grid;grid-template-columns:1fr 260px;gap:48px;align-items:start;"><article style="max-width:720px;"><div style="display:flex;gap:12px;margin:20px 0;flex-wrap:wrap;"><div style="text-align:center;padding:16px;background:var(--card);border:1px solid var(--border);border-radius:var(--radius);flex:1;min-width:100px;"><div style="font-family:var(--font-display);font-size:28px;font-weight:800;color:#0D7C66;line-height:1;">93</div><div style="font-size:12px;color:var(--muted);margin-top:4px;">Controls in 2022 (was 114)</div></div><div style="text-align:center;padding:16px;background:var(--card);border:1px solid var(--border);border-radius:var(--radius);flex:1;min-width:100px;"><div style="font-family:var(--font-display);font-size:28px;font-weight:800;color:#8FAF00;line-height:1;">11</div><div style="font-size:12px;color:var(--muted);margin-top:4px;">New controls added</div></div><div style="text-align:center;padding:16px;background:var(--card);border:1px solid var(--border);border-radius:var(--radius);flex:1;min-width:100px;"><div style="font-family:var(--font-display);font-size:28px;font-weight:800;color:#7C3AED;line-height:1;">4</div><div style="font-size:12px;color:var(--muted);margin-top:4px;">Annex A themes (was 14)</div></div><div style="text-align:center;padding:16px;background:var(--card);border:1px solid var(--border);border-radius:var(--radius);flex:1;min-width:100px;"><div style="font-family:var(--font-display);font-size:28px;font-weight:800;color:#DC2626;line-height:1;">Oct 2025</div><div style="font-size:12px;color:var(--muted);margin-top:4px;">Transition deadline passed</div></div></div><p style="font-size:15px;color:var(--muted);line-height:1.8;margin-bottom:16px;">The ISO 27001:2022 update was the most significant revision to the standard since 2013. If you are starting a certification project now, you are working with 2022. If you were certified under 2013, your recertification should already be on the 2022 standard — the transition deadline was October 2025.</p><p style="font-size:15px;color:var(--muted);line-height:1.8;margin-bottom:16px;">Here is exactly what changed, what is new, and what it means for your certification project.</p><h3 style="font-family:var(--font-display);font-size:18px;font-weight:700;color:var(--text);margin:24px 0 10px;">The biggest structural change: Annex A reorganisation</h3><p style="font-size:15px;color:var(--muted);line-height:1.8;margin-bottom:16px;">The 2013 version had 114 controls organised into 14 domains (A.5 through A.18). The 2022 version reorganised these into 93 controls across 4 themes. No controls were removed — they were merged, renamed, or reorganised.</p><div style="background:var(--card);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;margin:20px 0;">
 <table style="width:100%;border-collapse:collapse;">
 <tr style="background:#F8FAFC;"><th style="padding:10px 14px;font-size:11px;font-weight:600;color:#94A3B8;text-align:left;letter-spacing:0.06em;">AREA</th><th style="padding:10px 14px;font-size:11px;font-weight:600;color:#94A3B8;text-align:left;letter-spacing:0.06em;">ISO 27001:2013</th><th style="padding:10px 14px;font-size:11px;font-weight:600;color:#0D7C66;text-align:left;letter-spacing:0.06em;">ISO 27001:2022</th></tr><tr style="border-top:1px solid #F1F5F9;"><td style="padding:10px 14px;font-size:13px;font-weight:600;color:var(--text);">Controls</td><td style="padding:10px 14px;font-size:13px;color:#DC2626;">114 controls in 14 domains</td><td style="padding:10px 14px;font-size:13px;color:#0D7C66;font-weight:500;">93 controls in 4 themes</td></tr><tr style="border-top:1px solid #F1F5F9;"><td style="padding:10px 14px;font-size:13px;font-weight:600;color:var(--text);">New controls</td><td style="padding:10px 14px;font-size:13px;color:#DC2626;">N/A</td><td style="padding:10px 14px;font-size:13px;color:#0D7C66;font-weight:500;">11 new controls added</td></tr><tr style="border-top:1px solid #F1F5F9;"><td style="padding:10px 14px;font-size:13px;font-weight:600;color:var(--text);">Annex A structure</td><td style="padding:10px 14px;font-size:13px;color:#DC2626;">14 domains (A.5–A.18)</td><td style="padding:10px 14px;font-size:13px;color:#0D7C66;font-weight:500;">4 themes: Org, People, Physical, Tech</td></tr><tr style="border-top:1px solid #F1F5F9;"><td style="padding:10px 14px;font-size:13px;font-weight:600;color:var(--text);">Threat intelligence</td><td style="padding:10px 14px;font-size:13px;color:#DC2626;">Not addressed</td><td style="padding:10px 14px;font-size:13px;color:#0D7C66;font-weight:500;">A.5.7 — new mandatory consideration</td></tr><tr style="border-top:1px solid #F1F5F9;"><td style="padding:10px 14px;font-size:13px;font-weight:600;color:var(--text);">Cloud security</td><td style="padding:10px 14px;font-size:13px;color:#DC2626;">Not explicitly addressed</td><td style="padding:10px 14px;font-size:13px;color:#0D7C66;font-weight:500;">A.5.23 — cloud service security</td></tr><tr style="border-top:1px solid #F1F5F9;"><td style="padding:10px 14px;font-size:13px;font-weight:600;color:var(--text);">Data masking</td><td style="padding:10px 14px;font-size:13px;color:#DC2626;">Not addressed</td><td style="padding:10px 14px;font-size:13px;color:#0D7C66;font-weight:500;">A.8.11 — new control</td></tr><tr style="border-top:1px solid #F1F5F9;"><td style="padding:10px 14px;font-size:13px;font-weight:600;color:var(--text);">Secure coding</td><td style="padding:10px 14px;font-size:13px;color:#DC2626;">Basic guidance</td><td style="padding:10px 14px;font-size:13px;color:#0D7C66;font-weight:500;">A.8.28 — explicit secure coding requirement</td></tr><tr style="border-top:1px solid #F1F5F9;"><td style="padding:10px 14px;font-size:13px;font-weight:600;color:var(--text);">Mandatory transition</td><td style="padding:10px 14px;font-size:13px;color:#DC2626;">N/A</td><td style="padding:10px 14px;font-size:13px;color:#0D7C66;font-weight:500;">All orgs: deadline was Oct 2025</td></tr></table></div><h3 style="font-family:var(--font-display);font-size:18px;font-weight:700;color:var(--text);margin:24px 0 10px;">The 11 new controls you need to address</h3><p style="font-size:15px;color:var(--muted);line-height:1.8;margin-bottom:16px;">These 11 controls did not exist in ISO 27001:2013. If you are transitioning from 2013 certification, these are your primary gap areas. For each one, you need to assess whether it applies to your organisation, document your position in the SoA, and if applicable, implement the control with evidence.</p><div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:20px 0;"><div style="padding:12px 14px;background:rgba(212,255,0,0.06);border:1px solid rgba(212,255,0,0.25);border-radius:8px;"><div style="font-family:var(--font-mono);font-size:10px;font-weight:600;color:#8FAF00;margin-bottom:4px;">A.5.7</div><div style="font-size:13px;color:var(--muted);">Threat intelligence</div></div><div style="padding:12px 14px;background:rgba(212,255,0,0.06);border:1px solid rgba(212,255,0,0.25);border-radius:8px;"><div style="font-family:var(--font-mono);font-size:10px;font-weight:600;color:#8FAF00;margin-bottom:4px;">A.5.23</div><div style="font-size:13px;color:var(--muted);">Information security for cloud services</div></div><div style="padding:12px 14px;background:rgba(212,255,0,0.06);border:1px solid rgba(212,255,0,0.25);border-radius:8px;"><div style="font-family:var(--font-mono);font-size:10px;font-weight:600;color:#8FAF00;margin-bottom:4px;">A.5.30</div><div style="font-size:13px;color:var(--muted);">ICT readiness for business continuity</div></div><div style="padding:12px 14px;background:rgba(212,255,0,0.06);border:1px solid rgba(212,255,0,0.25);border-radius:8px;"><div style="font-family:var(--font-mono);font-size:10px;font-weight:600;color:#8FAF00;margin-bottom:4px;">A.7.4</div><div style="font-size:13px;color:var(--muted);">Physical security monitoring</div></div><div style="padding:12px 14px;background:rgba(212,255,0,0.06);border:1px solid rgba(212,255,0,0.25);border-radius:8px;"><div style="font-family:var(--font-mono);font-size:10px;font-weight:600;color:#8FAF00;margin-bottom:4px;">A.8.9</div><div style="font-size:13px;color:var(--muted);">Configuration management</div></div><div style="padding:12px 14px;background:rgba(212,255,0,0.06);border:1px solid rgba(212,255,0,0.25);border-radius:8px;"><div style="font-family:var(--font-mono);font-size:10px;font-weight:600;color:#8FAF00;margin-bottom:4px;">A.8.10</div><div style="font-size:13px;color:var(--muted);">Information deletion</div></div><div style="padding:12px 14px;background:rgba(212,255,0,0.06);border:1px solid rgba(212,255,0,0.25);border-radius:8px;"><div style="font-family:var(--font-mono);font-size:10px;font-weight:600;color:#8FAF00;margin-bottom:4px;">A.8.11</div><div style="font-size:13px;color:var(--muted);">Data masking</div></div><div style="padding:12px 14px;background:rgba(212,255,0,0.06);border:1px solid rgba(212,255,0,0.25);border-radius:8px;"><div style="font-family:var(--font-mono);font-size:10px;font-weight:600;color:#8FAF00;margin-bottom:4px;">A.8.12</div><div style="font-size:13px;color:var(--muted);">Data leakage prevention</div></div><div style="padding:12px 14px;background:rgba(212,255,0,0.06);border:1px solid rgba(212,255,0,0.25);border-radius:8px;"><div style="font-family:var(--font-mono);font-size:10px;font-weight:600;color:#8FAF00;margin-bottom:4px;">A.8.16</div><div style="font-size:13px;color:var(--muted);">Monitoring activities</div></div><div style="padding:12px 14px;background:rgba(212,255,0,0.06);border:1px solid rgba(212,255,0,0.25);border-radius:8px;"><div style="font-family:var(--font-mono);font-size:10px;font-weight:600;color:#8FAF00;margin-bottom:4px;">A.8.23</div><div style="font-size:13px;color:var(--muted);">Web filtering</div></div><div style="padding:12px 14px;background:rgba(212,255,0,0.06);border:1px solid rgba(212,255,0,0.25);border-radius:8px;"><div style="font-family:var(--font-mono);font-size:10px;font-weight:600;color:#8FAF00;margin-bottom:4px;">A.8.28</div><div style="font-size:13px;color:var(--muted);">Secure coding</div></div></div><div style="background:rgba(13,124,102,0.06);border:1px solid rgba(13,124,102,0.2);border-left:4px solid #0D7C66;border-radius:0 var(--radius) var(--radius) 0;padding:16px 20px;margin:20px 0;display:flex;gap:12px;align-items:flex-start;"><span style="font-size:18px;flex-shrink:0;">&#128161;</span><div style="font-size:14px;color:var(--muted);line-height:1.7;">Not all 11 new controls will be applicable to every organisation. A small company without custom software development, for example, may be able to exclude A.8.28 (Secure coding) with a justified rationale in the SoA.</div></div><div style="margin:24px 0;"><div style="font-size:12px;font-weight:600;color:var(--teal);margin-bottom:8px;">&#128202; How Ferbe maps controls to your SoA — all 93 controls pre-loaded</div><div style="background:#fff;border:1px solid #E2E8F0;border-radius:14px;overflow:hidden;box-shadow:0 8px 40px rgba(15,23,42,0.10);">
@@ -221,6 +506,21 @@ footer { border-top: 3px solid transparent; border-image: linear-gradient(90deg,
     entries.forEach(e => { if (e.isIntersecting) e.target.classList.add("visible"); });
   }, { threshold: 0.1 });
   document.querySelectorAll(".fade-up").forEach(el => obs.observe(el));
+
+  // Mobile menu toggle
+  function toggleMobileMenu() {
+    const nav = document.getElementById('mobile-nav');
+    nav.classList.toggle('open');
+  }
+  // Close mobile menu on outside click
+  document.addEventListener('click', function(e) {
+    const nav = document.getElementById('mobile-nav');
+    const btn = document.querySelector('.mobile-menu-btn');
+    if (nav && btn && !nav.contains(e.target) && !btn.contains(e.target)) {
+      nav.classList.remove('open');
+    }
+  });
+
 </script>
 </body>
 </html>
