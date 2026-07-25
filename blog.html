@@ -123,8 +123,6 @@ footer { border-top: 3px solid transparent; border-image: linear-gradient(90deg,
   .cta-strip { margin: 0 20px 60px; padding: 36px 28px; flex-direction: column; }
 }
 
-
-
 /* ── NAV MOBILE FIXES ── */
 @media (max-width: 768px) {
   nav {
@@ -389,6 +387,7 @@ footer { border-top: 3px solid transparent; border-image: linear-gradient(90deg,
   }
 }
 
+
 </style>
 </head>
 <body>
@@ -408,13 +407,12 @@ footer { border-top: 3px solid transparent; border-image: linear-gradient(90deg,
     <a href="contact.html" class="btn-ghost">Book demo</a>
     <a href="#" class="btn-primary">Start free trial</a>
   </div>
-
+</nav>
 <button class="mobile-menu-btn" onclick="toggleMobileMenu()" aria-label="Menu" style="display:none;background:none;border:none;cursor:pointer;padding:8px;flex-direction:column;gap:5px;align-items:center;justify-content:center;">
   <span style="display:block;width:22px;height:2px;background:#0F172A;border-radius:2px;transition:all 0.2s;"></span>
   <span style="display:block;width:22px;height:2px;background:#0F172A;border-radius:2px;transition:all 0.2s;"></span>
   <span style="display:block;width:22px;height:2px;background:#0F172A;border-radius:2px;transition:all 0.2s;"></span>
 </button>
-</nav>
 <div class="mobile-nav" id="mobile-nav" style="display:none;">
   <a href="index.html">Home</a>
   <a href="features.html">Features</a>
@@ -432,23 +430,30 @@ footer { border-top: 3px solid transparent; border-image: linear-gradient(90deg,
 <div class="page-hero" style="background:linear-gradient(170deg,#F8FAFC,#FAFAFF);">
   <div class="eyebrow"><div class="eyebrow-dot"></div>Ferbe Blog</div>
   <h1>ISO 27001 insights from <span style="color:var(--teal);">practitioners</span><br>who have been there</h1>
-  <p>Guides, deep-dives, and practical advice from Energized Inc. &#8212; the consulting firm behind Ferbe. 15+ years of ISMS implementation experience, distilled.</p>
+  <p>Guides, deep-dives, and practical advice from Energized Inc. &#8212; the consulting firm behind Ferbe.</p>
 </div>
 
 <section class="section">
   <div class="section-inner">
-    <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:32px;"><button style="padding:7px 16px;border-radius:100px;font-size:13px;font-weight:600;border:1.5px solid var(--teal);background:var(--teal);color:#fff;cursor:pointer;transition:all 0.2s;" onmouseover="if(this.style.background!=='var(--teal)'){this.style.borderColor='var(--teal)';this.style.color='var(--teal)'}" onmouseout="if(this.style.background!=='var(--teal)'){this.style.borderColor='var(--border)';this.style.color='var(--muted)'}">All</button><button style="padding:7px 16px;border-radius:100px;font-size:13px;font-weight:500;border:1.5px solid var(--border);background:var(--card);color:var(--muted);cursor:pointer;transition:all 0.2s;" onmouseover="if(this.style.background!=='var(--teal)'){this.style.borderColor='var(--teal)';this.style.color='var(--teal)'}" onmouseout="if(this.style.background!=='var(--teal)'){this.style.borderColor='var(--border)';this.style.color='var(--muted)'}">Certification Guide</button><button style="padding:7px 16px;border-radius:100px;font-size:13px;font-weight:500;border:1.5px solid var(--border);background:var(--card);color:var(--muted);cursor:pointer;transition:all 0.2s;" onmouseover="if(this.style.background!=='var(--teal)'){this.style.borderColor='var(--teal)';this.style.color='var(--teal)'}" onmouseout="if(this.style.background!=='var(--teal)'){this.style.borderColor='var(--border)';this.style.color='var(--muted)'}">Audit Preparation</button><button style="padding:7px 16px;border-radius:100px;font-size:13px;font-weight:500;border:1.5px solid var(--border);background:var(--card);color:var(--muted);cursor:pointer;transition:all 0.2s;" onmouseover="if(this.style.background!=='var(--teal)'){this.style.borderColor='var(--teal)';this.style.color='var(--teal)'}" onmouseout="if(this.style.background!=='var(--teal)'){this.style.borderColor='var(--border)';this.style.color='var(--muted)'}">Standard Updates</button><button style="padding:7px 16px;border-radius:100px;font-size:13px;font-weight:500;border:1.5px solid var(--border);background:var(--card);color:var(--muted);cursor:pointer;transition:all 0.2s;" onmouseover="if(this.style.background!=='var(--teal)'){this.style.borderColor='var(--teal)';this.style.color='var(--teal)'}" onmouseout="if(this.style.background!=='var(--teal)'){this.style.borderColor='var(--border)';this.style.color='var(--muted)'}">Documentation</button><button style="padding:7px 16px;border-radius:100px;font-size:13px;font-weight:500;border:1.5px solid var(--border);background:var(--card);color:var(--muted);cursor:pointer;transition:all 0.2s;" onmouseover="if(this.style.background!=='var(--teal)'){this.style.borderColor='var(--teal)';this.style.color='var(--teal)'}" onmouseout="if(this.style.background!=='var(--teal)'){this.style.borderColor='var(--border)';this.style.color='var(--muted)'}">Management Review</button><button style="padding:7px 16px;border-radius:100px;font-size:13px;font-weight:500;border:1.5px solid var(--border);background:var(--card);color:var(--muted);cursor:pointer;transition:all 0.2s;" onmouseover="if(this.style.background!=='var(--teal)'){this.style.borderColor='var(--teal)';this.style.color='var(--teal)'}" onmouseout="if(this.style.background!=='var(--teal)'){this.style.borderColor='var(--border)';this.style.color='var(--muted)'}">Internal Audit</button></div>
+    <div id="blog-filter" style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:32px;"><button data-filter="all" onclick="filterBlog(this)" style="padding:7px 16px;border-radius:100px;font-size:13px;font-weight:600;border:1.5px solid var(--teal);background:var(--teal);color:#fff;cursor:pointer;transition:all 0.2s;white-space:nowrap;">All</button><button data-filter="certification-guide" onclick="filterBlog(this)" style="padding:7px 16px;border-radius:100px;font-size:13px;font-weight:500;border:1.5px solid var(--border);background:var(--card);color:var(--muted);cursor:pointer;transition:all 0.2s;white-space:nowrap;">Certification Guide</button><button data-filter="audit-preparation" onclick="filterBlog(this)" style="padding:7px 16px;border-radius:100px;font-size:13px;font-weight:500;border:1.5px solid var(--border);background:var(--card);color:var(--muted);cursor:pointer;transition:all 0.2s;white-space:nowrap;">Audit Preparation</button><button data-filter="standard-updates" onclick="filterBlog(this)" style="padding:7px 16px;border-radius:100px;font-size:13px;font-weight:500;border:1.5px solid var(--border);background:var(--card);color:var(--muted);cursor:pointer;transition:all 0.2s;white-space:nowrap;">Standard Updates</button><button data-filter="documentation" onclick="filterBlog(this)" style="padding:7px 16px;border-radius:100px;font-size:13px;font-weight:500;border:1.5px solid var(--border);background:var(--card);color:var(--muted);cursor:pointer;transition:all 0.2s;white-space:nowrap;">Documentation</button><button data-filter="management-review" onclick="filterBlog(this)" style="padding:7px 16px;border-radius:100px;font-size:13px;font-weight:500;border:1.5px solid var(--border);background:var(--card);color:var(--muted);cursor:pointer;transition:all 0.2s;white-space:nowrap;">Management Review</button><button data-filter="internal-audit" onclick="filterBlog(this)" style="padding:7px 16px;border-radius:100px;font-size:13px;font-weight:500;border:1.5px solid var(--border);background:var(--card);color:var(--muted);cursor:pointer;transition:all 0.2s;white-space:nowrap;">Internal Audit</button></div>
     
-<div style="display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center;padding:40px;background:var(--card);border:1px solid var(--border);border-radius:var(--radius-lg);margin-bottom:48px;box-shadow:0 4px 24px rgba(15,23,42,0.06);">
+<div id="featured-card" data-category="certification-guide"
+  style="display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center;
+         padding:40px;background:var(--card);border:1px solid var(--border);
+         border-radius:var(--radius-lg);margin-bottom:48px;
+         box-shadow:0 4px 24px rgba(15,23,42,0.06);">
   <div>
     <div style="display:flex;gap:8px;align-items:center;margin-bottom:16px;">
       <span style="font-family:var(--font-mono);font-size:11px;font-weight:600;padding:3px 10px;border-radius:100px;background:rgba(13,124,102,0.1);color:var(--teal);border:1px solid rgba(13,124,102,0.2);">Certification Guide</span>
       <span style="font-family:var(--font-mono);font-size:11px;padding:3px 10px;border-radius:100px;background:rgba(212,255,0,0.12);color:var(--yellow-dark);border:1px solid rgba(212,255,0,0.3);">Featured</span>
     </div>
-    <h2 style="font-family:var(--font-display);font-size:26px;font-weight:800;color:var(--text);line-height:1.2;margin-bottom:14px;letter-spacing:-0.01em;">How to get ISO 27001 certified in 8 months (without a RM50k consultant)</h2>
+    <h2 style="font-family:var(--font-display);font-size:24px;font-weight:800;color:var(--text);line-height:1.2;margin-bottom:14px;letter-spacing:-0.01em;">How to get ISO 27001 certified in 8 months (without a RM50k consultant)</h2>
     <p style="font-size:15px;color:var(--muted);line-height:1.7;margin-bottom:20px;">Most organisations believe ISO 27001 certification requires 18 months and a six-figure consulting budget. They are wrong. Here is the proven 7-step method we use to get organisations certified in under 9 months.</p>
-    <div style="display:flex;align-items:center;gap:16px;margin-bottom:20px;">
-      <div style="display:flex;align-items:center;gap:8px;font-size:13px;color:var(--dim);"><div style="width:28px;height:28px;border-radius:50%;background:linear-gradient(135deg,var(--teal),#0F9070);display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:800;color:var(--yellow);">FL</div>Falco Lee</div>
+    <div style="display:flex;align-items:center;gap:14px;margin-bottom:20px;flex-wrap:wrap;">
+      <div style="display:flex;align-items:center;gap:8px;font-size:13px;color:var(--dim);">
+        <div style="width:28px;height:28px;border-radius:50%;background:linear-gradient(135deg,var(--teal),#0F9070);display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:800;color:var(--yellow);">FL</div>
+        Falco Lee
+      </div>
       <span style="color:var(--dim);">&middot;</span>
       <span style="font-size:13px;color:var(--dim);">15 Jul 2026</span>
       <span style="color:var(--dim);">&middot;</span>
@@ -472,8 +477,13 @@ footer { border-top: 3px solid transparent; border-image: linear-gradient(90deg,
 <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:8px;"><div style="padding:8px;background:#F8FAFC;border:1px solid #E2E8F0;border-radius:8px;text-align:center;"><div style="font-family:var(--font-display);font-size:16px;font-weight:800;color:#16A34A;">68</div><div style="font-size:9px;color:#94A3B8;margin-top:2px;">Docs Approved</div></div><div style="padding:8px;background:#F8FAFC;border:1px solid #E2E8F0;border-radius:8px;text-align:center;"><div style="font-family:var(--font-display);font-size:16px;font-weight:800;color:#DC2626;">3</div><div style="font-size:9px;color:#94A3B8;margin-top:2px;">Open NCs</div></div><div style="padding:8px;background:#F8FAFC;border:1px solid #E2E8F0;border-radius:8px;text-align:center;"><div style="font-family:var(--font-display);font-size:16px;font-weight:800;color:#0D7C66;">82%</div><div style="font-size:9px;color:#94A3B8;margin-top:2px;">Score</div></div><div style="padding:8px;background:#F8FAFC;border:1px solid #E2E8F0;border-radius:8px;text-align:center;"><div style="font-family:var(--font-display);font-size:16px;font-weight:800;color:#7C3AED;">7</div><div style="font-size:9px;color:#94A3B8;margin-top:2px;">My Tasks</div></div></div></div></div></div>
 </div></div>
 </div>
-    <h2 style="font-family:var(--font-display);font-size:22px;font-weight:800;margin-bottom:24px;letter-spacing:-0.01em;">More articles</h2>
-    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:20px;"><div style="background:var(--card);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;transition:box-shadow 0.2s,transform 0.2s;" onmouseover="this.style.boxShadow='0 8px 32px rgba(15,23,42,0.08)';this.style.transform='translateY(-2px)'" onmouseout="this.style.boxShadow='none';this.style.transform='none'">
+    <h2 id="more-articles-heading" style="font-family:var(--font-display);font-size:22px;font-weight:800;margin-bottom:24px;letter-spacing:-0.01em;">More articles</h2>
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:20px;">
+      <div class="blog-card" data-category="audit-preparation"
+  style="background:var(--card);border:1px solid var(--border);border-radius:var(--radius);
+         overflow:hidden;transition:box-shadow 0.2s,transform 0.2s;"
+  onmouseover="this.style.boxShadow='0 8px 32px rgba(15,23,42,0.08)';this.style.transform='translateY(-2px)'"
+  onmouseout="this.style.boxShadow='none';this.style.transform='none'">
   <div style="transform:scale(0.7);transform-origin:top left;width:calc(100%/0.7);height:200px;overflow:hidden;"><div style="background:#fff;border:1px solid #E2E8F0;border-radius:14px;overflow:hidden;box-shadow:0 8px 40px rgba(15,23,42,0.10);">
   <div style="background:#F8FAFC;border-bottom:1px solid #E2E8F0;padding:10px 16px;display:flex;align-items:center;gap:10px;">
     <div style="display:flex;gap:5px;flex-shrink:0;"><div style="width:10px;height:10px;border-radius:50%;background:#EF4444;"></div><div style="width:10px;height:10px;border-radius:50%;background:#F59E0B;"></div><div style="width:10px;height:10px;border-radius:50%;background:#22C55E;"></div></div>
@@ -499,7 +509,11 @@ footer { border-top: 3px solid transparent; border-image: linear-gradient(90deg,
       <a href="blog-5-reasons-companies-fail-stage-2-audit.html" style="font-size:12px;font-weight:600;color:var(--teal);text-decoration:none;">Read &#8594;</a>
     </div>
   </div>
-</div><div style="background:var(--card);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;transition:box-shadow 0.2s,transform 0.2s;" onmouseover="this.style.boxShadow='0 8px 32px rgba(15,23,42,0.08)';this.style.transform='translateY(-2px)'" onmouseout="this.style.boxShadow='none';this.style.transform='none'">
+</div><div class="blog-card" data-category="standard-updates"
+  style="background:var(--card);border:1px solid var(--border);border-radius:var(--radius);
+         overflow:hidden;transition:box-shadow 0.2s,transform 0.2s;"
+  onmouseover="this.style.boxShadow='0 8px 32px rgba(15,23,42,0.08)';this.style.transform='translateY(-2px)'"
+  onmouseout="this.style.boxShadow='none';this.style.transform='none'">
   <div style="transform:scale(0.7);transform-origin:top left;width:calc(100%/0.7);height:200px;overflow:hidden;"><div style="background:#fff;border:1px solid #E2E8F0;border-radius:14px;overflow:hidden;box-shadow:0 8px 40px rgba(15,23,42,0.10);">
   <div style="background:#F8FAFC;border-bottom:1px solid #E2E8F0;padding:10px 16px;display:flex;align-items:center;gap:10px;">
     <div style="display:flex;gap:5px;flex-shrink:0;"><div style="width:10px;height:10px;border-radius:50%;background:#EF4444;"></div><div style="width:10px;height:10px;border-radius:50%;background:#F59E0B;"></div><div style="width:10px;height:10px;border-radius:50%;background:#22C55E;"></div></div>
@@ -511,7 +525,7 @@ footer { border-top: 3px solid transparent; border-image: linear-gradient(90deg,
 <tr style="background:#F8FAFC;"><td style="padding:6px 8px;font-size:10px;font-weight:600;color:#94A3B8;">DOCUMENT</td><td style="padding:6px 8px;font-size:10px;font-weight:600;color:#94A3B8;">VER</td><td style="padding:6px 8px;font-size:10px;font-weight:600;color:#94A3B8;">STATUS</td><td style="padding:6px 8px;font-size:10px;font-weight:600;color:#94A3B8;">OWNER</td></tr><tr style="border-bottom:1px solid #F1F5F9;"><td style="padding:8px;font-size:12px;color:#0F172A;font-weight:500;">Information Security Policy</td><td style="padding:8px;font-family:var(--font-mono);font-size:11px;color:#7C3AED;">v2.0</td><td style="padding:8px;"><span style="font-size:10px;font-weight:600;padding:2px 8px;border-radius:100px;background:#F0FDF4;color:#16A34A;border:1px solid rgba(22,163,74,0.2);white-space:nowrap;">Approved</span></td><td style="padding:8px;font-size:11px;color:#475569;">Alex T.</td></tr><tr style="border-bottom:1px solid #F1F5F9;background:#FFFBEB;"><td style="padding:8px;font-size:12px;color:#0F172A;font-weight:500;">Access Control Procedure</td><td style="padding:8px;font-family:var(--font-mono);font-size:11px;color:#7C3AED;">v1.2</td><td style="padding:8px;"><span style="font-size:10px;font-weight:600;padding:2px 8px;border-radius:100px;background:#FFFBEB;color:#D97706;border:1px solid rgba(217,119,6,0.2);white-space:nowrap;">In Review</span></td><td style="padding:8px;font-size:11px;color:#475569;">Sarah K.</td></tr><tr style="border-bottom:1px solid #F1F5F9;"><td style="padding:8px;font-size:12px;color:#0F172A;font-weight:500;">Incident Response Procedure</td><td style="padding:8px;font-family:var(--font-mono);font-size:11px;color:#7C3AED;">v1.1</td><td style="padding:8px;"><span style="font-size:10px;font-weight:600;padding:2px 8px;border-radius:100px;background:#F0FDF4;color:#16A34A;border:1px solid rgba(22,163,74,0.2);white-space:nowrap;">Approved</span></td><td style="padding:8px;font-size:11px;color:#475569;">Mark R.</td></tr><tr style="border-bottom:1px solid #F1F5F9;"><td style="padding:8px;font-size:12px;color:#0F172A;font-weight:500;">Risk Assessment Register</td><td style="padding:8px;font-family:var(--font-mono);font-size:11px;color:#7C3AED;">v0.3</td><td style="padding:8px;"><span style="font-size:10px;font-weight:600;padding:2px 8px;border-radius:100px;background:#F1F5F9;color:#64748B;border:1px solid rgba(100,116,139,0.2);white-space:nowrap;">Draft</span></td><td style="padding:8px;font-size:11px;color:#475569;">James L.</td></tr><tr style="border-bottom:1px solid #F1F5F9;"><td style="padding:8px;font-size:12px;color:#0F172A;font-weight:500;">Business Continuity Plan</td><td style="padding:8px;font-family:var(--font-mono);font-size:11px;color:#7C3AED;">v1.0</td><td style="padding:8px;"><span style="font-size:10px;font-weight:600;padding:2px 8px;border-radius:100px;background:#F0FDF4;color:#16A34A;border:1px solid rgba(22,163,74,0.2);white-space:nowrap;">Approved</span></td><td style="padding:8px;font-size:11px;color:#475569;">Lisa M.</td></tr></table><div style="margin-top:10px;padding:8px 12px;background:#F0FDF4;border:1px solid rgba(22,163,74,0.2);border-radius:7px;display:flex;align-items:center;gap:8px;"><span style="font-size:11px;color:#475569;flex:1;">Access Control Procedure needs your review — <strong style="color:#D97706;">due today</strong></span><button style="padding:4px 10px;background:#0D7C66;color:#fff;border:none;border-radius:5px;font-size:10px;font-weight:600;">Review</button></div></div></div></div>
 </div></div>
   <div style="padding:20px;border-top:1px solid var(--border);">
-    <span style="font-family:var(--font-mono);font-size:10px;font-weight:600;padding:2px 8px;border-radius:100px;background:rgba(13,124,102,0.08);color:var(--yellow-dark);border:1px solid rgba(13,124,102,0.15);">Standard Updates</span>
+    <span style="font-family:var(--font-mono);font-size:10px;font-weight:600;padding:2px 8px;border-radius:100px;background:rgba(13,124,102,0.08);color:#D97706;border:1px solid rgba(13,124,102,0.15);">Standard Updates</span>
     <h3 style="font-family:var(--font-display);font-size:15px;font-weight:700;color:var(--text);line-height:1.3;margin:10px 0 8px;">ISO 27001:2022 vs 2013 — what changed and what you need to do now</h3>
     <p style="font-size:12px;color:var(--muted);line-height:1.6;margin-bottom:14px;">The 2022 update reorganised 114 controls into 93 across 4 themes and added 11 new controls. If you are still on 2013 cer...</p>
     <div style="display:flex;justify-content:space-between;align-items:center;">
@@ -519,7 +533,11 @@ footer { border-top: 3px solid transparent; border-image: linear-gradient(90deg,
       <a href="blog-iso-27001-2022-vs-2013-what-changed.html" style="font-size:12px;font-weight:600;color:var(--teal);text-decoration:none;">Read &#8594;</a>
     </div>
   </div>
-</div><div style="background:var(--card);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;transition:box-shadow 0.2s,transform 0.2s;" onmouseover="this.style.boxShadow='0 8px 32px rgba(15,23,42,0.08)';this.style.transform='translateY(-2px)'" onmouseout="this.style.boxShadow='none';this.style.transform='none'">
+</div><div class="blog-card" data-category="internal-audit"
+  style="background:var(--card);border:1px solid var(--border);border-radius:var(--radius);
+         overflow:hidden;transition:box-shadow 0.2s,transform 0.2s;"
+  onmouseover="this.style.boxShadow='0 8px 32px rgba(15,23,42,0.08)';this.style.transform='translateY(-2px)'"
+  onmouseout="this.style.boxShadow='none';this.style.transform='none'">
   <div style="transform:scale(0.7);transform-origin:top left;width:calc(100%/0.7);height:200px;overflow:hidden;"><div style="background:#fff;border:1px solid #E2E8F0;border-radius:14px;overflow:hidden;box-shadow:0 8px 40px rgba(15,23,42,0.10);">
   <div style="background:#F8FAFC;border-bottom:1px solid #E2E8F0;padding:10px 16px;display:flex;align-items:center;gap:10px;">
     <div style="display:flex;gap:5px;flex-shrink:0;"><div style="width:10px;height:10px;border-radius:50%;background:#EF4444;"></div><div style="width:10px;height:10px;border-radius:50%;background:#F59E0B;"></div><div style="width:10px;height:10px;border-radius:50%;background:#22C55E;"></div></div>
@@ -545,7 +563,11 @@ footer { border-top: 3px solid transparent; border-image: linear-gradient(90deg,
       <a href="blog-internal-audit-checklist-iso-27001.html" style="font-size:12px;font-weight:600;color:var(--teal);text-decoration:none;">Read &#8594;</a>
     </div>
   </div>
-</div><div style="background:var(--card);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;transition:box-shadow 0.2s,transform 0.2s;" onmouseover="this.style.boxShadow='0 8px 32px rgba(15,23,42,0.08)';this.style.transform='translateY(-2px)'" onmouseout="this.style.boxShadow='none';this.style.transform='none'">
+</div><div class="blog-card" data-category="documentation"
+  style="background:var(--card);border:1px solid var(--border);border-radius:var(--radius);
+         overflow:hidden;transition:box-shadow 0.2s,transform 0.2s;"
+  onmouseover="this.style.boxShadow='0 8px 32px rgba(15,23,42,0.08)';this.style.transform='translateY(-2px)'"
+  onmouseout="this.style.boxShadow='none';this.style.transform='none'">
   <div style="transform:scale(0.7);transform-origin:top left;width:calc(100%/0.7);height:200px;overflow:hidden;"><div style="background:#fff;border:1px solid #E2E8F0;border-radius:14px;overflow:hidden;box-shadow:0 8px 40px rgba(15,23,42,0.10);">
   <div style="background:#F8FAFC;border-bottom:1px solid #E2E8F0;padding:10px 16px;display:flex;align-items:center;gap:10px;">
     <div style="display:flex;gap:5px;flex-shrink:0;"><div style="width:10px;height:10px;border-radius:50%;background:#EF4444;"></div><div style="width:10px;height:10px;border-radius:50%;background:#F59E0B;"></div><div style="width:10px;height:10px;border-radius:50%;background:#22C55E;"></div></div>
@@ -565,7 +587,11 @@ footer { border-top: 3px solid transparent; border-image: linear-gradient(90deg,
       <a href="blog-statement-of-applicability-guide.html" style="font-size:12px;font-weight:600;color:var(--teal);text-decoration:none;">Read &#8594;</a>
     </div>
   </div>
-</div><div style="background:var(--card);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;transition:box-shadow 0.2s,transform 0.2s;" onmouseover="this.style.boxShadow='0 8px 32px rgba(15,23,42,0.08)';this.style.transform='translateY(-2px)'" onmouseout="this.style.boxShadow='none';this.style.transform='none'">
+</div><div class="blog-card" data-category="management-review"
+  style="background:var(--card);border:1px solid var(--border);border-radius:var(--radius);
+         overflow:hidden;transition:box-shadow 0.2s,transform 0.2s;"
+  onmouseover="this.style.boxShadow='0 8px 32px rgba(15,23,42,0.08)';this.style.transform='translateY(-2px)'"
+  onmouseout="this.style.boxShadow='none';this.style.transform='none'">
   <div style="transform:scale(0.7);transform-origin:top left;width:calc(100%/0.7);height:200px;overflow:hidden;"><div style="background:#fff;border:1px solid #E2E8F0;border-radius:14px;overflow:hidden;box-shadow:0 8px 40px rgba(15,23,42,0.10);">
   <div style="background:#F8FAFC;border-bottom:1px solid #E2E8F0;padding:10px 16px;display:flex;align-items:center;gap:10px;">
     <div style="display:flex;gap:5px;flex-shrink:0;"><div style="width:10px;height:10px;border-radius:50%;background:#EF4444;"></div><div style="width:10px;height:10px;border-radius:50%;background:#F59E0B;"></div><div style="width:10px;height:10px;border-radius:50%;background:#22C55E;"></div></div>
@@ -585,7 +611,8 @@ footer { border-top: 3px solid transparent; border-image: linear-gradient(90deg,
       <a href="blog-management-review-clause-9-3-guide.html" style="font-size:12px;font-weight:600;color:var(--teal);text-decoration:none;">Read &#8594;</a>
     </div>
   </div>
-</div></div>
+</div>
+    </div>
   </div>
 </section>
 
@@ -593,7 +620,7 @@ footer { border-top: 3px solid transparent; border-image: linear-gradient(90deg,
   <div style="max-width:560px;margin:0 auto;">
     <div style="font-family:var(--font-mono);font-size:11px;font-weight:600;color:var(--purple-hi);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:16px;">Newsletter</div>
     <h2 style="font-family:var(--font-display);font-size:28px;font-weight:800;color:#fff;margin-bottom:12px;letter-spacing:-0.01em;">ISO 27001 insights, monthly.</h2>
-    <p style="font-size:15px;color:rgba(255,255,255,0.5);margin-bottom:28px;">Practical guides and compliance updates from Ferbe &#8212; no spam, unsubscribe anytime.</p>
+    <p style="font-size:15px;color:rgba(255,255,255,0.5);margin-bottom:28px;">Practical guides and compliance updates &#8212; no spam, unsubscribe anytime.</p>
     <div style="display:flex;gap:10px;max-width:420px;margin:0 auto;">
       <input type="email" placeholder="Your work email" style="flex:1;padding:12px 16px;border-radius:10px;border:1px solid rgba(255,255,255,0.15);background:rgba(255,255,255,0.07);color:#fff;font-size:14px;font-family:var(--font-body);outline:none;" onfocus="this.style.borderColor='var(--yellow)'" onblur="this.style.borderColor='rgba(255,255,255,0.15)'">
       <a href="mailto:hello@ferbe.ai?subject=Newsletter signup" style="padding:12px 20px;background:var(--yellow);color:#0F172A;border-radius:10px;font-family:var(--font-display);font-size:14px;font-weight:700;text-decoration:none;white-space:nowrap;display:flex;align-items:center;">Subscribe</a>
@@ -669,7 +696,42 @@ footer { border-top: 3px solid transparent; border-image: linear-gradient(90deg,
   }, { threshold: 0.1 });
   document.querySelectorAll(".fade-up").forEach(el => obs.observe(el));
 
-  // Mobile menu toggle
+  // Blog category filter
+  function filterBlog(btn) {
+    const filter = btn.getAttribute('data-filter');
+
+    // Update button styles
+    document.querySelectorAll('#blog-filter button').forEach(b => {
+      const isActive = b === btn;
+      b.style.background = isActive ? 'var(--teal)' : 'var(--card)';
+      b.style.borderColor = isActive ? 'var(--teal)' : 'var(--border)';
+      b.style.color = isActive ? '#fff' : 'var(--muted)';
+      b.style.fontWeight = isActive ? '600' : '500';
+    });
+
+    // Show/hide featured card
+    const featured = document.getElementById('featured-card');
+    if (featured) {
+      const featCat = featured.getAttribute('data-category');
+      const showFeat = filter === 'all' || filter === featCat;
+      featured.style.display = showFeat ? 'grid' : 'none';
+    }
+
+    // Show/hide grid cards — reset to '' so CSS grid layout is preserved
+    let visibleCount = 0;
+    document.querySelectorAll('.blog-card').forEach(card => {
+      const cardCat = card.getAttribute('data-category');
+      const show = filter === 'all' || filter === cardCat;
+      card.style.display = show ? '' : 'none';
+      if (show) visibleCount++;
+    });
+
+    // Show/hide "More articles" heading
+    const moreHeading = document.getElementById('more-articles-heading');
+    if (moreHeading) moreHeading.style.display = visibleCount > 0 ? 'block' : 'none';
+  }
+
+// Mobile menu toggle
   function toggleMobileMenu() {
     const nav = document.getElementById('mobile-nav');
     const isOpen = nav.style.display === 'flex';
@@ -683,7 +745,6 @@ footer { border-top: 3px solid transparent; border-image: linear-gradient(90deg,
       nav.style.display = 'none';
     }
   });
-
 </script>
 </body>
 </html>
