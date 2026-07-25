@@ -1364,7 +1364,7 @@
   <span style="display:block;width:22px;height:2px;background:#0F172A;border-radius:2px;transition:all 0.2s;"></span>
 </button>
 </nav>
-<div class="mobile-nav" id="mobile-nav">
+<div class="mobile-nav" id="mobile-nav" style="display:none;">
   <a href="index.html">Home</a>
   <a href="features.html">Features</a>
   <a href="pricing.html">Pricing</a>
@@ -2117,14 +2117,15 @@
   // Mobile menu toggle
   function toggleMobileMenu() {
     const nav = document.getElementById('mobile-nav');
-    nav.classList.toggle('open');
+    const isOpen = nav.style.display === 'flex';
+    nav.style.display = isOpen ? 'none' : 'flex';
   }
   // Close mobile menu on outside click
   document.addEventListener('click', function(e) {
     const nav = document.getElementById('mobile-nav');
     const btn = document.querySelector('.mobile-menu-btn');
     if (nav && btn && !nav.contains(e.target) && !btn.contains(e.target)) {
-      nav.classList.remove('open');
+      nav.style.display = 'none';
     }
   });
 
