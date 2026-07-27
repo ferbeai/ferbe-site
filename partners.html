@@ -265,44 +265,33 @@ footer { border-top: 3px solid transparent; border-image: linear-gradient(90deg,
  }
 }
 
-/* ── SCREEN MOCKS: hide on mobile, show placeholder ── */
+/* ── SCREEN MOCKS: hide only the oversized app mockups on mobile ── */
 @media (max-width: 768px) {
- /* Hero visual: hide tabbed screen switcher entirely */
- .hero-visual { display: none !important; }
+  /* Hero tabbed screen switcher — 500px+ fixed internal columns, unreadable on phone */
+  .hero-visual { display: none !important; }
 
- /* Customers page: hide screens paired with testimonials */
- [style*="transform:scale(0.88)"],
- [style*="transform:scale(0.82)"],
- [style*="transform:scale(0.70)"],
- [style*="transform:scale(0.7)"],
- [style*="transform:scale(0.95)"] {
- display: none !important;
- }
+  /* Scaled-down app window mockups (customers, help, blog cards) */
+  [style*="transform:scale(0.88)"],
+  [style*="transform:scale(0.82)"],
+  [style*="transform:scale(0.70)"],
+  [style*="transform:scale(0.7)"],
+  [style*="transform:scale(0.95)"] {
+    display: none !important;
+  }
 
- /* Help page: category cards — hide internal screen thumbnails */
- [style*="transform:scale(0.82)"][style*="transform-origin:top left"] {
- display: none !important;
- }
+  /* Blog card screen thumbnails */
+  [style*="height:200px"][style*="overflow:hidden"] {
+    display: none !important;
+  }
 
- /* Blog article cards: hide screen thumbnail at top */
- [style*="height:200px"][style*="overflow:hidden"] {
- display: none !important;
- }
+  /* App window chrome with heavy drop shadow (screen mockups only) */
+  [style*="overflow:hidden;box-shadow:0 8px 40px"] {
+    display: none !important;
+  }
 
- /* Contact page demo preview screen */
- .fade-up [style*="border:1px solid #E2E8F0"][style*="border-radius:14px"] {
- display: none !important;
- }
-
- /* About page screens (journey + PRA) */
- .fade-up {
- display: none !important;
- }
-
- /* Screen chrome inside help cards */
- [style*="overflow:hidden;box-shadow:0 8px 40px"] {
- display: none !important;
- }
+  /* ai.html use-case mockup windows — the .win component only */
+  .uc-shot .win { display: none !important; }
+  .uc-shot { display: none !important; }
 }
 
 /* ── PHONE-SPECIFIC (<480px) ── */
@@ -475,6 +464,59 @@ footer { border-top: 3px solid transparent; border-image: linear-gradient(90deg,
  .who-grid,.ben-grid,.tier-grid,.step-row{grid-template-columns:1fr;}
  .p-hero{padding:80px 20px 48px;}
  .apply-box{padding:32px 22px;}
+}
+
+
+/* ── MOBILE SAFETY: prevent horizontal overflow ── */
+@media (max-width: 768px) {
+  html, body { overflow-x: hidden !important; max-width: 100vw; }
+
+  /* Any element forcing intrinsic width must scroll, not overflow the page */
+  [style*="min-width:max-content"],
+  [data-scroll-row] {
+    min-width: 0 !important;
+    overflow-x: auto !important;
+    -webkit-overflow-scrolling: touch;
+    padding-left: 20px !important;
+    padding-right: 20px !important;
+  }
+
+  /* Section padding — 48px is too wide on a 390px screen */
+  [style*="padding:0 48px"],
+  [style*="padding: 0 48px"] {
+    padding-left: 20px !important;
+    padding-right: 20px !important;
+  }
+
+  /* Wide fixed-width blocks fall back to fluid */
+  [style*="min-width:600px"],
+  [style*="min-width:700px"],
+  [style*="min-width:800px"] {
+    min-width: 0 !important;
+    width: 100% !important;
+  }
+
+  /* Long unbroken strings (URLs, refs) must wrap */
+  p, li, td, th, .doc-p, .gap2-text { overflow-wrap: anywhere; }
+}
+
+
+/* ── MOBILE: CTA button rows must wrap, not overflow ── */
+@media (max-width: 768px) {
+  [style*="display:flex;gap:12px;flex-shrink:0"],
+  [style*="display:flex;gap:10px;flex-shrink:0"] {
+    flex-wrap: wrap !important;
+    flex-shrink: 1 !important;
+    width: 100% !important;
+  }
+  [style*="display:flex;gap:12px;flex-shrink:0"] > a,
+  [style*="display:flex;gap:10px;flex-shrink:0"] > a {
+    flex: 1 1 auto !important;
+    min-width: 0 !important;
+    text-align: center !important;
+    box-sizing: border-box !important;
+  }
+  .btn-hero { max-width: 100% !important; box-sizing: border-box !important; }
 }
 
 </style>
