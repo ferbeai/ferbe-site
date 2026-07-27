@@ -10,16 +10,16 @@
 
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 :root {
-  --bg: #F8FAFC; --card: #FFFFFF; --border: #E2E8F0;
-  --teal: #0D7C66; --teal-hi: #0A9070; --teal-faint: rgba(13,124,102,0.07);
-  --yellow: #D4FF00; --yellow-dark: #8FAF00; --yellow-faint: rgba(212,255,0,0.10);
-  --purple: #7C3AED; --purple-hi: #A855F7; --purple-faint: rgba(124,58,237,0.08);
-  --text: #0F172A; --muted: #475569; --dim: #94A3B8;
-  --green: #16A34A; --red: #DC2626; --amber: #D97706;
-  --radius: 12px; --radius-lg: 20px;
-  --font-display: "Plus Jakarta Sans", sans-serif;
-  --font-body: "Inter", sans-serif;
-  --font-mono: "JetBrains Mono", monospace;
+ --bg: #F8FAFC; --card: #FFFFFF; --border: #E2E8F0;
+ --teal: #0D7C66; --teal-hi: #0A9070; --teal-faint: rgba(13,124,102,0.07);
+ --yellow: #D4FF00; --yellow-dark: #8FAF00; --yellow-faint: rgba(212,255,0,0.10);
+ --purple: #7C3AED; --purple-hi: #A855F7; --purple-faint: rgba(124,58,237,0.08);
+ --text: #0F172A; --muted: #475569; --dim: #94A3B8;
+ --green: #16A34A; --red: #DC2626; --amber: #D97706;
+ --radius: 12px; --radius-lg: 20px;
+ --font-display: "Plus Jakarta Sans", sans-serif;
+ --font-body: "Inter", sans-serif;
+ --font-mono: "JetBrains Mono", monospace;
 }
 html { scroll-behavior: smooth; }
 body { background: var(--bg); color: var(--text); font-family: var(--font-body); font-size: 15px; line-height: 1.6; -webkit-font-smoothing: antialiased; overflow-x: hidden; }
@@ -114,432 +114,432 @@ footer { border-top: 3px solid transparent; border-image: linear-gradient(90deg,
 .cta-strip-actions { display: flex; gap: 12px; align-items: center; flex-wrap: wrap; position: relative; }
 
 @media (max-width: 960px) {
-  nav { padding: 0 20px; }
-  .nav-links { display: none; }
-  .page-hero, .section { padding: 60px 20px; }
-  .grid-2, .grid-3, .grid-4 { grid-template-columns: 1fr; }
-  .footer-top { grid-template-columns: 1fr 1fr; gap: 32px; }
-  .footer-brand { grid-column: 1/-1; }
-  .cta-strip { margin: 0 20px 60px; padding: 36px 28px; flex-direction: column; }
+ nav { padding: 0 20px; }
+ .nav-links { display: none; }
+ .page-hero, .section { padding: 60px 20px; }
+ .grid-2, .grid-3, .grid-4 { grid-template-columns: 1fr; }
+ .footer-top { grid-template-columns: 1fr 1fr; gap: 32px; }
+ .footer-brand { grid-column: 1/-1; }
+ .cta-strip { margin: 0 20px 60px; padding: 36px 28px; flex-direction: column; }
 }
 
 
 
 /* ── NAV MOBILE FIXES ── */
 @media (max-width: 768px) {
-  nav {
-    padding: 0 20px !important;
-    position: relative !important;
-  }
-  .nav-links { display: none !important; }
-  .nav-cta { display: none !important; }
-  .mobile-menu-btn {
-    display: flex !important;
-    margin-left: auto !important;
-  }
+ nav {
+ padding: 0 20px !important;
+ position: relative !important;
+ }
+ .nav-links { display: none !important; }
+ .nav-cta { display: none !important; }
+ .mobile-menu-btn {
+ display: flex !important;
+ margin-left: auto !important;
+ }
 }
 
 /* ═══════════════════════════════════════════════
-   FERBE MOBILE RESPONSIVE — injected fix
-   Breakpoints: 768px (tablet), 480px (phone)
-   ═══════════════════════════════════════════════ */
+ FERBE MOBILE RESPONSIVE — injected fix
+ Breakpoints: 768px (tablet), 480px (phone)
+ ═══════════════════════════════════════════════ */
 
 /* ── Shared layout containers ── */
 @media (max-width: 768px) {
-  /* Section inner containers with hardcoded padding */
-  .section-inner,
-  [style*="max-width:1120px"],
-  [style*="max-width: 1120px"] {
-    padding-left: 20px !important;
-    padding-right: 20px !important;
-  }
+ /* Section inner containers with hardcoded padding */
+ .section-inner,
+ [style*="max-width:1120px"],
+ [style*="max-width: 1120px"] {
+ padding-left: 20px !important;
+ padding-right: 20px !important;
+ }
 
-  /* All inline 2-col grids → single column */
-  [style*="grid-template-columns:1fr 1fr"],
-  [style*="grid-template-columns: 1fr 1fr"] {
-    grid-template-columns: 1fr !important;
-    gap: 32px !important;
-  }
+ /* All inline 2-col grids → single column */
+ [style*="grid-template-columns:1fr 1fr"],
+ [style*="grid-template-columns: 1fr 1fr"] {
+ grid-template-columns: 1fr !important;
+ gap: 32px !important;
+ }
 
-  /* All inline 2-col grids with explicit fractions */
-  [style*="grid-template-columns:1fr 320px"],
-  [style*="grid-template-columns:1fr 300px"],
-  [style*="grid-template-columns:1fr 280px"],
-  [style*="grid-template-columns:1fr 260px"] {
-    grid-template-columns: 1fr !important;
-    gap: 32px !important;
-  }
+ /* All inline 2-col grids with explicit fractions */
+ [style*="grid-template-columns:1fr 320px"],
+ [style*="grid-template-columns:1fr 300px"],
+ [style*="grid-template-columns:1fr 280px"],
+ [style*="grid-template-columns:1fr 260px"] {
+ grid-template-columns: 1fr !important;
+ gap: 32px !important;
+ }
 
-  /* 3-col grids → 1 col */
-  [style*="grid-template-columns:repeat(3,1fr)"],
-  [style*="grid-template-columns: repeat(3,1fr)"],
-  [style*="grid-template-columns:repeat(3, 1fr)"] {
-    grid-template-columns: 1fr !important;
-    gap: 16px !important;
-  }
+ /* 3-col grids → 1 col */
+ [style*="grid-template-columns:repeat(3,1fr)"],
+ [style*="grid-template-columns: repeat(3,1fr)"],
+ [style*="grid-template-columns:repeat(3, 1fr)"] {
+ grid-template-columns: 1fr !important;
+ gap: 16px !important;
+ }
 
-  /* 4-col grids → 2 col */
-  [style*="grid-template-columns:repeat(4,1fr)"],
-  [style*="grid-template-columns: repeat(4,1fr)"] {
-    grid-template-columns: 1fr 1fr !important;
-    gap: 12px !important;
-  }
+ /* 4-col grids → 2 col */
+ [style*="grid-template-columns:repeat(4,1fr)"],
+ [style*="grid-template-columns: repeat(4,1fr)"] {
+ grid-template-columns: 1fr 1fr !important;
+ gap: 12px !important;
+ }
 
-  /* Sidebar + content layouts used in ISO guide, blog posts */
-  [style*="grid-template-columns:1fr 300px"],
-  [style*="display:grid;grid-template-columns:1fr"] {
-    grid-template-columns: 1fr !important;
-  }
+ /* Sidebar + content layouts used in ISO guide, blog posts */
+ [style*="grid-template-columns:1fr 300px"],
+ [style*="display:grid;grid-template-columns:1fr"] {
+ grid-template-columns: 1fr !important;
+ }
 
-  /* Sticky sidebar — unstick on mobile */
-  [style*="position:sticky"],
-  [style*="position: sticky"] {
-    position: static !important;
-  }
+ /* Sticky sidebar — unstick on mobile */
+ [style*="position:sticky"],
+ [style*="position: sticky"] {
+ position: static !important;
+ }
 
-  /* Horizontal flex rows → column */
-  .hero-actions,
-  .cta-strip-actions {
-    flex-direction: column !important;
-    width: 100% !important;
-  }
-  .hero-actions a,
-  .cta-strip-actions a {
-    width: 100% !important;
-    text-align: center !important;
-    box-sizing: border-box !important;
-  }
+ /* Horizontal flex rows → column */
+ .hero-actions,
+ .cta-strip-actions {
+ flex-direction: column !important;
+ width: 100% !important;
+ }
+ .hero-actions a,
+ .cta-strip-actions a {
+ width: 100% !important;
+ text-align: center !important;
+ box-sizing: border-box !important;
+ }
 
-  /* Dark outcome strips: 4-col → 2-col */
-  [style*="grid-template-columns:repeat(4,1fr)"][style*="background:#0F172A"],
-  [style*="grid-template-columns:repeat(4,1fr)"][style*="gap:1px"] {
-    grid-template-columns: 1fr 1fr !important;
-  }
+ /* Dark outcome strips: 4-col → 2-col */
+ [style*="grid-template-columns:repeat(4,1fr)"][style*="background:#0F172A"],
+ [style*="grid-template-columns:repeat(4,1fr)"][style*="gap:1px"] {
+ grid-template-columns: 1fr 1fr !important;
+ }
 
-  /* Padding fixes for dark full-bleed sections */
-  [style*="padding:48px"],
-  [style*="padding: 48px"],
-  [style*="padding:64px"],
-  [style*="padding:80px 48px"],
-  [style*="padding: 80px 48px"] {
-    padding: 40px 20px !important;
-  }
-  [style*="padding:40px 48px"] {
-    padding: 32px 20px !important;
-  }
+ /* Padding fixes for dark full-bleed sections */
+ [style*="padding:48px"],
+ [style*="padding: 48px"],
+ [style*="padding:64px"],
+ [style*="padding:80px 48px"],
+ [style*="padding: 80px 48px"] {
+ padding: 40px 20px !important;
+ }
+ [style*="padding:40px 48px"] {
+ padding: 32px 20px !important;
+ }
 
-  /* Blog grid: 3-col → 1-col */
-  [style*="grid-template-columns:repeat(3,1fr)"] {
-    grid-template-columns: 1fr !important;
-  }
+ /* Blog grid: 3-col → 1-col */
+ [style*="grid-template-columns:repeat(3,1fr)"] {
+ grid-template-columns: 1fr !important;
+ }
 
-  /* Industry tiles: 4-col → 2-col */
-  [style*="grid-template-columns:repeat(4,1fr)"] {
-    grid-template-columns: 1fr 1fr !important;
-    gap: 10px !important;
-  }
+ /* Industry tiles: 4-col → 2-col */
+ [style*="grid-template-columns:repeat(4,1fr)"] {
+ grid-template-columns: 1fr 1fr !important;
+ gap: 10px !important;
+ }
 
-  /* Features page stat rows */
-  [style*="grid-template-columns:repeat(2,1fr)"] {
-    grid-template-columns: 1fr !important;
-  }
+ /* Features page stat rows */
+ [style*="grid-template-columns:repeat(2,1fr)"] {
+ grid-template-columns: 1fr !important;
+ }
 
-  /* Typography scale down */
-  .section-title {
-    font-size: clamp(22px, 6vw, 36px) !important;
-  }
-  .page-hero h1 {
-    font-size: clamp(26px, 7vw, 44px) !important;
-  }
+ /* Typography scale down */
+ .section-title {
+ font-size: clamp(22px, 6vw, 36px) !important;
+ }
+ .page-hero h1 {
+ font-size: clamp(26px, 7vw, 44px) !important;
+ }
 
-  /* Nav mobile burger (already hidden via .nav-links display:none) */
-  .nav-links { display: none !important; }
+ /* Nav mobile burger (already hidden via .nav-links display:none) */
+ .nav-links { display: none !important; }
 
-  /* Pricing page: billing toggle layout */
-  [style*="display:flex"][style*="justify-content:center"][style*="margin-bottom:4"] {
-    flex-wrap: wrap !important;
-  }
+ /* Pricing page: billing toggle layout */
+ [style*="display:flex"][style*="justify-content:center"][style*="margin-bottom:4"] {
+ flex-wrap: wrap !important;
+ }
 
-  /* CTA strip */
-  .cta-strip {
-    flex-direction: column !important;
-    gap: 24px !important;
-    text-align: center !important;
-  }
+ /* CTA strip */
+ .cta-strip {
+ flex-direction: column !important;
+ gap: 24px !important;
+ text-align: center !important;
+ }
 }
 
 /* ── SCREEN MOCKS: hide on mobile, show placeholder ── */
 @media (max-width: 768px) {
-  /* Hero visual: hide tabbed screen switcher entirely */
-  .hero-visual { display: none !important; }
+ /* Hero visual: hide tabbed screen switcher entirely */
+ .hero-visual { display: none !important; }
 
-  /* Customers page: hide screens paired with testimonials */
-  [style*="transform:scale(0.88)"],
-  [style*="transform:scale(0.82)"],
-  [style*="transform:scale(0.70)"],
-  [style*="transform:scale(0.7)"],
-  [style*="transform:scale(0.95)"] {
-    display: none !important;
-  }
+ /* Customers page: hide screens paired with testimonials */
+ [style*="transform:scale(0.88)"],
+ [style*="transform:scale(0.82)"],
+ [style*="transform:scale(0.70)"],
+ [style*="transform:scale(0.7)"],
+ [style*="transform:scale(0.95)"] {
+ display: none !important;
+ }
 
-  /* Help page: category cards — hide internal screen thumbnails */
-  [style*="transform:scale(0.82)"][style*="transform-origin:top left"] {
-    display: none !important;
-  }
+ /* Help page: category cards — hide internal screen thumbnails */
+ [style*="transform:scale(0.82)"][style*="transform-origin:top left"] {
+ display: none !important;
+ }
 
-  /* Blog article cards: hide screen thumbnail at top */
-  [style*="height:200px"][style*="overflow:hidden"] {
-    display: none !important;
-  }
+ /* Blog article cards: hide screen thumbnail at top */
+ [style*="height:200px"][style*="overflow:hidden"] {
+ display: none !important;
+ }
 
-  /* Contact page demo preview screen */
-  .fade-up [style*="border:1px solid #E2E8F0"][style*="border-radius:14px"] {
-    display: none !important;
-  }
+ /* Contact page demo preview screen */
+ .fade-up [style*="border:1px solid #E2E8F0"][style*="border-radius:14px"] {
+ display: none !important;
+ }
 
-  /* About page screens (journey + PRA) */
-  .fade-up {
-    display: none !important;
-  }
+ /* About page screens (journey + PRA) */
+ .fade-up {
+ display: none !important;
+ }
 
-  /* Screen chrome inside help cards */
-  [style*="overflow:hidden;box-shadow:0 8px 40px"] {
-    display: none !important;
-  }
+ /* Screen chrome inside help cards */
+ [style*="overflow:hidden;box-shadow:0 8px 40px"] {
+ display: none !important;
+ }
 }
 
 /* ── PHONE-SPECIFIC (<480px) ── */
 @media (max-width: 480px) {
-  /* Hero headline */
-  .hero h1 { font-size: clamp(32px, 9vw, 48px) !important; }
-  .hero p { font-size: 16px !important; }
+ /* Hero headline */
+ .hero h1 { font-size: clamp(32px, 9vw, 48px) !important; }
+ .hero p { font-size: 16px !important; }
 
-  /* Page hero sections */
-  .page-hero { padding: 60px 20px 40px !important; }
-  .page-hero h1 { font-size: clamp(24px, 8vw, 38px) !important; }
+ /* Page hero sections */
+ .page-hero { padding: 60px 20px 40px !important; }
+ .page-hero h1 { font-size: clamp(24px, 8vw, 38px) !important; }
 
-  /* Dark outcome numbers: 4→2→2 col maintained */
-  [style*="grid-template-columns:repeat(4,1fr)"] {
-    grid-template-columns: 1fr 1fr !important;
-  }
+ /* Dark outcome numbers: 4→2→2 col maintained */
+ [style*="grid-template-columns:repeat(4,1fr)"] {
+ grid-template-columns: 1fr 1fr !important;
+ }
 
-  /* Stats chips in testimonials */
-  [style*="display:flex;gap:16px;flex-wrap:wrap"] {
-    gap: 8px !important;
-  }
+ /* Stats chips in testimonials */
+ [style*="display:flex;gap:16px;flex-wrap:wrap"] {
+ gap: 8px !important;
+ }
 
-  /* Blog featured article: hide screen on phone too */
-  [style*="transform:scale(0.88)"],
-  [style*="transform:scale(0.82)"] {
-    display: none !important;
-  }
+ /* Blog featured article: hide screen on phone too */
+ [style*="transform:scale(0.88)"],
+ [style*="transform:scale(0.82)"] {
+ display: none !important;
+ }
 
-  /* Pricing cards */
-  [style*="grid-template-columns:repeat(3,1fr)"] {
-    grid-template-columns: 1fr !important;
-  }
+ /* Pricing cards */
+ [style*="grid-template-columns:repeat(3,1fr)"] {
+ grid-template-columns: 1fr !important;
+ }
 
-  /* Checklist page 2-col layout */
-  [style*="grid-template-columns:1fr 1fr"] {
-    grid-template-columns: 1fr !important;
-  }
+ /* Checklist page 2-col layout */
+ [style*="grid-template-columns:1fr 1fr"] {
+ grid-template-columns: 1fr !important;
+ }
 
-  /* Logo strip */
-  .logos-row { flex-wrap: wrap !important; gap: 8px !important; }
+ /* Logo strip */
+ .logos-row { flex-wrap: wrap !important; gap: 8px !important; }
 
-  /* Footer columns */
-  .footer-top { grid-template-columns: 1fr !important; }
+ /* Footer columns */
+ .footer-top { grid-template-columns: 1fr !important; }
 }
 
 /* ── HAMBURGER MENU ── */
 @media (max-width: 768px) {
-  .mobile-menu-btn {
-    display: flex !important;
-  }
-  .mobile-nav {
-    display: none;
-    position: fixed;
-    top: 64px; left: 0; right: 0;
-    background: #fff;
-    border-bottom: 1px solid #E2E8F0;
-    padding: 16px 20px;
-    flex-direction: column;
-    gap: 4px;
-    z-index: 999;
-    box-shadow: 0 8px 24px rgba(15,23,42,0.08);
-  }
-  .mobile-nav.open { display: flex; }
-  .mobile-nav a {
-    padding: 12px 16px;
-    font-size: 15px;
-    font-weight: 600;
-    color: #0F172A;
-    text-decoration: none;
-    border-radius: 8px;
-    transition: background 0.15s;
-  }
-  .mobile-nav a:hover { background: #F8FAFC; }
-  .mobile-nav .mobile-cta {
-    margin-top: 8px;
-    padding: 12px 16px;
-    background: #0D7C66;
-    color: #fff !important;
-    border-radius: 10px;
-    text-align: center;
-  }
+ .mobile-menu-btn {
+ display: flex !important;
+ }
+ .mobile-nav {
+ display: none;
+ position: fixed;
+ top: 64px; left: 0; right: 0;
+ background: #fff;
+ border-bottom: 1px solid #E2E8F0;
+ padding: 16px 20px;
+ flex-direction: column;
+ gap: 4px;
+ z-index: 999;
+ box-shadow: 0 8px 24px rgba(15,23,42,0.08);
+ }
+ .mobile-nav.open { display: flex; }
+ .mobile-nav a {
+ padding: 12px 16px;
+ font-size: 15px;
+ font-weight: 600;
+ color: #0F172A;
+ text-decoration: none;
+ border-radius: 8px;
+ transition: background 0.15s;
+ }
+ .mobile-nav a:hover { background: #F8FAFC; }
+ .mobile-nav .mobile-cta {
+ margin-top: 8px;
+ padding: 12px 16px;
+ background: #0D7C66;
+ color: #fff !important;
+ border-radius: 10px;
+ text-align: center;
+ }
 }
 
 </style>
 </head>
 <body>
 <nav>
-  <a href="index.html" class="nav-logo">
-    <div class="logo-mark">F</div>
-    Ferbe
-  </a>
-  <ul class="nav-links">
-    <li><a href="features.html">Features</a></li>
-    <li><a href="index.html#ai" style="color:var(--purple);font-weight:600;">✦ AI</a></li>
-    <li><a href="pricing.html">Pricing</a></li>
-    <li><a href="customers.html">Customers</a></li>
-    <li><a href="about.html">About</a></li>
-  </ul>
-  <div class="nav-cta">
-    <a href="contact.html" class="btn-ghost">Book demo</a>
-    <a href="#" class="btn-primary">Start free trial</a>
-  </div>
+ <a href="index.html" class="nav-logo">
+ <div class="logo-mark">F</div>
+ Ferbe
+ </a>
+ <ul class="nav-links">
+ <li><a href="features.html">Features</a></li>
+ <li><a href="index.html#ai" style="color:var(--purple);font-weight:600;">✦ AI</a></li>
+ <li><a href="pricing.html">Pricing</a></li>
+ <li><a href="customers.html">Customers</a></li>
+ <li><a href="about.html">About</a></li>
+ </ul>
+ <div class="nav-cta">
+ <a href="contact.html" class="btn-ghost">Book demo</a>
+ <a href="#" class="btn-primary">Start free trial</a>
+ </div>
 
 <button class="mobile-menu-btn" onclick="toggleMobileMenu()" aria-label="Menu" style="display:none;background:none;border:none;cursor:pointer;padding:8px;flex-direction:column;gap:5px;align-items:center;justify-content:center;">
-  <span style="display:block;width:22px;height:2px;background:#0F172A;border-radius:2px;transition:all 0.2s;"></span>
-  <span style="display:block;width:22px;height:2px;background:#0F172A;border-radius:2px;transition:all 0.2s;"></span>
-  <span style="display:block;width:22px;height:2px;background:#0F172A;border-radius:2px;transition:all 0.2s;"></span>
+ <span style="display:block;width:22px;height:2px;background:#0F172A;border-radius:2px;transition:all 0.2s;"></span>
+ <span style="display:block;width:22px;height:2px;background:#0F172A;border-radius:2px;transition:all 0.2s;"></span>
+ <span style="display:block;width:22px;height:2px;background:#0F172A;border-radius:2px;transition:all 0.2s;"></span>
 </button>
 </nav>
 <div class="mobile-nav" id="mobile-nav" style="display:none;">
-  <a href="index.html">Home</a>
-  <a href="features.html">Features</a>
-  <a href="pricing.html">Pricing</a>
-  <a href="customers.html">Customers</a>
-  <a href="about.html">About</a>
-  <a href="blog.html">Blog</a>
-  <a href="iso-27001-guide.html">ISO 27001 Guide</a>
-  <a href="checklist.html">Free Checklist</a>
-  <a href="contact.html">Contact</a>
-  <a href="#" class="mobile-cta">Start free trial</a>
+ <a href="index.html">Home</a>
+ <a href="features.html">Features</a>
+ <a href="pricing.html">Pricing</a>
+ <a href="customers.html">Customers</a>
+ <a href="about.html">About</a>
+ <a href="blog.html">Blog</a>
+ <a href="iso-27001-guide.html">ISO 27001 Guide</a>
+ <a href="checklist.html">Free Assessment</a>
+ <a href="contact.html">Contact</a>
+ <a href="#" class="mobile-cta">Start free trial</a>
 </div>
 
 <div style="background:linear-gradient(170deg,#F8FAFC,#FAFAFF);border-bottom:1px solid var(--border);padding:60px 48px 48px;"><div style="max-width:760px;"><div style="margin-bottom:14px;"><a href="blog.html" style="font-size:13px;color:var(--muted);text-decoration:none;" onmouseover="this.style.color='var(--teal)'" onmouseout="this.style.color='var(--muted)'">&#8592; Blog</a><span style="color:var(--dim);margin:0 8px;">/</span><span style="font-size:13px;color:var(--dim);">Audit Preparation</span></div><span style="font-family:var(--font-mono);font-size:11px;font-weight:600;padding:3px 10px;border-radius:100px;background:#7C3AED18;color:#7C3AED;border:1px solid #7C3AED30;">Audit Preparation</span><h1 style="font-family:var(--font-display);font-size:clamp(26px,4vw,40px);font-weight:800;color:var(--text);line-height:1.15;letter-spacing:-0.02em;margin:14px 0;">5 reasons organisations fail Stage 2 audit — and exactly how to avoid them</h1><p style="font-size:16px;color:var(--muted);line-height:1.7;margin-bottom:22px;">Stage 2 audit failures are almost always avoidable. After guiding 50+ organisations through ISO 27001 certification, these are the patterns we see repeatedly — and the exact fixes.</p><div style="display:flex;align-items:center;gap:14px;flex-wrap:wrap;"><div style="display:flex;align-items:center;gap:8px;"><div style="width:34px;height:34px;border-radius:50%;background:linear-gradient(135deg,var(--teal),#0F9070);display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:800;color:var(--yellow);">FL</div><div><div style="font-family:var(--font-display);font-size:13px;font-weight:700;">Falco Lee</div><div style="font-size:11px;color:var(--dim);">Founder, Ferbe &middot; Energized Inc.</div></div></div><span style="color:var(--dim);">&middot;</span><span style="font-size:13px;color:var(--dim);">8 Jul 2026</span><span style="color:var(--dim);">&middot;</span><span style="font-size:13px;color:var(--dim);">8 min read</span></div></div></div><div style="max-width:1120px;margin:0 auto;padding:48px 48px 80px;display:grid;grid-template-columns:1fr 260px;gap:48px;align-items:start;"><article style="max-width:720px;"><div style="margin:24px 0;"><div style="font-size:12px;font-weight:600;color:var(--teal);margin-bottom:8px;">&#128269; The CAR system Ferbe uses to track every finding to closure</div><div style="background:#fff;border:1px solid #E2E8F0;border-radius:14px;overflow:hidden;box-shadow:0 8px 40px rgba(15,23,42,0.10);">
-  <div style="background:#F8FAFC;border-bottom:1px solid #E2E8F0;padding:10px 16px;display:flex;align-items:center;gap:10px;">
-    <div style="display:flex;gap:5px;flex-shrink:0;"><div style="width:10px;height:10px;border-radius:50%;background:#EF4444;"></div><div style="width:10px;height:10px;border-radius:50%;background:#F59E0B;"></div><div style="width:10px;height:10px;border-radius:50%;background:#22C55E;"></div></div>
-    <div style="font-family:var(--font-mono);font-size:11px;color:#94A3B8;flex:1;text-align:center;">Ferbe · Internal Audit · CAR</div>
-    <span style="font-family:var(--font-mono);font-size:10px;font-weight:600;padding:2px 8px;border-radius:100px;background:#7C3AED15;color:#7C3AED;border:1px solid #7C3AED30;flex-shrink:0;">NC-007 · Major</span>
-  </div>
-  <div style="padding:16px;"><div style="display:flex;gap:0;min-height:280px;"><div style="width:220px;border-right:1px solid #E2E8F0;padding:12px 0;flex-shrink:0;"><div style="display:flex;align-items:center;gap:10px;padding:8px 14px;cursor:pointer;"><span style="font-size:14px;">🏠</span><div><div style="font-size:12px;font-weight:400;color:#64748B;">Dashboard</div></div></div><div style="display:flex;align-items:center;gap:10px;padding:8px 14px;cursor:pointer;"><span style="font-size:14px;">📋</span><div><div style="font-size:12px;font-weight:400;color:#64748B;">Documents</div></div></div><div style="display:flex;align-items:center;gap:10px;padding:8px 14px;cursor:pointer;"><span style="font-size:14px;">📎</span><div><div style="font-size:12px;font-weight:400;color:#64748B;">Evidence</div></div></div><div style="display:flex;align-items:center;gap:10px;padding:8px 14px;background:rgba(13,124,102,0.08);border-right:2px solid #0D7C66;cursor:pointer;"><span style="font-size:14px;">🔍</span><div><div style="font-size:12px;font-weight:600;color:#0F172A;">Internal Audit</div><div style="font-size:10px;color:#94A3B8;">AP-2025-01</div></div></div><div style="display:flex;align-items:center;gap:10px;padding:8px 14px;cursor:pointer;"><span style="font-size:14px;">📊</span><div><div style="font-size:12px;font-weight:400;color:#64748B;">Mgmt Review</div></div></div><div style="display:flex;align-items:center;gap:10px;padding:8px 14px;cursor:pointer;"><span style="font-size:14px;">🗂️</span><div><div style="font-size:12px;font-weight:400;color:#64748B;">SoA</div></div></div><div style="display:flex;align-items:center;gap:10px;padding:8px 14px;cursor:pointer;"><span style="font-size:14px;">✅</span><div><div style="font-size:12px;font-weight:400;color:#64748B;">My Tasks</div><div style="font-size:10px;color:#94A3B8;">7 open</div></div></div><div style="display:flex;align-items:center;gap:10px;padding:8px 14px;cursor:pointer;"><span style="font-size:14px;">🧠</span><div><div style="font-size:12px;font-weight:400;color:#64748B;">AI Intelligence</div></div></div></div><div style="flex:1;padding:16px;overflow:hidden;"><div style="display:flex;gap:0;border-bottom:1px solid #E2E8F0;margin:-16px -16px 14px;overflow-x:auto;"><div style="padding:9px 16px;font-size:12px;font-weight:500;color:#94A3B8;border-bottom:2px solid transparent;cursor:pointer;white-space:nowrap;">Audit Programmes</div><div style="padding:9px 16px;font-size:12px;font-weight:500;color:#94A3B8;border-bottom:2px solid transparent;cursor:pointer;white-space:nowrap;">Annex A Checklist</div><div style="padding:9px 16px;font-size:12px;font-weight:600;color:#7C3AED;border-bottom:2px solid #7C3AED;cursor:pointer;white-space:nowrap;">CAR · NC-007</div><div style="padding:9px 16px;font-size:12px;font-weight:500;color:#94A3B8;border-bottom:2px solid transparent;cursor:pointer;white-space:nowrap;">Findings Workbench</div></div><div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:12px;">
-  <div style="padding:10px;background:#F8FAFC;border:1px solid #E2E8F0;border-radius:8px;"><div style="font-size:9px;color:#94A3B8;margin-bottom:2px;">CONTROL</div><div style="font-size:12px;font-weight:700;color:#0F172A;">A.9.2.2</div><div style="font-size:10px;color:#475569;">User Access Provisioning</div></div>
-  <div style="padding:10px;background:#F8FAFC;border:1px solid #E2E8F0;border-radius:8px;display:flex;justify-content:space-between;align-items:center;"><div><div style="font-size:9px;color:#94A3B8;margin-bottom:2px;">SEVERITY</div><div><span style="font-size:10px;font-weight:600;padding:2px 8px;border-radius:100px;background:#FFFBEB;color:#D97706;border:1px solid rgba(217,119,6,0.2);white-space:nowrap;">Major</span></div></div><div><div style="font-size:9px;color:#94A3B8;margin-bottom:2px;">STATUS</div><div><span style="font-size:10px;font-weight:600;padding:2px 8px;border-radius:100px;background:#FFFBEB;color:#D97706;border:1px solid rgba(217,119,6,0.2);white-space:nowrap;">Open</span></div></div></div>
+ <div style="background:#F8FAFC;border-bottom:1px solid #E2E8F0;padding:10px 16px;display:flex;align-items:center;gap:10px;">
+ <div style="display:flex;gap:5px;flex-shrink:0;"><div style="width:10px;height:10px;border-radius:50%;background:#EF4444;"></div><div style="width:10px;height:10px;border-radius:50%;background:#F59E0B;"></div><div style="width:10px;height:10px;border-radius:50%;background:#22C55E;"></div></div>
+ <div style="font-family:var(--font-mono);font-size:11px;color:#94A3B8;flex:1;text-align:center;">Ferbe · Internal Audit · CAR</div>
+ <span style="font-family:var(--font-mono);font-size:10px;font-weight:600;padding:2px 8px;border-radius:100px;background:#7C3AED15;color:#7C3AED;border:1px solid #7C3AED30;flex-shrink:0;">NC-007 · Major</span>
+ </div>
+ <div style="padding:16px;"><div style="display:flex;gap:0;min-height:280px;"><div style="width:220px;border-right:1px solid #E2E8F0;padding:12px 0;flex-shrink:0;"><div style="display:flex;align-items:center;gap:10px;padding:8px 14px;cursor:pointer;"><span style="font-size:14px;">🏠</span><div><div style="font-size:12px;font-weight:400;color:#64748B;">Dashboard</div></div></div><div style="display:flex;align-items:center;gap:10px;padding:8px 14px;cursor:pointer;"><span style="font-size:14px;">📋</span><div><div style="font-size:12px;font-weight:400;color:#64748B;">Documents</div></div></div><div style="display:flex;align-items:center;gap:10px;padding:8px 14px;cursor:pointer;"><span style="font-size:14px;">📎</span><div><div style="font-size:12px;font-weight:400;color:#64748B;">Evidence</div></div></div><div style="display:flex;align-items:center;gap:10px;padding:8px 14px;background:rgba(13,124,102,0.08);border-right:2px solid #0D7C66;cursor:pointer;"><span style="font-size:14px;">🔍</span><div><div style="font-size:12px;font-weight:600;color:#0F172A;">Internal Audit</div><div style="font-size:10px;color:#94A3B8;">AP-2025-01</div></div></div><div style="display:flex;align-items:center;gap:10px;padding:8px 14px;cursor:pointer;"><span style="font-size:14px;">📊</span><div><div style="font-size:12px;font-weight:400;color:#64748B;">Mgmt Review</div></div></div><div style="display:flex;align-items:center;gap:10px;padding:8px 14px;cursor:pointer;"><span style="font-size:14px;">🗂️</span><div><div style="font-size:12px;font-weight:400;color:#64748B;">SoA</div></div></div><div style="display:flex;align-items:center;gap:10px;padding:8px 14px;cursor:pointer;"><span style="font-size:14px;">✅</span><div><div style="font-size:12px;font-weight:400;color:#64748B;">My Tasks</div><div style="font-size:10px;color:#94A3B8;">7 open</div></div></div><div style="display:flex;align-items:center;gap:10px;padding:8px 14px;cursor:pointer;"><span style="font-size:14px;">🧠</span><div><div style="font-size:12px;font-weight:400;color:#64748B;">AI Intelligence</div></div></div></div><div style="flex:1;padding:16px;overflow:hidden;"><div style="display:flex;gap:0;border-bottom:1px solid #E2E8F0;margin:-16px -16px 14px;overflow-x:auto;"><div style="padding:9px 16px;font-size:12px;font-weight:500;color:#94A3B8;border-bottom:2px solid transparent;cursor:pointer;white-space:nowrap;">Audit Programmes</div><div style="padding:9px 16px;font-size:12px;font-weight:500;color:#94A3B8;border-bottom:2px solid transparent;cursor:pointer;white-space:nowrap;">Annex A Checklist</div><div style="padding:9px 16px;font-size:12px;font-weight:600;color:#7C3AED;border-bottom:2px solid #7C3AED;cursor:pointer;white-space:nowrap;">CAR · NC-007</div><div style="padding:9px 16px;font-size:12px;font-weight:500;color:#94A3B8;border-bottom:2px solid transparent;cursor:pointer;white-space:nowrap;">Findings Workbench</div></div><div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:12px;">
+ <div style="padding:10px;background:#F8FAFC;border:1px solid #E2E8F0;border-radius:8px;"><div style="font-size:9px;color:#94A3B8;margin-bottom:2px;">CONTROL</div><div style="font-size:12px;font-weight:700;color:#0F172A;">A.9.2.2</div><div style="font-size:10px;color:#475569;">User Access Provisioning</div></div>
+ <div style="padding:10px;background:#F8FAFC;border:1px solid #E2E8F0;border-radius:8px;display:flex;justify-content:space-between;align-items:center;"><div><div style="font-size:9px;color:#94A3B8;margin-bottom:2px;">SEVERITY</div><div><span style="font-size:10px;font-weight:600;padding:2px 8px;border-radius:100px;background:#FFFBEB;color:#D97706;border:1px solid rgba(217,119,6,0.2);white-space:nowrap;">Major</span></div></div><div><div style="font-size:9px;color:#94A3B8;margin-bottom:2px;">STATUS</div><div><span style="font-size:10px;font-weight:600;padding:2px 8px;border-radius:100px;background:#FFFBEB;color:#D97706;border:1px solid rgba(217,119,6,0.2);white-space:nowrap;">Open</span></div></div></div>
 </div>
 <div style="margin-bottom:8px;"><div style="font-size:9px;font-weight:600;color:#94A3B8;letter-spacing:0.06em;margin-bottom:4px;">FINDING</div><div style="padding:8px 10px;background:#FEF2F2;border-left:3px solid #DC2626;border-radius:0 7px 7px 0;font-size:11px;color:#475569;line-height:1.5;">User access provisioning lacks formal approval records. New accounts created without documented authorisation from line managers.</div></div>
 <div style="margin-bottom:8px;"><div style="font-size:9px;font-weight:600;color:#94A3B8;letter-spacing:0.06em;margin-bottom:4px;">ROOT CAUSE</div><div style="padding:8px 10px;background:#FFFBEB;border-left:3px solid #D97706;border-radius:0 7px 7px 0;font-size:11px;color:#475569;line-height:1.5;">No formal access request form. IT provisioning based on verbal requests only.</div></div>
-<div style="margin-bottom:10px;"><div style="font-size:9px;font-weight:600;color:#94A3B8;letter-spacing:0.06em;margin-bottom:4px;">CORRECTIVE ACTION</div><div style="padding:8px 10px;background:#F0FDF4;border-left:3px solid #16A34A;border-radius:0 7px 7px 0;font-size:11px;color:#475569;line-height:1.5;">Deploy FRM-09 Access Request Form. All requests require manager e-signature before provisioning.</div></div>
+<div style="margin-bottom:10px;"><div style="font-size:9px;font-weight:600;color:#94A3B8;letter-spacing:0.06em;margin-bottom:4px;">CORRECTIVE ACTION</div><div style="padding:8px 10px;background:#F0FDF4;border-left:3px solid #16A34A;border-radius:0 7px 7px 0;font-size:11px;color:#475569;line-height:1.5;">Deploy the Access Request Form. All requests require manager e-signature before provisioning.</div></div>
 <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:6px;"><div style="padding:8px;background:#F8FAFC;border:1px solid #E2E8F0;border-radius:7px;"><div style="font-size:9px;color:#94A3B8;margin-bottom:2px;">Assigned To</div><div style="font-size:11px;font-weight:600;color:#0F172A;">Mark R.</div></div><div style="padding:8px;background:#F8FAFC;border:1px solid #E2E8F0;border-radius:7px;"><div style="font-size:9px;color:#94A3B8;margin-bottom:2px;">Due Date</div><div style="font-size:11px;font-weight:600;color:#D97706;">30 Aug 2025</div></div><div style="padding:8px;background:#FFFBEB;border:1px solid rgba(217,119,6,0.2);border-radius:7px;"><div style="font-size:9px;color:#94A3B8;margin-bottom:2px;">Evidence</div><div style="font-size:11px;font-weight:600;color:#D97706;">Pending</div></div></div>
 <div style="display:flex;gap:6px;margin-top:10px;"><button style="flex:1;padding:7px;background:#7C3AED;color:#fff;border:none;border-radius:7px;font-size:11px;font-weight:600;">Upload Closure Evidence</button><button style="padding:7px 12px;background:#F1F5F9;color:#475569;border:1px solid #E2E8F0;border-radius:7px;font-size:11px;">View CAP</button></div></div></div></div>
-</div></div><p style="font-size:15px;color:var(--muted);line-height:1.8;margin-bottom:16px;">Stage 2 audit failures are almost always avoidable. The auditor is not trying to catch you out — they are verifying that what you documented in Stage 1 is actually happening in practice. The gap between documentation and implementation is where organisations fall apart.</p><p style="font-size:15px;color:var(--muted);line-height:1.8;margin-bottom:16px;">After guiding more than 50 organisations through ISO 27001 certification, these are the five failure patterns I see repeatedly. Every single one is preventable.</p><ol style="list-style:none;padding:0;margin-bottom:20px;"><li style="display:flex;gap:14px;font-size:15px;color:var(--muted);line-height:1.65;margin-bottom:18px;align-items:flex-start;padding-bottom:18px;border-bottom:1px solid var(--border);"><div style="width:36px;height:36px;border-radius:50%;background:#DC2626;color:#fff;display:flex;align-items:center;justify-content:center;font-family:var(--font-display);font-size:14px;font-weight:800;flex-shrink:0;">1</div><div><strong style="color:var(--text);display:block;margin-bottom:4px;">Missing or inadequate internal audit</strong>The internal audit is mandatory under Clause 9.2 and is one of the first things your Stage 2 auditor will ask to see. Yet many organisations conduct a superficial review — or skip it entirely — because they are too busy building documentation. This is backwards. Your internal audit should be completed and all major findings closed before you submit for Stage 1, not scrambled together at the last minute.<div style="background:rgba(13,124,102,0.06);border:1px solid rgba(13,124,102,0.2);border-left:4px solid #0D7C66;border-radius:0 var(--radius) var(--radius) 0;padding:16px 20px;margin:20px 0;display:flex;gap:12px;align-items:flex-start;"><span style="font-size:18px;flex-shrink:0;">&#128203;</span><div style="font-size:14px;color:var(--muted);line-height:1.7;">In Ferbe, the 98-control Annex A checklist auto-raises findings as you complete it. Every NC gets a formal CAR with root cause, corrective action, and closure evidence — exactly what auditors want to see.</div></div></div></li><li style="display:flex;gap:14px;font-size:15px;color:var(--muted);line-height:1.65;margin-bottom:18px;align-items:flex-start;padding-bottom:18px;border-bottom:1px solid var(--border);"><div style="width:36px;height:36px;border-radius:50%;background:#DC2626;color:#fff;display:flex;align-items:center;justify-content:center;font-family:var(--font-display);font-size:14px;font-weight:800;flex-shrink:0;">2</div><div><strong style="color:var(--text);display:block;margin-bottom:4px;">SoA controls not evidenced in practice</strong>Your Statement of Applicability commits you to implementing specific Annex A controls. In Stage 2, the auditor will select controls from your SoA and ask for evidence they are operating. If you included A.9.2.2 (user access provisioning) in your SoA but cannot show a single access request form — that is a nonconformity.<div style="background:#FEF2F2;border:1px solid rgba(220,38,38,0.2);border-left:4px solid #DC2626;border-radius:0 var(--radius) var(--radius) 0;padding:14px 18px;margin:16px 0;font-size:14px;color:var(--muted);line-height:1.7;display:flex;gap:10px;"><span style="flex-shrink:0;">&#9888;</span>Never include a control in your SoA unless you can show evidence it is implemented. If a control is genuinely not applicable to your organisation, exclude it with a documented justification.</div></div></li><li style="display:flex;gap:14px;font-size:15px;color:var(--muted);line-height:1.65;margin-bottom:18px;align-items:flex-start;padding-bottom:18px;border-bottom:1px solid var(--border);"><div style="width:36px;height:36px;border-radius:50%;background:#DC2626;color:#fff;display:flex;align-items:center;justify-content:center;font-family:var(--font-display);font-size:14px;font-weight:800;flex-shrink:0;">3</div><div><strong style="color:var(--text);display:block;margin-bottom:4px;">Inadequate management review records</strong>Clause 9.3 requires Top Management to formally review the ISMS. The 2022 standard specifies 9 mandatory input items. Many organisations conduct a brief informal meeting, take no minutes, and produce no action items. Auditors will reject this.<div style="background:rgba(13,124,102,0.06);border:1px solid rgba(13,124,102,0.2);border-left:4px solid #0D7C66;border-radius:0 var(--radius) var(--radius) 0;padding:16px 20px;margin:20px 0;display:flex;gap:12px;align-items:flex-start;"><span style="font-size:18px;flex-shrink:0;">&#128203;</span><div style="font-size:14px;color:var(--muted);line-height:1.7;">A valid management review requires: written agenda covering all 9 Clause 9.3.2 inputs, documented discussion outputs, action items with owners and due dates, and signed minutes. Ferbe generates the FRM-15 with all of this automatically.</div></div></div></li><li style="display:flex;gap:14px;font-size:15px;color:var(--muted);line-height:1.65;margin-bottom:18px;align-items:flex-start;padding-bottom:18px;border-bottom:1px solid var(--border);"><div style="width:36px;height:36px;border-radius:50%;background:#DC2626;color:#fff;display:flex;align-items:center;justify-content:center;font-family:var(--font-display);font-size:14px;font-weight:800;flex-shrink:0;">4</div><div><strong style="color:var(--text);display:block;margin-bottom:4px;">Nonconformities not formally closed</strong>Any NC raised during the internal audit — or from a previous audit cycle — must be formally closed with documented evidence. A corrective action that was implemented but never documented is treated by auditors as an open NC.<div style="margin:24px 0;"><div style="font-size:12px;font-weight:600;color:var(--teal);margin-bottom:8px;">&#128203; NC closure in Ferbe — 5-step process with evidence upload required before closure</div><div style="background:#fff;border:1px solid #E2E8F0;border-radius:14px;overflow:hidden;box-shadow:0 8px 40px rgba(15,23,42,0.10);">
-  <div style="background:#F8FAFC;border-bottom:1px solid #E2E8F0;padding:10px 16px;display:flex;align-items:center;gap:10px;">
-    <div style="display:flex;gap:5px;flex-shrink:0;"><div style="width:10px;height:10px;border-radius:50%;background:#EF4444;"></div><div style="width:10px;height:10px;border-radius:50%;background:#F59E0B;"></div><div style="width:10px;height:10px;border-radius:50%;background:#22C55E;"></div></div>
-    <div style="font-family:var(--font-mono);font-size:11px;color:#94A3B8;flex:1;text-align:center;">Ferbe · Internal Audit · CAR</div>
-    <span style="font-family:var(--font-mono);font-size:10px;font-weight:600;padding:2px 8px;border-radius:100px;background:#7C3AED15;color:#7C3AED;border:1px solid #7C3AED30;flex-shrink:0;">NC-007 · Major</span>
-  </div>
-  <div style="padding:16px;"><div style="display:flex;gap:0;min-height:280px;"><div style="width:220px;border-right:1px solid #E2E8F0;padding:12px 0;flex-shrink:0;"><div style="display:flex;align-items:center;gap:10px;padding:8px 14px;cursor:pointer;"><span style="font-size:14px;">🏠</span><div><div style="font-size:12px;font-weight:400;color:#64748B;">Dashboard</div></div></div><div style="display:flex;align-items:center;gap:10px;padding:8px 14px;cursor:pointer;"><span style="font-size:14px;">📋</span><div><div style="font-size:12px;font-weight:400;color:#64748B;">Documents</div></div></div><div style="display:flex;align-items:center;gap:10px;padding:8px 14px;cursor:pointer;"><span style="font-size:14px;">📎</span><div><div style="font-size:12px;font-weight:400;color:#64748B;">Evidence</div></div></div><div style="display:flex;align-items:center;gap:10px;padding:8px 14px;background:rgba(13,124,102,0.08);border-right:2px solid #0D7C66;cursor:pointer;"><span style="font-size:14px;">🔍</span><div><div style="font-size:12px;font-weight:600;color:#0F172A;">Internal Audit</div><div style="font-size:10px;color:#94A3B8;">AP-2025-01</div></div></div><div style="display:flex;align-items:center;gap:10px;padding:8px 14px;cursor:pointer;"><span style="font-size:14px;">📊</span><div><div style="font-size:12px;font-weight:400;color:#64748B;">Mgmt Review</div></div></div><div style="display:flex;align-items:center;gap:10px;padding:8px 14px;cursor:pointer;"><span style="font-size:14px;">🗂️</span><div><div style="font-size:12px;font-weight:400;color:#64748B;">SoA</div></div></div><div style="display:flex;align-items:center;gap:10px;padding:8px 14px;cursor:pointer;"><span style="font-size:14px;">✅</span><div><div style="font-size:12px;font-weight:400;color:#64748B;">My Tasks</div><div style="font-size:10px;color:#94A3B8;">7 open</div></div></div><div style="display:flex;align-items:center;gap:10px;padding:8px 14px;cursor:pointer;"><span style="font-size:14px;">🧠</span><div><div style="font-size:12px;font-weight:400;color:#64748B;">AI Intelligence</div></div></div></div><div style="flex:1;padding:16px;overflow:hidden;"><div style="display:flex;gap:0;border-bottom:1px solid #E2E8F0;margin:-16px -16px 14px;overflow-x:auto;"><div style="padding:9px 16px;font-size:12px;font-weight:500;color:#94A3B8;border-bottom:2px solid transparent;cursor:pointer;white-space:nowrap;">Audit Programmes</div><div style="padding:9px 16px;font-size:12px;font-weight:500;color:#94A3B8;border-bottom:2px solid transparent;cursor:pointer;white-space:nowrap;">Annex A Checklist</div><div style="padding:9px 16px;font-size:12px;font-weight:600;color:#7C3AED;border-bottom:2px solid #7C3AED;cursor:pointer;white-space:nowrap;">CAR · NC-007</div><div style="padding:9px 16px;font-size:12px;font-weight:500;color:#94A3B8;border-bottom:2px solid transparent;cursor:pointer;white-space:nowrap;">Findings Workbench</div></div><div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:12px;">
-  <div style="padding:10px;background:#F8FAFC;border:1px solid #E2E8F0;border-radius:8px;"><div style="font-size:9px;color:#94A3B8;margin-bottom:2px;">CONTROL</div><div style="font-size:12px;font-weight:700;color:#0F172A;">A.9.2.2</div><div style="font-size:10px;color:#475569;">User Access Provisioning</div></div>
-  <div style="padding:10px;background:#F8FAFC;border:1px solid #E2E8F0;border-radius:8px;display:flex;justify-content:space-between;align-items:center;"><div><div style="font-size:9px;color:#94A3B8;margin-bottom:2px;">SEVERITY</div><div><span style="font-size:10px;font-weight:600;padding:2px 8px;border-radius:100px;background:#FFFBEB;color:#D97706;border:1px solid rgba(217,119,6,0.2);white-space:nowrap;">Major</span></div></div><div><div style="font-size:9px;color:#94A3B8;margin-bottom:2px;">STATUS</div><div><span style="font-size:10px;font-weight:600;padding:2px 8px;border-radius:100px;background:#FFFBEB;color:#D97706;border:1px solid rgba(217,119,6,0.2);white-space:nowrap;">Open</span></div></div></div>
+</div></div><p style="font-size:15px;color:var(--muted);line-height:1.8;margin-bottom:16px;">Stage 2 audit failures are almost always avoidable. The auditor is not trying to catch you out — they are verifying that what you documented in Stage 1 is actually happening in practice. The gap between documentation and implementation is where organisations fall apart.</p><p style="font-size:15px;color:var(--muted);line-height:1.8;margin-bottom:16px;">After guiding more than 50 organisations through ISO 27001 certification, these are the five failure patterns I see repeatedly. Every single one is preventable.</p><ol style="list-style:none;padding:0;margin-bottom:20px;"><li style="display:flex;gap:14px;font-size:15px;color:var(--muted);line-height:1.65;margin-bottom:18px;align-items:flex-start;padding-bottom:18px;border-bottom:1px solid var(--border);"><div style="width:36px;height:36px;border-radius:50%;background:#DC2626;color:#fff;display:flex;align-items:center;justify-content:center;font-family:var(--font-display);font-size:14px;font-weight:800;flex-shrink:0;">1</div><div><strong style="color:var(--text);display:block;margin-bottom:4px;">Missing or inadequate internal audit</strong>The internal audit is mandatory under Clause 9.2 and is one of the first things your Stage 2 auditor will ask to see. Yet many organisations conduct a superficial review — or skip it entirely — because they are too busy building documentation. This is backwards. Your internal audit should be completed and all major findings closed before you submit for Stage 1, not scrambled together at the last minute.<div style="background:rgba(13,124,102,0.06);border:1px solid rgba(13,124,102,0.2);border-left:4px solid #0D7C66;border-radius:0 var(--radius) var(--radius) 0;padding:16px 20px;margin:20px 0;display:flex;gap:12px;align-items:flex-start;"><span style="font-size:18px;flex-shrink:0;">&#128203;</span><div style="font-size:14px;color:var(--muted);line-height:1.7;">In Ferbe, the 98-control Annex A checklist auto-raises findings as you complete it. Every NC gets a formal CAR with root cause, corrective action, and closure evidence — exactly what auditors want to see.</div></div></div></li><li style="display:flex;gap:14px;font-size:15px;color:var(--muted);line-height:1.65;margin-bottom:18px;align-items:flex-start;padding-bottom:18px;border-bottom:1px solid var(--border);"><div style="width:36px;height:36px;border-radius:50%;background:#DC2626;color:#fff;display:flex;align-items:center;justify-content:center;font-family:var(--font-display);font-size:14px;font-weight:800;flex-shrink:0;">2</div><div><strong style="color:var(--text);display:block;margin-bottom:4px;">SoA controls not evidenced in practice</strong>Your Statement of Applicability commits you to implementing specific Annex A controls. In Stage 2, the auditor will select controls from your SoA and ask for evidence they are operating. If you included A.9.2.2 (user access provisioning) in your SoA but cannot show a single access request form — that is a nonconformity.<div style="background:#FEF2F2;border:1px solid rgba(220,38,38,0.2);border-left:4px solid #DC2626;border-radius:0 var(--radius) var(--radius) 0;padding:14px 18px;margin:16px 0;font-size:14px;color:var(--muted);line-height:1.7;display:flex;gap:10px;"><span style="flex-shrink:0;">&#9888;</span>Never include a control in your SoA unless you can show evidence it is implemented. If a control is genuinely not applicable to your organisation, exclude it with a documented justification.</div></div></li><li style="display:flex;gap:14px;font-size:15px;color:var(--muted);line-height:1.65;margin-bottom:18px;align-items:flex-start;padding-bottom:18px;border-bottom:1px solid var(--border);"><div style="width:36px;height:36px;border-radius:50%;background:#DC2626;color:#fff;display:flex;align-items:center;justify-content:center;font-family:var(--font-display);font-size:14px;font-weight:800;flex-shrink:0;">3</div><div><strong style="color:var(--text);display:block;margin-bottom:4px;">Inadequate management review records</strong>Clause 9.3 requires Top Management to formally review the ISMS. The 2022 standard specifies 9 mandatory input items. Many organisations conduct a brief informal meeting, take no minutes, and produce no action items. Auditors will reject this.<div style="background:rgba(13,124,102,0.06);border:1px solid rgba(13,124,102,0.2);border-left:4px solid #0D7C66;border-radius:0 var(--radius) var(--radius) 0;padding:16px 20px;margin:20px 0;display:flex;gap:12px;align-items:flex-start;"><span style="font-size:18px;flex-shrink:0;">&#128203;</span><div style="font-size:14px;color:var(--muted);line-height:1.7;">A valid management review requires: written agenda covering all 9 Clause 9.3.2 inputs, documented discussion outputs, action items with owners and due dates, and signed minutes. Ferbe generates the Management Review Minutes with all of this automatically.</div></div></div></li><li style="display:flex;gap:14px;font-size:15px;color:var(--muted);line-height:1.65;margin-bottom:18px;align-items:flex-start;padding-bottom:18px;border-bottom:1px solid var(--border);"><div style="width:36px;height:36px;border-radius:50%;background:#DC2626;color:#fff;display:flex;align-items:center;justify-content:center;font-family:var(--font-display);font-size:14px;font-weight:800;flex-shrink:0;">4</div><div><strong style="color:var(--text);display:block;margin-bottom:4px;">Nonconformities not formally closed</strong>Any NC raised during the internal audit — or from a previous audit cycle — must be formally closed with documented evidence. A corrective action that was implemented but never documented is treated by auditors as an open NC.<div style="margin:24px 0;"><div style="font-size:12px;font-weight:600;color:var(--teal);margin-bottom:8px;">&#128203; NC closure in Ferbe — 5-step process with evidence upload required before closure</div><div style="background:#fff;border:1px solid #E2E8F0;border-radius:14px;overflow:hidden;box-shadow:0 8px 40px rgba(15,23,42,0.10);">
+ <div style="background:#F8FAFC;border-bottom:1px solid #E2E8F0;padding:10px 16px;display:flex;align-items:center;gap:10px;">
+ <div style="display:flex;gap:5px;flex-shrink:0;"><div style="width:10px;height:10px;border-radius:50%;background:#EF4444;"></div><div style="width:10px;height:10px;border-radius:50%;background:#F59E0B;"></div><div style="width:10px;height:10px;border-radius:50%;background:#22C55E;"></div></div>
+ <div style="font-family:var(--font-mono);font-size:11px;color:#94A3B8;flex:1;text-align:center;">Ferbe · Internal Audit · CAR</div>
+ <span style="font-family:var(--font-mono);font-size:10px;font-weight:600;padding:2px 8px;border-radius:100px;background:#7C3AED15;color:#7C3AED;border:1px solid #7C3AED30;flex-shrink:0;">NC-007 · Major</span>
+ </div>
+ <div style="padding:16px;"><div style="display:flex;gap:0;min-height:280px;"><div style="width:220px;border-right:1px solid #E2E8F0;padding:12px 0;flex-shrink:0;"><div style="display:flex;align-items:center;gap:10px;padding:8px 14px;cursor:pointer;"><span style="font-size:14px;">🏠</span><div><div style="font-size:12px;font-weight:400;color:#64748B;">Dashboard</div></div></div><div style="display:flex;align-items:center;gap:10px;padding:8px 14px;cursor:pointer;"><span style="font-size:14px;">📋</span><div><div style="font-size:12px;font-weight:400;color:#64748B;">Documents</div></div></div><div style="display:flex;align-items:center;gap:10px;padding:8px 14px;cursor:pointer;"><span style="font-size:14px;">📎</span><div><div style="font-size:12px;font-weight:400;color:#64748B;">Evidence</div></div></div><div style="display:flex;align-items:center;gap:10px;padding:8px 14px;background:rgba(13,124,102,0.08);border-right:2px solid #0D7C66;cursor:pointer;"><span style="font-size:14px;">🔍</span><div><div style="font-size:12px;font-weight:600;color:#0F172A;">Internal Audit</div><div style="font-size:10px;color:#94A3B8;">AP-2025-01</div></div></div><div style="display:flex;align-items:center;gap:10px;padding:8px 14px;cursor:pointer;"><span style="font-size:14px;">📊</span><div><div style="font-size:12px;font-weight:400;color:#64748B;">Mgmt Review</div></div></div><div style="display:flex;align-items:center;gap:10px;padding:8px 14px;cursor:pointer;"><span style="font-size:14px;">🗂️</span><div><div style="font-size:12px;font-weight:400;color:#64748B;">SoA</div></div></div><div style="display:flex;align-items:center;gap:10px;padding:8px 14px;cursor:pointer;"><span style="font-size:14px;">✅</span><div><div style="font-size:12px;font-weight:400;color:#64748B;">My Tasks</div><div style="font-size:10px;color:#94A3B8;">7 open</div></div></div><div style="display:flex;align-items:center;gap:10px;padding:8px 14px;cursor:pointer;"><span style="font-size:14px;">🧠</span><div><div style="font-size:12px;font-weight:400;color:#64748B;">AI Intelligence</div></div></div></div><div style="flex:1;padding:16px;overflow:hidden;"><div style="display:flex;gap:0;border-bottom:1px solid #E2E8F0;margin:-16px -16px 14px;overflow-x:auto;"><div style="padding:9px 16px;font-size:12px;font-weight:500;color:#94A3B8;border-bottom:2px solid transparent;cursor:pointer;white-space:nowrap;">Audit Programmes</div><div style="padding:9px 16px;font-size:12px;font-weight:500;color:#94A3B8;border-bottom:2px solid transparent;cursor:pointer;white-space:nowrap;">Annex A Checklist</div><div style="padding:9px 16px;font-size:12px;font-weight:600;color:#7C3AED;border-bottom:2px solid #7C3AED;cursor:pointer;white-space:nowrap;">CAR · NC-007</div><div style="padding:9px 16px;font-size:12px;font-weight:500;color:#94A3B8;border-bottom:2px solid transparent;cursor:pointer;white-space:nowrap;">Findings Workbench</div></div><div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:12px;">
+ <div style="padding:10px;background:#F8FAFC;border:1px solid #E2E8F0;border-radius:8px;"><div style="font-size:9px;color:#94A3B8;margin-bottom:2px;">CONTROL</div><div style="font-size:12px;font-weight:700;color:#0F172A;">A.9.2.2</div><div style="font-size:10px;color:#475569;">User Access Provisioning</div></div>
+ <div style="padding:10px;background:#F8FAFC;border:1px solid #E2E8F0;border-radius:8px;display:flex;justify-content:space-between;align-items:center;"><div><div style="font-size:9px;color:#94A3B8;margin-bottom:2px;">SEVERITY</div><div><span style="font-size:10px;font-weight:600;padding:2px 8px;border-radius:100px;background:#FFFBEB;color:#D97706;border:1px solid rgba(217,119,6,0.2);white-space:nowrap;">Major</span></div></div><div><div style="font-size:9px;color:#94A3B8;margin-bottom:2px;">STATUS</div><div><span style="font-size:10px;font-weight:600;padding:2px 8px;border-radius:100px;background:#FFFBEB;color:#D97706;border:1px solid rgba(217,119,6,0.2);white-space:nowrap;">Open</span></div></div></div>
 </div>
 <div style="margin-bottom:8px;"><div style="font-size:9px;font-weight:600;color:#94A3B8;letter-spacing:0.06em;margin-bottom:4px;">FINDING</div><div style="padding:8px 10px;background:#FEF2F2;border-left:3px solid #DC2626;border-radius:0 7px 7px 0;font-size:11px;color:#475569;line-height:1.5;">User access provisioning lacks formal approval records. New accounts created without documented authorisation from line managers.</div></div>
 <div style="margin-bottom:8px;"><div style="font-size:9px;font-weight:600;color:#94A3B8;letter-spacing:0.06em;margin-bottom:4px;">ROOT CAUSE</div><div style="padding:8px 10px;background:#FFFBEB;border-left:3px solid #D97706;border-radius:0 7px 7px 0;font-size:11px;color:#475569;line-height:1.5;">No formal access request form. IT provisioning based on verbal requests only.</div></div>
-<div style="margin-bottom:10px;"><div style="font-size:9px;font-weight:600;color:#94A3B8;letter-spacing:0.06em;margin-bottom:4px;">CORRECTIVE ACTION</div><div style="padding:8px 10px;background:#F0FDF4;border-left:3px solid #16A34A;border-radius:0 7px 7px 0;font-size:11px;color:#475569;line-height:1.5;">Deploy FRM-09 Access Request Form. All requests require manager e-signature before provisioning.</div></div>
+<div style="margin-bottom:10px;"><div style="font-size:9px;font-weight:600;color:#94A3B8;letter-spacing:0.06em;margin-bottom:4px;">CORRECTIVE ACTION</div><div style="padding:8px 10px;background:#F0FDF4;border-left:3px solid #16A34A;border-radius:0 7px 7px 0;font-size:11px;color:#475569;line-height:1.5;">Deploy the Access Request Form. All requests require manager e-signature before provisioning.</div></div>
 <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:6px;"><div style="padding:8px;background:#F8FAFC;border:1px solid #E2E8F0;border-radius:7px;"><div style="font-size:9px;color:#94A3B8;margin-bottom:2px;">Assigned To</div><div style="font-size:11px;font-weight:600;color:#0F172A;">Mark R.</div></div><div style="padding:8px;background:#F8FAFC;border:1px solid #E2E8F0;border-radius:7px;"><div style="font-size:9px;color:#94A3B8;margin-bottom:2px;">Due Date</div><div style="font-size:11px;font-weight:600;color:#D97706;">30 Aug 2025</div></div><div style="padding:8px;background:#FFFBEB;border:1px solid rgba(217,119,6,0.2);border-radius:7px;"><div style="font-size:9px;color:#94A3B8;margin-bottom:2px;">Evidence</div><div style="font-size:11px;font-weight:600;color:#D97706;">Pending</div></div></div>
 <div style="display:flex;gap:6px;margin-top:10px;"><button style="flex:1;padding:7px;background:#7C3AED;color:#fff;border:none;border-radius:7px;font-size:11px;font-weight:600;">Upload Closure Evidence</button><button style="padding:7px 12px;background:#F1F5F9;color:#475569;border:1px solid #E2E8F0;border-radius:7px;font-size:11px;">View CAP</button></div></div></div></div>
-</div></div></div></li><li style="display:flex;gap:14px;font-size:15px;color:var(--muted);line-height:1.65;margin-bottom:18px;align-items:flex-start;padding-bottom:18px;border-bottom:1px solid var(--border);"><div style="width:36px;height:36px;border-radius:50%;background:#DC2626;color:#fff;display:flex;align-items:center;justify-content:center;font-family:var(--font-display);font-size:14px;font-weight:800;flex-shrink:0;">5</div><div><strong style="color:var(--text);display:block;margin-bottom:4px;">Risk treatment plan not implemented</strong>The risk assessment identifies risks. The risk treatment plan commits to treating them. But many organisations fail to implement the agreed treatments — or implement them but collect no evidence. Your auditor will sample your risk register and ask for evidence of treatment for each selected risk.</div></li></ol><h3 style="font-family:var(--font-display);font-size:18px;font-weight:700;color:var(--text);margin:24px 0 10px;">The common thread</h3><p style="font-size:15px;color:var(--muted);line-height:1.8;margin-bottom:16px;">Every one of these failures is a documentation-implementation gap. You documented that something would happen, but you cannot prove that it did. The solution is not more documentation — it is a system that creates evidence trails automatically as your team works.</p><div style="background:rgba(13,124,102,0.06);border:1px solid rgba(13,124,102,0.2);border-left:4px solid #0D7C66;border-radius:0 var(--radius) var(--radius) 0;padding:16px 20px;margin:20px 0;display:flex;gap:12px;align-items:flex-start;"><span style="font-size:18px;flex-shrink:0;">&#128161;</span><div style="font-size:14px;color:var(--muted);line-height:1.7;">Ferbe creates audit trails for every action automatically. Every document review, every evidence upload, every NC closure — logged with timestamp and user. Your Stage 2 auditor will have everything they need to see.</div></div><div style="padding:28px;background:linear-gradient(170deg,#FAFAFF,#F3EEFF);border:1.5px solid #EDE9FE;border-radius:var(--radius-lg);margin-top:48px;"><div class="eyebrow purple" style="margin-bottom:12px;"><div class="eyebrow-dot"></div>Ferbe &middot; ISO 27001:2022 Platform</div><h3 style="font-family:var(--font-display);font-size:20px;font-weight:800;color:var(--text);margin-bottom:8px;">Everything in this article. Built into Ferbe.</h3><p style="font-size:14px;color:var(--muted);line-height:1.7;margin-bottom:18px;">Stop managing ISO 27001 in Word docs. Ferbe structures every workflow automatically &#8212; documents, audits, evidence, management review, and AI compliance intelligence.</p><div style="display:flex;gap:10px;flex-wrap:wrap;"><a href="index.html" class="btn-hero" style="font-size:13px;">Start free trial &#8212; 14 days</a><a href="features.html" class="btn-hero ghost" style="font-size:13px;">See how it works</a></div></div><div style="margin-top:24px;padding-top:18px;border-top:1px solid var(--border);display:flex;align-items:center;gap:10px;"><span style="font-size:13px;font-weight:600;color:var(--muted);">Share:</span><a href="https://www.linkedin.com/sharing/share-offsite/?url=https://ferbe.ai/blog-5-reasons-companies-fail-stage-2-audit.html" target="_blank" style="padding:5px 12px;background:#0A66C2;color:#fff;border-radius:5px;font-size:12px;font-weight:600;text-decoration:none;">LinkedIn</a><a href="https://twitter.com/intent/tweet?url=https://ferbe.ai/blog-5-reasons-companies-fail-stage-2-audit.html" target="_blank" style="padding:5px 12px;background:#0F172A;color:#fff;border-radius:5px;font-size:12px;font-weight:600;text-decoration:none;">X</a></div></article><div style="position:sticky;top:90px;"><div style="background:linear-gradient(135deg,#0F172A,#1B0E3A);border-radius:var(--radius);padding:20px;margin-bottom:14px;"><div style="font-family:var(--font-display);font-size:14px;font-weight:700;color:#fff;margin-bottom:6px;">Save 80% of the effort</div><p style="font-size:12px;color:rgba(255,255,255,0.5);line-height:1.6;margin-bottom:14px;">Ferbe structures every step in this article into a live, auditable ISMS. Free 14-day trial.</p><a href="index.html" style="display:block;padding:10px;background:var(--yellow);color:#0F172A;border-radius:8px;font-family:var(--font-display);font-size:13px;font-weight:700;text-align:center;text-decoration:none;">Start free trial &#8594;</a></div><div style="background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:16px;margin-bottom:14px;"><div style="font-family:var(--font-display);font-size:13px;font-weight:700;margin-bottom:10px;">Free ISO 27001 Checklist</div><p style="font-size:12px;color:var(--muted);line-height:1.6;margin-bottom:10px;">50 questions across all 7 mandatory clauses.</p><a href="checklist.html" style="display:block;padding:8px;border:1.5px solid var(--teal);color:var(--teal);border-radius:7px;font-size:12px;font-weight:700;text-align:center;text-decoration:none;">Download Free &#8595;</a></div><div style="background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:16px;"><div style="font-family:var(--font-display);font-size:13px;font-weight:700;margin-bottom:10px;">Related articles</div><a href="blog-how-to-get-iso-27001-certified-8-months.html" style="display:block;padding:12px;background:var(--card);border:1px solid var(--border);border-radius:8px;text-decoration:none;margin-bottom:7px;transition:all 0.2s;" onmouseover="this.style.borderColor='#0D7C66'" onmouseout="this.style.borderColor='var(--border)'"><div style="font-size:13px;font-weight:600;color:var(--text);line-height:1.4;">Get ISO 27001 certified in 8 months</div></a><a href="blog-internal-audit-checklist-iso-27001.html" style="display:block;padding:12px;background:var(--card);border:1px solid var(--border);border-radius:8px;text-decoration:none;margin-bottom:7px;transition:all 0.2s;" onmouseover="this.style.borderColor='#7C3AED'" onmouseout="this.style.borderColor='var(--border)'"><div style="font-size:13px;font-weight:600;color:var(--text);line-height:1.4;">The internal audit checklist for Stage 2</div></a><a href="blog-management-review-clause-9-3-guide.html" style="display:block;padding:12px;background:var(--card);border:1px solid var(--border);border-radius:8px;text-decoration:none;margin-bottom:7px;transition:all 0.2s;" onmouseover="this.style.borderColor='#0D7C66'" onmouseout="this.style.borderColor='var(--border)'"><div style="font-size:13px;font-weight:600;color:var(--text);line-height:1.4;">How to run a Clause 9.3 Management Review</div></a></div></div></div>
+</div></div></div></li><li style="display:flex;gap:14px;font-size:15px;color:var(--muted);line-height:1.65;margin-bottom:18px;align-items:flex-start;padding-bottom:18px;border-bottom:1px solid var(--border);"><div style="width:36px;height:36px;border-radius:50%;background:#DC2626;color:#fff;display:flex;align-items:center;justify-content:center;font-family:var(--font-display);font-size:14px;font-weight:800;flex-shrink:0;">5</div><div><strong style="color:var(--text);display:block;margin-bottom:4px;">Risk treatment plan not implemented</strong>The risk assessment identifies risks. The risk treatment plan commits to treating them. But many organisations fail to implement the agreed treatments — or implement them but collect no evidence. Your auditor will sample your risk register and ask for evidence of treatment for each selected risk.</div></li></ol><h3 style="font-family:var(--font-display);font-size:18px;font-weight:700;color:var(--text);margin:24px 0 10px;">The common thread</h3><p style="font-size:15px;color:var(--muted);line-height:1.8;margin-bottom:16px;">Every one of these failures is a documentation-implementation gap. You documented that something would happen, but you cannot prove that it did. The solution is not more documentation — it is a system that creates evidence trails automatically as your team works.</p><div style="background:rgba(13,124,102,0.06);border:1px solid rgba(13,124,102,0.2);border-left:4px solid #0D7C66;border-radius:0 var(--radius) var(--radius) 0;padding:16px 20px;margin:20px 0;display:flex;gap:12px;align-items:flex-start;"><span style="font-size:18px;flex-shrink:0;">&#128161;</span><div style="font-size:14px;color:var(--muted);line-height:1.7;">Ferbe creates audit trails for every action automatically. Every document review, every evidence upload, every NC closure — logged with timestamp and user. Your Stage 2 auditor will have everything they need to see.</div></div><div style="padding:28px;background:linear-gradient(170deg,#FAFAFF,#F3EEFF);border:1.5px solid #EDE9FE;border-radius:var(--radius-lg);margin-top:48px;"><div class="eyebrow purple" style="margin-bottom:12px;"><div class="eyebrow-dot"></div>Ferbe &middot; ISO 27001:2022 Platform</div><h3 style="font-family:var(--font-display);font-size:20px;font-weight:800;color:var(--text);margin-bottom:8px;">Everything in this article. Built into Ferbe.</h3><p style="font-size:14px;color:var(--muted);line-height:1.7;margin-bottom:18px;">Stop managing ISO 27001 in Word docs. Ferbe structures every workflow automatically &#8212; documents, audits, evidence, management review, and AI compliance intelligence.</p><div style="display:flex;gap:10px;flex-wrap:wrap;"><a href="index.html" class="btn-hero" style="font-size:13px;">Start free trial &#8212; 14 days</a><a href="features.html" class="btn-hero ghost" style="font-size:13px;">See how it works</a></div></div><div style="margin-top:24px;padding-top:18px;border-top:1px solid var(--border);display:flex;align-items:center;gap:10px;"><span style="font-size:13px;font-weight:600;color:var(--muted);">Share:</span><a href="https://www.linkedin.com/sharing/share-offsite/?url=https://ferbe.ai/blog-5-reasons-companies-fail-stage-2-audit.html" target="_blank" style="padding:5px 12px;background:#0A66C2;color:#fff;border-radius:5px;font-size:12px;font-weight:600;text-decoration:none;">LinkedIn</a><a href="https://twitter.com/intent/tweet?url=https://ferbe.ai/blog-5-reasons-companies-fail-stage-2-audit.html" target="_blank" style="padding:5px 12px;background:#0F172A;color:#fff;border-radius:5px;font-size:12px;font-weight:600;text-decoration:none;">X</a></div></article><div style="position:sticky;top:90px;"><div style="background:linear-gradient(135deg,#0F172A,#1B0E3A);border-radius:var(--radius);padding:20px;margin-bottom:14px;"><div style="font-family:var(--font-display);font-size:14px;font-weight:700;color:#fff;margin-bottom:6px;">Save 80% of the effort</div><p style="font-size:12px;color:rgba(255,255,255,0.5);line-height:1.6;margin-bottom:14px;">Ferbe structures every step in this article into a live, auditable ISMS. Free 14-day trial.</p><a href="index.html" style="display:block;padding:10px;background:var(--yellow);color:#0F172A;border-radius:8px;font-family:var(--font-display);font-size:13px;font-weight:700;text-align:center;text-decoration:none;">Start free trial &#8594;</a></div><div style="background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:16px;margin-bottom:14px;"><div style="font-family:var(--font-display);font-size:13px;font-weight:700;margin-bottom:10px;">100% Free Readiness Assessment Report</div><p style="font-size:12px;color:var(--muted);line-height:1.6;margin-bottom:10px;">33 questions across all 7 mandatory clauses. Get your report instantly.</p><a href="checklist.html" style="display:block;padding:8px;border:1.5px solid var(--teal);color:var(--teal);border-radius:7px;font-size:12px;font-weight:700;text-align:center;text-decoration:none;">Download Free &#8595;</a></div><div style="background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:16px;"><div style="font-family:var(--font-display);font-size:13px;font-weight:700;margin-bottom:10px;">Related articles</div><a href="blog-how-to-get-iso-27001-certified-8-months.html" style="display:block;padding:12px;background:var(--card);border:1px solid var(--border);border-radius:8px;text-decoration:none;margin-bottom:7px;transition:all 0.2s;" onmouseover="this.style.borderColor='#0D7C66'" onmouseout="this.style.borderColor='var(--border)'"><div style="font-size:13px;font-weight:600;color:var(--text);line-height:1.4;">Get ISO 27001 certified in 8 months</div></a><a href="blog-internal-audit-checklist-iso-27001.html" style="display:block;padding:12px;background:var(--card);border:1px solid var(--border);border-radius:8px;text-decoration:none;margin-bottom:7px;transition:all 0.2s;" onmouseover="this.style.borderColor='#7C3AED'" onmouseout="this.style.borderColor='var(--border)'"><div style="font-size:13px;font-weight:600;color:var(--text);line-height:1.4;">The internal audit checklist for Stage 2</div></a><a href="blog-management-review-clause-9-3-guide.html" style="display:block;padding:12px;background:var(--card);border:1px solid var(--border);border-radius:8px;text-decoration:none;margin-bottom:7px;transition:all 0.2s;" onmouseover="this.style.borderColor='#0D7C66'" onmouseout="this.style.borderColor='var(--border)'"><div style="font-size:13px;font-weight:600;color:var(--text);line-height:1.4;">How to run a Clause 9.3 Management Review</div></a></div></div></div>
 <footer>
-  <div class="footer-inner">
-    <div class="footer-top">
-      <div class="footer-brand">
-        <a href="index.html" class="nav-logo" style="text-decoration:none;">
-          <div class="logo-mark">F</div>
-          Ferbe
-        </a>
-        <p>The ISO 27001:2022 ISMS platform built for Malaysian and Southeast Asian companies. From gap assessment to certification, in one place.</p>
-        <p style="margin-top:10px;font-size:12px;color:var(--dim);">A product by <a href="https://www.energized-inc.com" target="_blank" style="color:var(--teal);text-decoration:none;">Energized Inc.</a> · Energized Empire Sdn. Bhd.<br>Kuala Lumpur, Malaysia · Dubai, UAE</p>
-      </div>
-      <div class="footer-col">
-        <div class="footer-col-title">Product</div>
-        <ul>
-          <li><a href="features.html">Features</a></li>
-          <li><a href="pricing.html">Pricing</a></li>
-          <li><a href="ai.html">AI Capabilities</a></li>
-          <li><a href="#">Changelog</a></li>
-          <li><a href="#">Roadmap</a></li>
-        </ul>
-      </div>
-      <div class="footer-col">
-        <div class="footer-col-title">Resources</div>
-        <ul>
-          <li><a href="iso-27001-guide.html">ISO 27001 Guide</a></li>
-          <li><a href="help.html">Help Centre</a></li>
-          <li><a href="blog.html">Blog</a></li>
-          <li><a href="checklist.html">Free Checklist</a></li>
-        </ul>
-      </div>
-      <div class="footer-col">
-        <div class="footer-col-title">Company</div>
-        <ul>
-          <li><a href="about.html">About</a></li>
-          <li><a href="customers.html">Customers</a></li>
-          <li><a href="partners.html">Partners</a></li>
-          <li><a href="contact.html">Contact</a></li>
-          <li><a href="status.html">Status</a></li>
-        </ul>
-      </div>
-      <div class="footer-col">
-        <div class="footer-col-title">Legal</div>
-        <ul>
-          <li><a href="privacy.html">Privacy Policy</a></li>
-          <li><a href="terms.html">Terms of Service</a></li>
-          <li><a href="refund.html">Refund Policy</a></li>
-          <li><a href="cookies.html">Cookie Policy</a></li>
-        </ul>
-      </div>
-    </div>
-    <div class="footer-bottom">
-      <span>© 2026 Ferbe · ferbe.ai · Energized Empire Sdn. Bhd. · All rights reserved</span>
-      <div class="footer-links">
-        <a href="privacy.html">Privacy</a>
-        <a href="terms.html">Terms</a>
-        <a href="refund.html">Refund</a>
-        <a href="cookies.html">Cookies</a>
-      </div>
-    </div>
-  </div>
+ <div class="footer-inner">
+ <div class="footer-top">
+ <div class="footer-brand">
+ <a href="index.html" class="nav-logo" style="text-decoration:none;">
+ <div class="logo-mark">F</div>
+ Ferbe
+ </a>
+ <p>The ISO 27001:2022 ISMS platform built for Malaysian and Southeast Asian companies. From gap assessment to certification, in one place.</p>
+ <p style="margin-top:10px;font-size:12px;color:var(--dim);">A product by <a href="https://www.energized-inc.com" target="_blank" style="color:var(--teal);text-decoration:none;">Energized Inc.</a> · Energized Empire Sdn. Bhd.<br>Kuala Lumpur, Malaysia · Dubai, UAE</p>
+ </div>
+ <div class="footer-col">
+ <div class="footer-col-title">Product</div>
+ <ul>
+ <li><a href="features.html">Features</a></li>
+ <li><a href="pricing.html">Pricing</a></li>
+ <li><a href="ai.html">AI Capabilities</a></li>
+ <li><a href="#">Changelog</a></li>
+ <li><a href="#">Roadmap</a></li>
+ </ul>
+ </div>
+ <div class="footer-col">
+ <div class="footer-col-title">Resources</div>
+ <ul>
+ <li><a href="iso-27001-guide.html">ISO 27001 Guide</a></li>
+ <li><a href="help.html">Help Centre</a></li>
+ <li><a href="blog.html">Blog</a></li>
+ <li><a href="checklist.html">Free Assessment</a></li>
+ </ul>
+ </div>
+ <div class="footer-col">
+ <div class="footer-col-title">Company</div>
+ <ul>
+ <li><a href="about.html">About</a></li>
+ <li><a href="customers.html">Customers</a></li>
+ <li><a href="partners.html">Partners</a></li>
+ <li><a href="contact.html">Contact</a></li>
+ <li><a href="status.html">Status</a></li>
+ </ul>
+ </div>
+ <div class="footer-col">
+ <div class="footer-col-title">Legal</div>
+ <ul>
+ <li><a href="privacy.html">Privacy Policy</a></li>
+ <li><a href="terms.html">Terms of Service</a></li>
+ <li><a href="refund.html">Refund Policy</a></li>
+ <li><a href="cookies.html">Cookie Policy</a></li>
+ </ul>
+ </div>
+ </div>
+ <div class="footer-bottom">
+ <span>© 2026 Ferbe · ferbe.ai · Energized Empire Sdn. Bhd. · All rights reserved</span>
+ <div class="footer-links">
+ <a href="privacy.html">Privacy</a>
+ <a href="terms.html">Terms</a>
+ <a href="refund.html">Refund</a>
+ <a href="cookies.html">Cookies</a>
+ </div>
+ </div>
+ </div>
 </footer>
 <script>
-  const obs = new IntersectionObserver(entries => {
-    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add("visible"); });
-  }, { threshold: 0.1 });
-  document.querySelectorAll(".fade-up").forEach(el => obs.observe(el));
+ const obs = new IntersectionObserver(entries => {
+ entries.forEach(e => { if (e.isIntersecting) e.target.classList.add("visible"); });
+ }, { threshold: 0.1 });
+ document.querySelectorAll(".fade-up").forEach(el => obs.observe(el));
 
-  // Mobile menu toggle
-  function toggleMobileMenu() {
-    const nav = document.getElementById('mobile-nav');
-    const isOpen = nav.style.display === 'flex';
-    nav.style.display = isOpen ? 'none' : 'flex';
-  }
-  // Close mobile menu on outside click
-  document.addEventListener('click', function(e) {
-    const nav = document.getElementById('mobile-nav');
-    const btn = document.querySelector('.mobile-menu-btn');
-    if (nav && btn && !nav.contains(e.target) && !btn.contains(e.target)) {
-      nav.style.display = 'none';
-    }
-  });
+ // Mobile menu toggle
+ function toggleMobileMenu() {
+ const nav = document.getElementById('mobile-nav');
+ const isOpen = nav.style.display === 'flex';
+ nav.style.display = isOpen ? 'none' : 'flex';
+ }
+ // Close mobile menu on outside click
+ document.addEventListener('click', function(e) {
+ const nav = document.getElementById('mobile-nav');
+ const btn = document.querySelector('.mobile-menu-btn');
+ if (nav && btn && !nav.contains(e.target) && !btn.contains(e.target)) {
+ nav.style.display = 'none';
+ }
+ });
 
 </script>
 </body>

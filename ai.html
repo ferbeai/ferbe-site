@@ -1,0 +1,987 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI Capabilities — Ferbe</title>
+<meta name="description" content="Ferbe AI Assist recommends scope, controls, and suggested wording for ISO 27001:2022 documents, summarises internal audits, tracks every Clause 9.3.2 management review input, and shows your CISO what is blocking certification.">
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap');
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+ --bg: #F8FAFC; --card: #FFFFFF; --border: #E2E8F0;
+ --teal: #0D7C66; --teal-hi: #0A9070; --teal-faint: rgba(13,124,102,0.07);
+ --yellow: #D4FF00; --yellow-dark: #8FAF00; --yellow-faint: rgba(212,255,0,0.10);
+ --purple: #7C3AED; --purple-hi: #A855F7; --purple-faint: rgba(124,58,237,0.08);
+ --text: #0F172A; --muted: #475569; --dim: #94A3B8;
+ --green: #16A34A; --red: #DC2626; --amber: #D97706;
+ --radius: 12px; --radius-lg: 20px;
+ --font-display: "Plus Jakarta Sans", sans-serif;
+ --font-body: "Inter", sans-serif;
+ --font-mono: "JetBrains Mono", monospace;
+}
+html { scroll-behavior: smooth; }
+body { background: var(--bg); color: var(--text); font-family: var(--font-body); font-size: 15px; line-height: 1.6; -webkit-font-smoothing: antialiased; overflow-x: hidden; }
+
+nav { position: sticky; top: 0; z-index: 100; display: flex; align-items: center; justify-content: space-between; padding: 0 48px; height: 68px; background: rgba(248,250,252,0.94); backdrop-filter: blur(16px); border-bottom: 1px solid var(--border); }
+.nav-logo { display: flex; align-items: center; gap: 10px; text-decoration: none; font-family: var(--font-display); font-weight: 800; font-size: 22px; color: var(--text); letter-spacing: -0.01em; }
+.logo-mark { width: 34px; height: 34px; border-radius: 8px; background: linear-gradient(135deg, var(--teal), #0F9070); display: flex; align-items: center; justify-content: center; font-size: 16px; font-weight: 800; color: var(--yellow); }
+.nav-links { display: flex; gap: 32px; list-style: none; }
+.nav-links a { color: var(--muted); text-decoration: none; font-size: 14px; font-weight: 500; transition: color 0.2s; }
+.nav-links a:hover, .nav-links a.active { color: var(--text); }
+.nav-cta { display: flex; gap: 12px; align-items: center; }
+.btn-ghost { background: none; border: 1px solid var(--border); color: var(--muted); padding: 8px 18px; border-radius: 8px; font-size: 14px; font-weight: 500; cursor: pointer; text-decoration: none; transition: all 0.2s; }
+.btn-ghost:hover { border-color: var(--teal); color: var(--text); }
+.btn-primary { background: var(--teal); color: #fff; padding: 9px 20px; border-radius: 8px; font-size: 14px; font-weight: 600; border: none; cursor: pointer; text-decoration: none; transition: all 0.2s; }
+.btn-primary:hover { background: var(--teal-hi); }
+
+.page-hero { padding: 80px 48px 60px; text-align: center; position: relative; overflow: hidden; }
+.page-hero::before { content: ""; position: absolute; top: -100px; left: 50%; transform: translateX(-50%); width: 800px; height: 500px; background: radial-gradient(ellipse, rgba(124,58,237,0.05) 0%, rgba(212,255,0,0.04) 50%, transparent 70%); pointer-events: none; }
+.eyebrow { display: inline-flex; align-items: center; gap: 8px; background: var(--yellow-faint); border: 1px solid rgba(212,255,0,0.35); border-radius: 100px; padding: 5px 14px 5px 8px; font-family: var(--font-mono); font-size: 12px; font-weight: 600; color: var(--yellow-dark); margin-bottom: 20px; }
+.eyebrow-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--yellow); box-shadow: 0 0 5px var(--yellow); animation: pulse 2s infinite; }
+.eyebrow.purple { background: var(--purple-faint); border-color: rgba(124,58,237,0.25); color: var(--purple); }
+.eyebrow.purple .eyebrow-dot { background: var(--purple); box-shadow: 0 0 5px var(--purple); }
+.eyebrow.teal { background: var(--teal-faint); border-color: rgba(13,124,102,0.25); color: var(--teal); }
+.eyebrow.teal .eyebrow-dot { background: var(--teal); box-shadow: none; }
+@keyframes pulse { 0%,100%{opacity:1;transform:scale(1)}50%{opacity:.5;transform:scale(.8)} }
+.page-hero h1 { font-family: var(--font-display); font-size: clamp(32px, 5vw, 52px); font-weight: 800; line-height: 1.1; letter-spacing: -0.02em; color: var(--text); margin-bottom: 16px; }
+.page-hero h1 .t { color: var(--teal); }
+.page-hero h1 .p { color: var(--purple); }
+.page-hero h1 .y { color: var(--yellow-dark); background: var(--yellow); padding: 0 5px 2px; border-radius: 4px; }
+.page-hero p { font-size: 17px; color: var(--muted); max-width: 560px; margin: 0 auto 32px; line-height: 1.7; }
+
+.section { padding: 80px 48px; }
+.section.alt { background: #F1F5F9; }
+.section.dark { background: linear-gradient(135deg, #0F172A 0%, #1B0E3A 100%); }
+.section-inner { max-width: 1120px; margin: 0 auto; }
+.section-eyebrow { font-family: var(--font-mono); font-size: 12px; font-weight: 600; color: var(--teal); letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 12px; }
+.section-eyebrow.purple { color: var(--purple); }
+.section-title { font-family: var(--font-display); font-size: clamp(26px, 4vw, 40px); font-weight: 800; line-height: 1.15; letter-spacing: -0.02em; color: var(--text); margin-bottom: 14px; }
+.section-title.white { color: #fff; }
+.section-sub { font-size: 16px; color: var(--muted); line-height: 1.7; max-width: 560px; }
+.section-sub.white { color: rgba(255,255,255,0.55); }
+
+.card { background: var(--card); border: 1px solid var(--border); border-radius: var(--radius); padding: 28px; transition: box-shadow 0.2s, transform 0.2s; }
+.card:hover { box-shadow: 0 8px 32px rgba(15,23,42,0.08); transform: translateY(-2px); }
+.card.purple-border { border-color: rgba(124,58,237,0.25); }
+.card.teal-border { border-color: rgba(13,124,102,0.25); }
+
+.grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+.grid-3 { display: grid; grid-template-columns: repeat(3,1fr); gap: 24px; }
+.grid-4 { display: grid; grid-template-columns: repeat(4,1fr); gap: 20px; }
+
+.btn-hero { background: var(--teal); color: #fff; padding: 14px 28px; border-radius: 10px; font-size: 15px; font-weight: 700; border: none; cursor: pointer; text-decoration: none; transition: all 0.2s; font-family: var(--font-display); box-shadow: 0 4px 16px rgba(13,124,102,0.3); display: inline-block; }
+.btn-hero:hover { background: var(--teal-hi); transform: translateY(-1px); }
+.btn-hero.yellow { background: var(--yellow); color: #0F172A; box-shadow: 0 4px 16px rgba(212,255,0,0.3); }
+.btn-hero.yellow:hover { background: #C8F200; }
+.btn-hero.purple { background: var(--purple); box-shadow: 0 4px 16px rgba(124,58,237,0.3); }
+.btn-hero.ghost { background: none; border: 1px solid var(--border); color: var(--muted); box-shadow: none; }
+.btn-hero.ghost:hover { border-color: var(--teal); color: var(--text); }
+.btn-hero.ghost-white { background: none; border: 1px solid rgba(255,255,255,0.25); color: rgba(255,255,255,0.7); box-shadow: none; }
+.btn-hero.ghost-white:hover { border-color: rgba(255,255,255,0.5); color: #fff; }
+
+.check-icon { width: 20px; height: 20px; border-radius: 6px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; font-size: 11px; font-weight: 700; }
+.check-teal { background: rgba(13,124,102,0.1); color: var(--teal); }
+.check-purple { background: rgba(124,58,237,0.1); color: var(--purple); }
+.check-yellow { background: rgba(212,255,0,0.2); color: var(--yellow-dark); }
+
+.tag { display: inline-block; font-family: var(--font-mono); font-size: 11px; font-weight: 600; padding: 3px 10px; border-radius: 100px; }
+.tag.teal { background: var(--teal-faint); border: 1px solid rgba(13,124,102,0.2); color: var(--teal); }
+.tag.purple { background: var(--purple-faint); border: 1px solid rgba(124,58,237,0.2); color: var(--purple); }
+.tag.yellow { background: var(--yellow-faint); border: 1px solid rgba(212,255,0,0.3); color: var(--yellow-dark); }
+
+footer { border-top: 3px solid transparent; border-image: linear-gradient(90deg, var(--teal), var(--purple), var(--yellow)) 1; padding: 60px 48px 36px; background: var(--card); }
+.footer-inner { max-width: 1120px; margin: 0 auto; }
+.footer-top { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr 1fr; gap: 48px; margin-bottom: 48px; }
+.footer-brand p { font-size: 13px; color: var(--dim); line-height: 1.7; margin-top: 12px; max-width: 240px; }
+.footer-col-title { font-family: var(--font-display); font-size: 12px; font-weight: 700; color: var(--muted); letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 14px; }
+.footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 9px; }
+.footer-col a { font-size: 13px; color: var(--dim); text-decoration: none; transition: color 0.2s; }
+.footer-col a:hover { color: var(--teal); }
+.footer-bottom { display: flex; justify-content: space-between; align-items: center; padding-top: 28px; border-top: 1px solid var(--border); font-size: 12px; color: var(--dim); flex-wrap: wrap; gap: 12px; }
+.footer-links { display: flex; gap: 20px; }
+.footer-links a { color: var(--dim); text-decoration: none; transition: color 0.2s; }
+.footer-links a:hover { color: var(--muted); }
+
+.fade-up { opacity: 0; transform: translateY(20px); transition: opacity 0.55s ease, transform 0.55s ease; }
+.fade-up.visible { opacity: 1; transform: translateY(0); }
+
+.cta-strip { background: linear-gradient(135deg, #0F172A 0%, #1B0E3A 100%); border-radius: 24px; padding: 52px 60px; display: flex; align-items: center; justify-content: space-between; gap: 40px; flex-wrap: wrap; position: relative; overflow: hidden; margin: 0 48px 80px; max-width: 1120px; margin-left: auto; margin-right: auto; }
+.cta-strip::before { content: ""; position: absolute; top: -80px; right: -80px; width: 300px; height: 300px; background: radial-gradient(circle, rgba(124,58,237,0.2) 0%, transparent 65%); pointer-events: none; }
+.cta-strip h2 { font-family: var(--font-display); font-size: 26px; font-weight: 800; color: #fff; margin-bottom: 6px; letter-spacing: -0.01em; position: relative; }
+.cta-strip p { font-size: 14px; color: rgba(255,255,255,0.5); position: relative; }
+.cta-strip-actions { display: flex; gap: 12px; align-items: center; flex-wrap: wrap; position: relative; }
+
+@media (max-width: 960px) {
+ nav { padding: 0 20px; }
+ .nav-links { display: none; }
+ .page-hero, .section { padding: 60px 20px; }
+ .grid-2, .grid-3, .grid-4 { grid-template-columns: 1fr; }
+ .footer-top { grid-template-columns: 1fr 1fr; gap: 32px; }
+ .footer-brand { grid-column: 1/-1; }
+ .cta-strip { margin: 0 20px 60px; padding: 36px 28px; flex-direction: column; }
+}
+/* ── NAV MOBILE FIXES ── */
+@media (max-width: 768px) {
+ nav {
+ padding: 0 20px !important;
+ position: relative !important;
+ }
+ .nav-links { display: none !important; }
+ .nav-cta { display: none !important; }
+ .mobile-menu-btn {
+ display: flex !important;
+ margin-left: auto !important;
+ }
+}
+
+/* ═══════════════════════════════════════════════
+ FERBE MOBILE RESPONSIVE — injected fix
+ Breakpoints: 768px (tablet), 480px (phone)
+ ═══════════════════════════════════════════════ */
+
+/* ── Shared layout containers ── */
+@media (max-width: 768px) {
+ /* Section inner containers with hardcoded padding */
+ .section-inner,
+ [style*="max-width:1120px"],
+ [style*="max-width: 1120px"] {
+ padding-left: 20px !important;
+ padding-right: 20px !important;
+ }
+
+ /* All inline 2-col grids → single column */
+ [style*="grid-template-columns:1fr 1fr"],
+ [style*="grid-template-columns: 1fr 1fr"] {
+ grid-template-columns: 1fr !important;
+ gap: 32px !important;
+ }
+
+ /* All inline 2-col grids with explicit fractions */
+ [style*="grid-template-columns:1fr 320px"],
+ [style*="grid-template-columns:1fr 300px"],
+ [style*="grid-template-columns:1fr 280px"],
+ [style*="grid-template-columns:1fr 260px"] {
+ grid-template-columns: 1fr !important;
+ gap: 32px !important;
+ }
+
+ /* 3-col grids → 1 col */
+ [style*="grid-template-columns:repeat(3,1fr)"],
+ [style*="grid-template-columns: repeat(3,1fr)"],
+ [style*="grid-template-columns:repeat(3, 1fr)"] {
+ grid-template-columns: 1fr !important;
+ gap: 16px !important;
+ }
+
+ /* 4-col grids → 2 col */
+ [style*="grid-template-columns:repeat(4,1fr)"],
+ [style*="grid-template-columns: repeat(4,1fr)"] {
+ grid-template-columns: 1fr 1fr !important;
+ gap: 12px !important;
+ }
+
+ /* Sidebar + content layouts used in ISO guide, blog posts */
+ [style*="grid-template-columns:1fr 300px"],
+ [style*="display:grid;grid-template-columns:1fr"] {
+ grid-template-columns: 1fr !important;
+ }
+
+ /* Sticky sidebar — unstick on mobile */
+ [style*="position:sticky"],
+ [style*="position: sticky"] {
+ position: static !important;
+ }
+
+ /* Horizontal flex rows → column */
+ .hero-actions,
+ .cta-strip-actions {
+ flex-direction: column !important;
+ width: 100% !important;
+ }
+ .hero-actions a,
+ .cta-strip-actions a {
+ width: 100% !important;
+ text-align: center !important;
+ box-sizing: border-box !important;
+ }
+
+ /* Dark outcome strips: 4-col → 2-col */
+ [style*="grid-template-columns:repeat(4,1fr)"][style*="background:#0F172A"],
+ [style*="grid-template-columns:repeat(4,1fr)"][style*="gap:1px"] {
+ grid-template-columns: 1fr 1fr !important;
+ }
+
+ /* Padding fixes for dark full-bleed sections */
+ [style*="padding:48px"],
+ [style*="padding: 48px"],
+ [style*="padding:64px"],
+ [style*="padding:80px 48px"],
+ [style*="padding: 80px 48px"] {
+ padding: 40px 20px !important;
+ }
+ [style*="padding:40px 48px"] {
+ padding: 32px 20px !important;
+ }
+
+ /* Blog grid: 3-col → 1-col */
+ [style*="grid-template-columns:repeat(3,1fr)"] {
+ grid-template-columns: 1fr !important;
+ }
+
+ /* Industry tiles: 4-col → 2-col */
+ [style*="grid-template-columns:repeat(4,1fr)"] {
+ grid-template-columns: 1fr 1fr !important;
+ gap: 10px !important;
+ }
+
+ /* Features page stat rows */
+ [style*="grid-template-columns:repeat(2,1fr)"] {
+ grid-template-columns: 1fr !important;
+ }
+
+ /* Typography scale down */
+ .section-title {
+ font-size: clamp(22px, 6vw, 36px) !important;
+ }
+ .page-hero h1 {
+ font-size: clamp(26px, 7vw, 44px) !important;
+ }
+
+ /* Nav mobile burger (already hidden via .nav-links display:none) */
+ .nav-links { display: none !important; }
+
+ /* Pricing page: billing toggle layout */
+ [style*="display:flex"][style*="justify-content:center"][style*="margin-bottom:4"] {
+ flex-wrap: wrap !important;
+ }
+
+ /* CTA strip */
+ .cta-strip {
+ flex-direction: column !important;
+ gap: 24px !important;
+ text-align: center !important;
+ }
+}
+
+/* ── SCREEN MOCKS: hide on mobile, show placeholder ── */
+@media (max-width: 768px) {
+ /* Hero visual: hide tabbed screen switcher entirely */
+ .hero-visual { display: none !important; }
+
+ /* Customers page: hide screens paired with testimonials */
+ [style*="transform:scale(0.88)"],
+ [style*="transform:scale(0.82)"],
+ [style*="transform:scale(0.70)"],
+ [style*="transform:scale(0.7)"],
+ [style*="transform:scale(0.95)"] {
+ display: none !important;
+ }
+
+ /* Help page: category cards — hide internal screen thumbnails */
+ [style*="transform:scale(0.82)"][style*="transform-origin:top left"] {
+ display: none !important;
+ }
+
+ /* Blog article cards: hide screen thumbnail at top */
+ [style*="height:200px"][style*="overflow:hidden"] {
+ display: none !important;
+ }
+
+ /* Contact page demo preview screen */
+ .fade-up [style*="border:1px solid #E2E8F0"][style*="border-radius:14px"] {
+ display: none !important;
+ }
+
+ /* About page screens (journey + PRA) */
+ .fade-up {
+ display: none !important;
+ }
+
+ /* Screen chrome inside help cards */
+ [style*="overflow:hidden;box-shadow:0 8px 40px"] {
+ display: none !important;
+ }
+}
+
+/* ── PHONE-SPECIFIC (<480px) ── */
+@media (max-width: 480px) {
+ /* Hero headline */
+ .hero h1 { font-size: clamp(32px, 9vw, 48px) !important; }
+ .hero p { font-size: 16px !important; }
+
+ /* Page hero sections */
+ .page-hero { padding: 60px 20px 40px !important; }
+ .page-hero h1 { font-size: clamp(24px, 8vw, 38px) !important; }
+
+ /* Dark outcome numbers: 4→2→2 col maintained */
+ [style*="grid-template-columns:repeat(4,1fr)"] {
+ grid-template-columns: 1fr 1fr !important;
+ }
+
+ /* Stats chips in testimonials */
+ [style*="display:flex;gap:16px;flex-wrap:wrap"] {
+ gap: 8px !important;
+ }
+
+ /* Blog featured article: hide screen on phone too */
+ [style*="transform:scale(0.88)"],
+ [style*="transform:scale(0.82)"] {
+ display: none !important;
+ }
+
+ /* Pricing cards */
+ [style*="grid-template-columns:repeat(3,1fr)"] {
+ grid-template-columns: 1fr !important;
+ }
+
+ /* Checklist page 2-col layout */
+ [style*="grid-template-columns:1fr 1fr"] {
+ grid-template-columns: 1fr !important;
+ }
+
+ /* Logo strip */
+ .logos-row { flex-wrap: wrap !important; gap: 8px !important; }
+
+ /* Footer columns */
+ .footer-top { grid-template-columns: 1fr !important; }
+}
+
+/* ── HAMBURGER MENU ── */
+@media (max-width: 768px) {
+ .mobile-menu-btn {
+ display: flex !important;
+ }
+ .mobile-nav {
+ display: none;
+ position: fixed;
+ top: 64px; left: 0; right: 0;
+ background: #fff;
+ border-bottom: 1px solid #E2E8F0;
+ padding: 16px 20px;
+ flex-direction: column;
+ gap: 4px;
+ z-index: 999;
+ box-shadow: 0 8px 24px rgba(15,23,42,0.08);
+ }
+ .mobile-nav.open { display: flex; }
+ .mobile-nav a {
+ padding: 12px 16px;
+ font-size: 15px;
+ font-weight: 600;
+ color: #0F172A;
+ text-decoration: none;
+ border-radius: 8px;
+ transition: background 0.15s;
+ }
+ .mobile-nav a:hover { background: #F8FAFC; }
+ .mobile-nav .mobile-cta {
+ margin-top: 8px;
+ padding: 12px 16px;
+ background: #0D7C66;
+ color: #fff !important;
+ border-radius: 10px;
+ text-align: center;
+ }
+}
+
+
+
+.ai-hero{padding:100px 48px 56px;text-align:center;position:relative;overflow:hidden;
+ background:linear-gradient(170deg,#FAFAFF 0%,#F5F0FF 50%,#FAFAFF 100%);}
+.ai-hero::before{content:'';position:absolute;top:-140px;left:50%;transform:translateX(-50%);
+ width:800px;height:500px;pointer-events:none;
+ background:radial-gradient(ellipse,rgba(124,58,237,.10) 0%,rgba(212,255,0,.05) 50%,transparent 70%);}
+.ai-hero-inner{max-width:760px;margin:0 auto;position:relative;z-index:1;}
+.ai-hero h1{font-family:var(--font-display);font-size:clamp(32px,5vw,52px);font-weight:800;
+ line-height:1.12;letter-spacing:-.02em;color:var(--text);margin-bottom:18px;}
+.ai-hero h1 .p{color:var(--purple);}
+.ai-hero p{font-size:17px;color:var(--muted);line-height:1.75;max-width:600px;margin:0 auto 30px;}
+.ai-note{display:inline-flex;align-items:flex-start;gap:10px;max-width:600px;margin:0 auto;
+ padding:14px 20px;background:var(--card);border:1px solid var(--border);
+ border-left:3px solid var(--teal);border-radius:0 10px 10px 0;text-align:left;
+ font-size:13px;color:var(--muted);line-height:1.65;}
+.ai-note strong{color:var(--text);}
+
+/* ── use case blocks ── */
+.uc{padding:72px 48px;}
+.uc.alt{background:#F1F5F9;}
+.uc-inner{max-width:1120px;margin:0 auto;
+ display:grid;grid-template-columns:minmax(0,0.85fr) minmax(0,1.15fr);
+ gap:56px;align-items:center;}
+.uc.flip .uc-inner{direction:rtl;}
+.uc.flip .uc-copy{direction:ltr;}
+.uc.flip .uc-shot{direction:ltr;}
+.uc-tag{display:inline-flex;align-items:center;gap:7px;font-family:var(--font-mono);
+ font-size:11px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;
+ padding:5px 13px;border-radius:100px;margin-bottom:16px;
+ background:var(--purple-faint);color:var(--purple);border:1px solid rgba(124,58,237,.22);}
+.uc-copy h2{font-family:var(--font-display);font-size:clamp(22px,2.6vw,30px);font-weight:800;
+ color:var(--text);line-height:1.22;letter-spacing:-.02em;margin-bottom:14px;}
+.uc-copy>p{font-size:15px;color:var(--muted);line-height:1.8;margin-bottom:20px;}
+.uc-pts{list-style:none;}
+.uc-pts li{display:flex;gap:10px;align-items:flex-start;padding:7px 0;
+ font-size:14px;color:var(--muted);line-height:1.65;}
+.uc-pts li::before{content:"✓";color:var(--purple);font-weight:800;flex-shrink:0;}
+
+/* ── app window mock ── */
+.win{background:#fff;border:1px solid var(--border);border-radius:14px;overflow:hidden;
+ box-shadow:0 16px 50px rgba(15,23,42,.13);}
+.win-bar{background:#F8FAFC;border-bottom:1px solid var(--border);
+ padding:10px 16px;display:flex;align-items:center;gap:10px;}
+.win-dots{display:flex;gap:6px;}
+.win-dot{width:10px;height:10px;border-radius:50%;}
+.win-path{flex:1;text-align:center;font-family:var(--font-mono);
+ font-size:10px;color:var(--dim);}
+.win-chip{font-family:var(--font-mono);font-size:9px;font-weight:700;
+ padding:3px 9px;border-radius:100px;white-space:nowrap;}
+.chip-ai{background:var(--purple-faint);color:var(--purple);border:1px solid rgba(124,58,237,.25);}
+.win-body{padding:18px;background:#fff;}
+
+.ai-strip{display:flex;gap:9px;align-items:flex-start;padding:11px 13px;
+ background:linear-gradient(100deg,rgba(124,58,237,.07),rgba(212,255,0,.05));
+ border:1px solid rgba(124,58,237,.18);border-radius:9px;margin-bottom:13px;}
+.ai-av{width:22px;height:22px;border-radius:6px;background:var(--purple);color:#fff;
+ font-family:var(--font-display);font-size:10px;font-weight:800;flex-shrink:0;
+ display:flex;align-items:center;justify-content:center;}
+.ai-strip-t{font-size:11.5px;color:var(--text);line-height:1.6;}
+.ai-strip-t b{color:var(--purple);}
+
+.sec-lbl{font-family:var(--font-mono);font-size:8.5px;font-weight:700;color:var(--dim);
+ letter-spacing:.09em;text-transform:uppercase;margin:13px 0 6px;}
+.sec-lbl:first-child{margin-top:0;}
+
+
+.sugg-box{border:1px dashed rgba(124,58,237,.4);border-radius:9px;
+ background:rgba(124,58,237,.035);padding:11px 13px;margin-bottom:7px;}
+.sugg-hd{display:flex;justify-content:space-between;align-items:center;
+ gap:10px;margin-bottom:7px;}
+.sugg-lbl{font-family:var(--font-mono);font-size:9px;font-weight:700;
+ color:var(--purple);letter-spacing:.05em;text-transform:uppercase;}
+.sugg-act{font-family:var(--font-mono);font-size:8.5px;font-weight:700;
+ padding:2px 8px;border-radius:100px;background:var(--purple);color:#fff;
+ white-space:nowrap;flex-shrink:0;}
+.sugg-body{font-size:11px;color:var(--text);line-height:1.7;font-style:italic;
+ padding:9px 11px;background:#fff;border-radius:6px;border:1px solid rgba(124,58,237,.15);}
+.sugg-note{font-size:9.5px;color:var(--purple);line-height:1.55;margin-top:6px;}
+.doc-blk{border:1px solid var(--border);border-radius:8px;padding:11px 13px;
+ background:#FCFDFE;margin-bottom:7px;}
+.doc-h{font-size:11.5px;font-weight:700;color:var(--text);margin-bottom:4px;}
+.doc-p{font-size:10.5px;color:var(--muted);line-height:1.65;}
+.doc-line{height:6px;background:#EEF2F6;border-radius:3px;margin-bottom:5px;}
+
+.kv{display:flex;justify-content:space-between;align-items:center;gap:10px;
+ padding:7px 11px;border-radius:7px;background:#F8FAFC;margin-bottom:5px;}
+.kv-k{font-size:10.5px;color:var(--muted);}
+.kv-v{font-size:10.5px;font-weight:700;color:var(--text);white-space:nowrap;}
+
+.mini{display:grid;grid-template-columns:repeat(4,1fr);gap:7px;margin-bottom:12px;}
+.mini-c{border:1px solid var(--border);border-radius:8px;padding:9px 8px;text-align:center;background:#FCFDFE;}
+.mini-n{font-family:var(--font-display);font-size:17px;font-weight:800;line-height:1;}
+.mini-l{font-size:8.5px;color:var(--dim);margin-top:3px;line-height:1.3;}
+
+.bar-row{display:flex;align-items:center;gap:9px;margin-bottom:7px;}
+.bar-lbl{font-size:10px;color:var(--muted);width:88px;flex-shrink:0;}
+.bar-tr{flex:1;height:7px;background:#EEF2F6;border-radius:4px;overflow:hidden;}
+.bar-fl{height:100%;border-radius:4px;}
+.bar-pc{font-family:var(--font-mono);font-size:10px;font-weight:700;width:32px;text-align:right;flex-shrink:0;}
+
+.nc-line{display:flex;align-items:center;justify-content:space-between;gap:9px;
+ padding:8px 11px;border-radius:7px;margin-bottom:5px;border-left:3px solid;}
+.nc-line.hi{background:#FEF2F6;border-color:#DC2626;}
+.nc-line.md{background:#FFFBEB;border-color:#B45309;}
+.nc-line.lo{background:#EFF6FF;border-color:#3B82F6;}
+.nc-line.ok{background:#F0FDF4;border-color:#16A34A;}
+.nc-t{font-size:10.5px;color:var(--text);line-height:1.5;}
+.nc-b{font-family:var(--font-mono);font-size:8.5px;font-weight:700;
+ padding:2px 7px;border-radius:100px;white-space:nowrap;flex-shrink:0;}
+.b-hi{background:#FEE2E2;color:#DC2626;}
+.b-md{background:#FEF3C7;color:#B45309;}
+.b-lo{background:#DBEAFE;color:#2563EB;}
+.b-ok{background:#DCFCE7;color:#15803D;}
+
+.ring-wrap{display:flex;align-items:center;gap:16px;padding:13px;
+ background:#F8FAFC;border:1px solid var(--border);border-radius:9px;margin-bottom:12px;}
+.ring{width:66px;height:66px;position:relative;flex-shrink:0;
+ display:flex;align-items:center;justify-content:center;}
+.ring svg{position:absolute;top:0;left:0;transform:rotate(-90deg);}
+.ring-n{font-family:var(--font-display);font-size:17px;font-weight:800;line-height:1;}
+.ring-s{font-size:8px;color:var(--dim);font-family:var(--font-mono);margin-top:1px;}
+
+.tl{position:relative;padding-left:20px;}
+.tl::before{content:'';position:absolute;left:5px;top:5px;bottom:5px;width:2px;background:var(--border);}
+.tl-i{position:relative;padding-bottom:11px;}
+.tl-i::before{content:'';position:absolute;left:-18px;top:4px;width:9px;height:9px;
+ border-radius:50%;background:var(--purple);border:2px solid #fff;box-shadow:0 0 0 1.5px var(--purple);}
+.tl-i.done::before{background:#16A34A;box-shadow:0 0 0 1.5px #16A34A;}
+.tl-t{font-size:10.5px;font-weight:700;color:var(--text);}
+.tl-d{font-size:9.5px;color:var(--muted);margin-top:2px;line-height:1.5;}
+
+/* plans */
+.plan-row{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;}
+.plan-c{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);
+ padding:24px;text-align:center;}
+.plan-c.hl{border-color:rgba(124,58,237,.35);background:linear-gradient(170deg,#FAFAFF,#F5F0FF);}
+.plan-n{font-family:var(--font-display);font-size:17px;font-weight:800;color:var(--text);margin-bottom:6px;}
+.plan-p{font-family:var(--font-display);font-size:28px;font-weight:800;color:var(--teal);line-height:1;}
+.plan-c.hl .plan-p{color:var(--purple);}
+.plan-per{font-size:11.5px;color:var(--dim);margin:4px 0 14px;}
+.plan-ai{font-family:var(--font-mono);font-size:11px;font-weight:600;padding:5px 12px;
+ border-radius:100px;display:inline-block;}
+.ai-yes{background:var(--purple-faint);color:var(--purple);border:1px solid rgba(124,58,237,.25);}
+.ai-no{background:var(--bg);color:var(--dim);border:1px solid var(--border);}
+
+.faq-i{border:1px solid var(--border);border-radius:12px;margin-bottom:10px;overflow:hidden;background:var(--card);}
+.faq-q{padding:18px 22px;font-size:15px;font-weight:600;color:var(--text);cursor:pointer;
+ display:flex;justify-content:space-between;align-items:center;gap:16px;}
+.faq-q:hover{background:var(--bg);}
+.faq-chev{font-size:13px;color:var(--muted);transition:transform .25s;flex-shrink:0;}
+.faq-i.open .faq-chev{transform:rotate(180deg);}
+.faq-a{display:none;padding:0 22px 20px;font-size:14px;color:var(--muted);line-height:1.75;}
+.faq-i.open .faq-a{display:block;}
+
+@media(max-width:960px){
+ .uc{padding:52px 20px;}
+ .uc-inner{grid-template-columns:1fr;gap:30px;}
+ .uc.flip .uc-inner{direction:ltr;}
+ .uc-shot{order:2;}
+ .uc-copy{order:1;}
+ .plan-row{grid-template-columns:1fr;}
+ .ai-hero{padding:80px 20px 44px;}
+ .mini{grid-template-columns:1fr 1fr;}
+}
+
+</style>
+</head>
+<body>
+<nav>
+ <a href="index.html" class="nav-logo">
+ <div class="logo-mark">F</div>
+ Ferbe
+ </a>
+ <ul class="nav-links">
+ <li><a href="features.html">Features</a></li>
+ <li><a href="index.html#ai" style="color:var(--purple);font-weight:600;">✦ AI</a></li>
+ <li><a href="pricing.html">Pricing</a></li>
+ <li><a href="customers.html">Customers</a></li>
+ <li><a href="about.html">About</a></li>
+ </ul>
+ <div class="nav-cta">
+ <a href="contact.html" class="btn-ghost">Book demo</a>
+ <a href="#" class="btn-primary">Start free trial</a>
+ </div>
+</nav>
+<div class="mobile-nav" id="mobile-nav" style="display:none;">
+ <a href="index.html">Home</a><a href="features.html">Features</a>
+ <a href="ai.html">AI Capabilities</a><a href="pricing.html">Pricing</a>
+ <a href="customers.html">Customers</a><a href="about.html">About</a>
+ <a href="partners.html">Partners</a><a href="blog.html">Blog</a>
+ <a href="iso-27001-guide.html">ISO 27001 Guide</a>
+ <a href="checklist.html">Free Assessment</a><a href="contact.html">Contact</a>
+ <a href="#" class="mobile-cta">Start free trial</a>
+</div>
+
+<section class="ai-hero">
+ <div class="ai-hero-inner">
+ <div class="eyebrow purple"><span class="eyebrow-dot"></span>Ferbe AI · Growth &amp; Professional</div>
+ <h1>Your <span class="p">AI compliance co-pilot</span>, built into every corner of your ISMS</h1>
+ <p>Tells your authors what each document must cover and suggests wording to work from, summarises your audits, tracks every Clause 9.3.2 input, and shows your CISO exactly what is blocking certification — all grounded in your own ISMS data.</p>
+ <div class="ai-note">
+ <span style="font-size:16px;flex-shrink:0;">💡</span>
+ <div><strong>Ferbe works fully without AI.</strong> Every mandatory ISO 27001:2022 requirement is covered on the Starter plan. AI makes the work faster — it never replaces the human accountability the standard requires.</div>
+ </div>
+ </div>
+</section>
+
+<section class="uc">
+ <div class="uc-inner">
+ <div class="uc-copy fade-up">
+ <div class="uc-tag">✦ AI Assist · Document authoring</div>
+ <h2>Know exactly what your policy must cover before you write a word</h2>
+ <p>AI Assist reads your Statement of Applicability and ISMS scope, then tells your author which Annex A controls this document must satisfy, what it should address, and offers suggested phrasing to work from. Your author adapts it in their own words and owns the result.</p>
+ <ul class="uc-pts"><li>Recommends the scope this document should cover, based on your actual ISMS boundary</li><li>Lists every Annex A control the document must satisfy, and flags any left uncovered</li><li>Suggests methods, existing forms, and reference phrasing that satisfies the control</li><li>Suggested wording is a reference to adapt — your named author owns the final text</li></ul>
+ </div>
+ <div class="uc-shot fade-up"><div class="win">
+ <div class="win-bar">
+ <div class="win-dots">
+ <div class="win-dot" style="background:#FF5F57;"></div>
+ <div class="win-dot" style="background:#FEBC2E;"></div>
+ <div class="win-dot" style="background:#28C840;"></div>
+ </div>
+ <div class="win-path">Ferbe · Documents · POL-08 Access Control Policy</div>
+ <span class="win-chip chip-ai">✦ AI ASSIST</span>
+ </div>
+ <div class="win-body">
+<div class="ai-strip"><div class="ai-av">F</div><div class="ai-strip-t">
+You are authoring <b>POL-08 Access Control Policy</b>. Based on your SoA, this document should cover Annex A <b>5.15, 5.16, 5.18, 8.2, 8.3</b> — all marked applicable. Your ISMS scope covers 3 sites and 2 cloud environments, so consider addressing remote access explicitly.</div></div>
+
+<div class="sec-lbl">✦ Recommended scope for this document</div>
+<div class="doc-blk">
+ <div class="doc-h">What this policy should address</div>
+ <div class="doc-p">User registration and de-registration · Privileged access provisioning · Periodic access review · Remote and third-party access · Access revocation on role change or exit</div>
+</div>
+
+<div class="sec-lbl">✦ Annex A controls this document must satisfy</div>
+<div class="nc-line lo"><span class="nc-t">A.5.15 — Access control</span><span class="nc-b b-lo">Applicable</span></div>
+<div class="nc-line lo"><span class="nc-t">A.5.16 — Identity management</span><span class="nc-b b-lo">Applicable</span></div>
+<div class="nc-line lo"><span class="nc-t">A.5.18 — Access rights review</span><span class="nc-b b-lo">Applicable</span></div>
+<div class="nc-line md"><span class="nc-t">A.8.2 — Privileged access rights</span><span class="nc-b b-md">Not yet covered</span></div>
+
+<div class="sec-lbl">✦ Suggested method</div>
+<div class="doc-blk">
+ <div class="doc-p">Your organisation provisions access manually via email request. To satisfy A.5.15, the policy should mandate a documented approval step. An <b>Access Request Form</b> already exists in your document register and is unused — referencing it here would close the gap without creating a new form.</div>
+</div>
+
+<div class="sec-lbl">✦ Suggested wording · adapt in your own words</div>
+<div class="sugg-box">
+ <div class="sugg-hd">
+ <span class="sugg-lbl">For clause 4 — Access Provisioning</span>
+ <span class="sugg-act">Use as reference</span>
+ </div>
+ <div class="sugg-body">"All access to in-scope systems shall be requested via the Access Request Form and approved by the asset owner prior to provisioning. Verbal or informal requests shall not be actioned. Approval records shall be retained for the certification period."</div>
+ <div class="sugg-note">Suggested phrasing satisfies A.5.15. Rewrite in your organisation's voice — your author owns the final wording.</div>
+</div>
+
+<div class="sec-lbl">Author workspace</div>
+<div class="doc-blk">
+ <div class="doc-h">4. Access Provisioning</div>
+ <div class="doc-line" style="width:100%"></div>
+ <div class="doc-line" style="width:86%"></div>
+ <div class="doc-line" style="width:54%"></div>
+ <div class="doc-p" style="margin-top:7px;color:var(--dim);font-style:italic;">Written by A. Rahman · CISO</div>
+</div>
+
+<div class="kv" style="margin-top:11px;"><span class="kv-k">Author</span><span class="kv-v">A. Rahman · CISO</span></div>
+<div class="kv"><span class="kv-k">AI role</span><span class="kv-v" style="color:var(--purple);">Guidance only — no content generated</span></div>
+<div class="kv"><span class="kv-k">Status</span><span class="kv-v" style="color:#B45309;">Draft v0.1 — in authoring</span></div>
+</div>
+</div>
+ </div>
+ </div>
+</section>
+<section class="uc alt flip">
+ <div class="uc-inner">
+ <div class="uc-copy fade-up">
+ <div class="uc-tag">✦ Internal audit reporting</div>
+ <h2>Turn 98 audited controls into an executive summary in seconds</h2>
+ <p>When your internal audit closes, Ferbe AI reads every finding, identifies shared root causes, and suggests summary wording for the Internal Audit Report that Top Management actually reads — with the detail intact underneath.</p>
+ <ul class="uc-pts"><li>Root cause patterns identified across findings, not listed one by one</li><li>Findings ranked by certification risk, not just severity label</li><li>Suggested summary wording your auditor adapts, confirms, and signs</li><li>Exports as formatted DOCX and PDF for Top Management sign-off</li></ul>
+ </div>
+ <div class="uc-shot fade-up"><div class="win">
+ <div class="win-bar">
+ <div class="win-dots">
+ <div class="win-dot" style="background:#FF5F57;"></div>
+ <div class="win-dot" style="background:#FEBC2E;"></div>
+ <div class="win-dot" style="background:#28C840;"></div>
+ </div>
+ <div class="win-path">Ferbe · Internal Audit · IAR-2025-01</div>
+ <span class="win-chip chip-ai">✦ AI SUMMARY</span>
+ </div>
+ <div class="win-body">
+<div class="ai-strip"><div class="ai-av">F</div><div class="ai-strip-t">
+Audit <b>AP-2025-01</b> complete. <b>98 controls</b> audited, <b>7 findings</b> raised. Summary wording suggested for auditor review and Top Management sign-off.</div></div>
+<div class="mini">
+ <div class="mini-c"><div class="mini-n" style="color:#16A34A;">91</div><div class="mini-l">Conforming</div></div>
+ <div class="mini-c"><div class="mini-n" style="color:#B45309;">5</div><div class="mini-l">Minor NC</div></div>
+ <div class="mini-c"><div class="mini-n" style="color:#DC2626;">2</div><div class="mini-l">Major NC</div></div>
+ <div class="mini-c"><div class="mini-n" style="color:var(--teal);">93%</div><div class="mini-l">Conformity</div></div>
+</div>
+<div class="sec-lbl">✦ Suggested summary wording · auditor to confirm or rewrite</div>
+<div class="sugg-box">
+ <div class="sugg-hd">
+ <span class="sugg-lbl">Executive summary — IAR section 3</span>
+ <span class="sugg-act">Use as reference</span>
+ </div>
+ <div class="sugg-body">"The ISMS is broadly effective. Two Major nonconformities concentrate in access management (A.5.15, A.5.18) and share a single root cause — provisioning without documented approval. Adopting the Access Request Form addresses both. Minor findings are administrative and present no certification risk if closed before Stage 2."</div>
+ <div class="sugg-note">Root cause link identified across NC-005 and NC-007. Your auditor confirms the analysis and owns the final wording.</div>
+</div>
+<div class="sec-lbl">Findings requiring closure</div>
+<div class="nc-line hi"><span class="nc-t">A.5.15 — Access provisioning without documented approval</span><span class="nc-b b-hi">Major</span></div>
+<div class="nc-line hi"><span class="nc-t">A.5.18 — Quarterly access review not evidenced</span><span class="nc-b b-hi">Major</span></div>
+<div class="nc-line md"><span class="nc-t">A.8.9 — Configuration baseline not version-controlled</span><span class="nc-b b-md">Minor</span></div>
+<div class="nc-line md"><span class="nc-t">A.5.31 — Legal register not reviewed this cycle</span><span class="nc-b b-md">Minor</span></div>
+<div class="kv" style="margin-top:11px;"><span class="kv-k">Report output</span><span class="kv-v">IAR-2025-01.docx + .pdf</span></div>
+</div>
+</div></div>
+ </div>
+</section><section class="uc">
+ <div class="uc-inner">
+ <div class="uc-copy fade-up">
+ <div class="uc-tag">✦ Management review</div>
+ <h2>Every Clause 9.3.2 input collected, checked, and turned into suggested minute wording</h2>
+ <p>Management Review fails more certifications than almost any other clause — usually because one of the nine mandatory inputs is missing. Ferbe AI tracks all nine, flags what is outstanding, and suggests minute wording from your recorded inputs — the Management Review chair adapts, confirms, and signs.</p>
+ <ul class="uc-pts"><li>All nine Clause 9.3.2 mandatory inputs tracked and status-checked</li><li>Missing inputs flagged before the meeting, not discovered during audit</li><li>Suggested minute wording from recorded inputs — chair confirms decisions and outcomes</li><li>Management Review Minutes generated as signed DOCX and PDF with full audit trail</li></ul>
+ </div>
+ <div class="uc-shot fade-up"><div class="win">
+ <div class="win-bar">
+ <div class="win-dots">
+ <div class="win-dot" style="background:#FF5F57;"></div>
+ <div class="win-dot" style="background:#FEBC2E;"></div>
+ <div class="win-dot" style="background:#28C840;"></div>
+ </div>
+ <div class="win-path">Ferbe · Management Review · MR-2025-01</div>
+ <span class="win-chip chip-ai">✦ AI SUMMARY</span>
+ </div>
+ <div class="win-body">
+<div class="ai-strip"><div class="ai-av">F</div><div class="ai-strip-t">
+All <b>nine Clause 9.3.2 inputs</b> collected. Suggested minute wording ready with 4 action items. For chair review and Top Management sign-off.</div></div>
+<div class="sec-lbl">Clause 9.3.2 mandatory inputs</div>
+<div class="nc-line ok"><span class="nc-t">a) Status of previous management review actions</span><span class="nc-b b-ok">4 of 4 closed</span></div>
+<div class="nc-line ok"><span class="nc-t">c) Information security performance &amp; KPIs</span><span class="nc-b b-ok">Collected</span></div>
+<div class="nc-line ok"><span class="nc-t">d) Internal audit results (IAR-2025-01)</span><span class="nc-b b-ok">Attached</span></div>
+<div class="nc-line md"><span class="nc-t">g) External provider performance review</span><span class="nc-b b-md">2 pending</span></div>
+<div class="sec-lbl">✦ Suggested outcome wording · chair to confirm or rewrite</div>
+<div class="sugg-box">
+ <div class="sugg-hd">
+ <span class="sugg-lbl">Management Review Minutes — section 5 — Review outcome</span>
+ <span class="sugg-act">Use as reference</span>
+ </div>
+ <div class="sugg-body">"Top Management confirms the ISMS remains suitable, adequate, and effective. Resource allocation is adequate for the current scope. Two Major nonconformities from IAR-2025-01 require closure before the Stage 2 audit scheduled for 14 October 2025."</div>
+ <div class="sugg-note">Phrasing satisfies Clause 9.3.3 output requirements. The Management Review chair confirms and signs the final minute.</div>
+</div>
+<div class="sec-lbl">Action items generated</div>
+<div class="tl">
+ <div class="tl-i"><div class="tl-t">Close NC-005 — deploy the Access Request Form</div><div class="tl-d">Owner: CISO · Due 30 Aug 2025</div></div>
+ <div class="tl-i"><div class="tl-t">Evidence quarterly access review for Q3</div><div class="tl-d">Owner: IT Manager · Due 15 Sep 2025</div></div>
+ <div class="tl-i done"><div class="tl-t">Approve revised ISMS scope document</div><div class="tl-d">Owner: Top Management · Completed 12 Aug 2025</div></div>
+</div>
+</div>
+</div></div>
+ </div>
+</section><section class="uc alt flip">
+ <div class="uc-inner">
+ <div class="uc-copy fade-up">
+ <div class="uc-tag">✦ Executive intelligence</div>
+ <h2>The whole ISMS in one view — and what needs your attention this week</h2>
+ <p>The ISMS Intelligence Dashboard is where a CISO starts the day. Compliance score across five areas, trend since last review, and a plain-language brief on exactly what is blocking certification right now.</p>
+ <ul class="uc-pts"><li>Five-area RAG scorecard with trend against your last management review</li><li>Blockers surfaced by certification impact, not by date created</li><li>Unowned and stale findings flagged before they become audit issues</li><li>Written in plain language for board reporting, not raw metrics</li></ul>
+ </div>
+ <div class="uc-shot fade-up"><div class="win">
+ <div class="win-bar">
+ <div class="win-dots">
+ <div class="win-dot" style="background:#FF5F57;"></div>
+ <div class="win-dot" style="background:#FEBC2E;"></div>
+ <div class="win-dot" style="background:#28C840;"></div>
+ </div>
+ <div class="win-path">Ferbe · ISMS Intelligence · Executive View</div>
+ <span class="win-chip chip-ai">✦ AI INTELLIGENCE</span>
+ </div>
+ <div class="win-body">
+<div class="ring-wrap">
+ <div class="ring">
+ <svg width="66" height="66" viewBox="0 0 66 66">
+ <circle cx="33" cy="33" r="27" fill="none" stroke="#E2E8F0" stroke-width="7"/>
+ <circle cx="33" cy="33" r="27" fill="none" stroke="#16A34A" stroke-width="7"
+ stroke-dasharray="145 170" stroke-linecap="round"/>
+ </svg>
+ <div style="text-align:center;"><div class="ring-n" style="color:#16A34A;">86%</div>
+ <div class="ring-s">OVERALL</div></div>
+ </div>
+ <div style="flex:1;">
+ <div style="font-size:12px;font-weight:700;color:var(--text);margin-bottom:5px;">Certification readiness — on track</div>
+ <div style="font-size:10.5px;color:var(--muted);line-height:1.65;">Up 14 points since last review. Two Major NCs remain open and are the only blockers for Stage 2 on 14 October.</div>
+ </div>
+</div>
+<div class="sec-lbl">Compliance by area</div>
+<div class="bar-row"><span class="bar-lbl">Documentation</span><div class="bar-tr"><div class="bar-fl" style="width:96%;background:#16A34A;"></div></div><span class="bar-pc" style="color:#16A34A;">96%</span></div>
+<div class="bar-row"><span class="bar-lbl">Evidence</span><div class="bar-tr"><div class="bar-fl" style="width:88%;background:#16A34A;"></div></div><span class="bar-pc" style="color:#16A34A;">88%</span></div>
+<div class="bar-row"><span class="bar-lbl">Audit NCs</span><div class="bar-tr"><div class="bar-fl" style="width:71%;background:#B45309;"></div></div><span class="bar-pc" style="color:#B45309;">71%</span></div>
+<div class="bar-row"><span class="bar-lbl">Mgmt Review</span><div class="bar-tr"><div class="bar-fl" style="width:100%;background:#16A34A;"></div></div><span class="bar-pc" style="color:#16A34A;">100%</span></div>
+<div class="bar-row"><span class="bar-lbl">Annex A checklist</span><div class="bar-tr"><div class="bar-fl" style="width:93%;background:#16A34A;"></div></div><span class="bar-pc" style="color:#16A34A;">93%</span></div>
+<div class="ai-strip" style="margin-top:13px;margin-bottom:0;"><div class="ai-av">F</div><div class="ai-strip-t">
+<b>Priority this week:</b> NC-005 and NC-007 have corrective action plans submitted but no closure evidence uploaded. Both are Major and block certification. <b>NC-011</b> has no owner assigned — 18 days open.</div></div>
+</div>
+</div></div>
+ </div>
+</section>
+
+<section class="section">
+ <div class="section-inner">
+ <div class="section-eyebrow purple">Capabilities</div>
+ <h2 class="section-title">Six capabilities across the platform</h2>
+ <p class="section-sub" style="margin-bottom:36px;">Four are AI-powered on Growth and above. Two run on every plan, including Starter.</p>
+ <div class="grid-3">
+ <div class="card fade-up" style="transition-delay:0.00s">
+ <div style="display:flex;align-items:flex-start;justify-content:space-between;gap:10px;margin-bottom:12px;">
+ <div style="width:42px;height:42px;border-radius:11px;display:flex;align-items:center;justify-content:center;font-size:20px;background:var(--purple-faint);">🧠</div>
+ <span style="font-family:var(--font-mono);font-size:10px;font-weight:600;padding:3px 10px;border-radius:100px;white-space:nowrap;background:var(--purple-faint);color:var(--purple);border:1px solid rgba(124,58,237,.25);">Growth+</span>
+ </div>
+ <h3 style="font-family:var(--font-display);font-size:16px;font-weight:800;color:var(--text);margin-bottom:8px;letter-spacing:-.01em;">ISMS Intelligence Dashboard</h3>
+ <p style="font-size:14px;color:var(--muted);line-height:1.7;">Live interpretation of your compliance posture — score trends, risk concentration, and what is blocking certification, explained in plain language.</p>
+ </div><div class="card fade-up" style="transition-delay:0.04s">
+ <div style="display:flex;align-items:flex-start;justify-content:space-between;gap:10px;margin-bottom:12px;">
+ <div style="width:42px;height:42px;border-radius:11px;display:flex;align-items:center;justify-content:center;font-size:20px;background:var(--purple-faint);">💬</div>
+ <span style="font-family:var(--font-mono);font-size:10px;font-weight:600;padding:3px 10px;border-radius:100px;white-space:nowrap;background:var(--purple-faint);color:var(--purple);border:1px solid rgba(124,58,237,.25);">Growth+</span>
+ </div>
+ <h3 style="font-family:var(--font-display);font-size:16px;font-weight:800;color:var(--text);margin-bottom:8px;letter-spacing:-.01em;">AI Compliance Assistant</h3>
+ <p style="font-size:14px;color:var(--muted);line-height:1.7;">Ask anything about your ISMS and get answers grounded in your actual data — your findings, your evidence, your checklist responses.</p>
+ </div><div class="card fade-up" style="transition-delay:0.08s">
+ <div style="display:flex;align-items:flex-start;justify-content:space-between;gap:10px;margin-bottom:12px;">
+ <div style="width:42px;height:42px;border-radius:11px;display:flex;align-items:center;justify-content:center;font-size:20px;background:var(--purple-faint);">🔍</div>
+ <span style="font-family:var(--font-mono);font-size:10px;font-weight:600;padding:3px 10px;border-radius:100px;white-space:nowrap;background:var(--purple-faint);color:var(--purple);border:1px solid rgba(124,58,237,.25);">Growth+</span>
+ </div>
+ <h3 style="font-family:var(--font-display);font-size:16px;font-weight:800;color:var(--text);margin-bottom:8px;letter-spacing:-.01em;">Auto-raise findings from Annex A</h3>
+ <p style="font-size:14px;color:var(--muted);line-height:1.7;">Work the 98-control checklist and Ferbe AI detects gaps as you go, classifies severity, and suggests remediation options for your auditor to decide on.</p>
+ </div><div class="card fade-up" style="transition-delay:0.12s">
+ <div style="display:flex;align-items:flex-start;justify-content:space-between;gap:10px;margin-bottom:12px;">
+ <div style="width:42px;height:42px;border-radius:11px;display:flex;align-items:center;justify-content:center;font-size:20px;background:var(--purple-faint);">📝</div>
+ <span style="font-family:var(--font-mono);font-size:10px;font-weight:600;padding:3px 10px;border-radius:100px;white-space:nowrap;background:var(--purple-faint);color:var(--purple);border:1px solid rgba(124,58,237,.25);">Growth+</span>
+ </div>
+ <h3 style="font-family:var(--font-display);font-size:16px;font-weight:800;color:var(--text);margin-bottom:8px;letter-spacing:-.01em;">Suggest corrective actions</h3>
+ <p style="font-size:14px;color:var(--muted);line-height:1.7;">For every nonconformity, AI Assist suggests likely root causes and corrective action options based on the failed control — your auditor decides and documents the actual action.</p>
+ </div><div class="card fade-up" style="transition-delay:0.16s">
+ <div style="display:flex;align-items:flex-start;justify-content:space-between;gap:10px;margin-bottom:12px;">
+ <div style="width:42px;height:42px;border-radius:11px;display:flex;align-items:center;justify-content:center;font-size:20px;background:var(--teal-faint);">📊</div>
+ <span style="font-family:var(--font-mono);font-size:10px;font-weight:600;padding:3px 10px;border-radius:100px;white-space:nowrap;background:var(--teal-faint);color:var(--teal);border:1px solid rgba(13,124,102,.25);">All plans</span>
+ </div>
+ <h3 style="font-family:var(--font-display);font-size:16px;font-weight:800;color:var(--text);margin-bottom:8px;letter-spacing:-.01em;">RAG compliance scorecard</h3>
+ <p style="font-size:14px;color:var(--muted);line-height:1.7;">Five-section scorecard across Documentation, Evidence, Audit NCs, Management Review, and Checklist — thresholds configurable.</p>
+ </div><div class="card fade-up" style="transition-delay:0.20s">
+ <div style="display:flex;align-items:flex-start;justify-content:space-between;gap:10px;margin-bottom:12px;">
+ <div style="width:42px;height:42px;border-radius:11px;display:flex;align-items:center;justify-content:center;font-size:20px;background:var(--teal-faint);">📄</div>
+ <span style="font-family:var(--font-mono);font-size:10px;font-weight:600;padding:3px 10px;border-radius:100px;white-space:nowrap;background:var(--teal-faint);color:var(--teal);border:1px solid rgba(13,124,102,.25);">All plans</span>
+ </div>
+ <h3 style="font-family:var(--font-display);font-size:16px;font-weight:800;color:var(--text);margin-bottom:8px;letter-spacing:-.01em;">Automated report generation</h3>
+ <p style="font-size:14px;color:var(--muted);line-height:1.7;">Internal Audit Reports, Management Review Minutes, and your Statement of Applicability as formatted DOCX and PDF. Included on every plan.</p>
+ </div>
+ </div>
+ </div>
+</section>
+
+<section class="section alt">
+ <div class="section-inner">
+ <div class="section-eyebrow">Plans</div>
+ <h2 class="section-title">Where AI fits across the plans</h2>
+ <p class="section-sub" style="margin-bottom:34px;">Every plan delivers a certifiable ISMS. AI is the accelerator from Growth upward. Prices shown are annual billing.</p>
+ <div class="plan-row">
+ <div class="plan-c fade-up">
+ <div class="plan-n">Starter</div>
+ <div class="plan-p">RM239</div>
+ <div class="plan-per">per month · billed annually<br>Up to 5 users</div>
+ <div class="plan-ai ai-no">No AI features</div>
+ <p style="font-size:13px;color:var(--muted);line-height:1.7;margin-top:14px;">Full document lifecycle, evidence management, SoA, RAG scorecard, and 1 audit programme. Fully certifiable.</p>
+ </div>
+ <div class="plan-c hl fade-up" style="transition-delay:.05s">
+ <div class="plan-n">Growth</div>
+ <div class="plan-p">RM639</div>
+ <div class="plan-per">per month · billed annually<br>Up to 20 users</div>
+ <div class="plan-ai ai-yes">✦ Full AI suite</div>
+ <p style="font-size:13px;color:var(--muted);line-height:1.7;margin-top:14px;">Everything in Starter plus Management Review, unlimited audit programmes, the 98-control checklist, and the complete AI suite.</p>
+ </div>
+ <div class="plan-c fade-up" style="transition-delay:.1s">
+ <div class="plan-n">Professional</div>
+ <div class="plan-p">RM1,599</div>
+ <div class="plan-per">per month · billed annually<br>Up to 50 users</div>
+ <div class="plan-ai ai-yes">✦ Full AI suite</div>
+ <p style="font-size:13px;color:var(--muted);line-height:1.7;margin-top:14px;">Everything in Growth plus dedicated onboarding, SLA response guarantee, custom templates, and the Intake Wizard.</p>
+ </div>
+ </div>
+ <div style="text-align:center;margin-top:28px;">
+ <a href="pricing.html" class="btn-hero">Compare all plans &amp; features →</a>
+ </div>
+ </div>
+</section>
+
+<section class="section">
+ <div class="section-inner" style="max-width:780px;">
+ <div class="section-eyebrow">Questions</div>
+ <h2 class="section-title">Common questions about Ferbe AI</h2>
+ <div style="margin-top:32px;">
+ <div class="faq-i"><div class="faq-q" data-faq>Do I need AI features to get certified?<span class="faq-chev">▼</span></div><div class="faq-a">No. The Starter plan covers the complete document lifecycle, evidence management, internal audit workflow, and Statement of Applicability — every mandatory ISO 27001:2022 requirement. AI accelerates the work; it is not a prerequisite for certification.</div></div><div class="faq-i"><div class="faq-q" data-faq>Where does Ferbe AI get its answers from?<span class="faq-chev">▼</span></div><div class="faq-a">Exclusively from your own ISMS data — your documents, evidence, audit findings, checklist responses, and management review records. It does not answer from general internet knowledge, which is what makes responses specific and auditable rather than generic.</div></div><div class="faq-i"><div class="faq-q" data-faq>Is my data used to train AI models?<span class="faq-chev">▼</span></div><div class="faq-a">No. Your ISMS data is never used to train models and is never shared with other organisations. It is processed to answer your queries and retained only within your own tenant.</div></div><div class="faq-i"><div class="faq-q" data-faq>Does Ferbe AI write my policies for me?<span class="faq-chev">▼</span></div><div class="faq-a">Not for you — with you. AI Assist recommends what a document should cover, which Annex A controls it must satisfy, and offers suggested phrasing that would satisfy those controls. Your named author reads the suggestion, rewrites it in your organisation's own language, and owns the result. The distinction matters: an external auditor will ask who authored a policy and whether they understood it. Text pasted in unread is difficult to defend at Stage 2 and does not demonstrate the organisational competence Clause 7.2 requires. Suggested wording is a starting point, not a finished document.</div></div>
+ <div class="faq-i"><div class="faq-q" data-faq>Can the AI approve documents or close findings for me?<span class="faq-chev">▼</span></div><div class="faq-a">No, deliberately. ISO 27001:2022 requires named human accountability for approvals, findings, and corrective actions. Ferbe AI recommends, suggests, and analyses — a named person always authors, reviews, and approves. This keeps your audit trail defensible.</div></div><div class="faq-i"><div class="faq-q" data-faq>Which plans include AI?<span class="faq-chev">▼</span></div><div class="faq-a">Growth (RM799/month) and Professional (RM1,999/month). Starter (RM299/month) includes the full ISMS platform with automated report generation and the RAG scorecard, but without the Intelligence Dashboard, Compliance Assistant, or auto-raised findings.</div></div><div class="faq-i"><div class="faq-q" data-faq>How is AI-generated content treated in a certification audit?<span class="faq-chev">▼</span></div><div class="faq-a">AI Assist produces scope recommendations, control mappings, gap flags, and suggested phrasing — all of it a starting point for a named author. The documents themselves are authored, adapted, and approved by named people, and the audit trail records exactly who did what and when. Auditors assess the document and its approval record; what matters is that a competent person owns it, which is exactly what the audit trail demonstrates.</div></div>
+ </div>
+ </div>
+</section>
+
+<div class="cta-strip">
+ <div>
+ <h3 style="font-family:var(--font-display);font-size:24px;font-weight:800;color:#fff;margin-bottom:8px;">See Ferbe AI on your own ISMS</h3>
+ <p style="font-size:15px;color:rgba(255,255,255,.6);line-height:1.7;">Start a free 14-day trial on the Growth plan — no card required.</p>
+ </div>
+ <div style="display:flex;gap:12px;flex-wrap:wrap;">
+ <a href="index.html" class="btn-hero yellow">Start free trial</a>
+ <a href="contact.html" class="btn-hero ghost-white">Book a demo</a>
+ </div>
+</div>
+
+<script>
+document.addEventListener('click',function(e){
+ var q=e.target.closest('[data-faq]');
+ if(q) q.parentElement.classList.toggle('open');
+});
+</script>
+
+<footer>
+ <div class="footer-inner">
+ <div class="footer-top">
+ <div class="footer-brand">
+ <a href="index.html" class="nav-logo" style="text-decoration:none;">
+ <div class="logo-mark">F</div>
+ Ferbe
+ </a>
+ <p>The ISO 27001:2022 ISMS platform built for Malaysian and Southeast Asian companies. From gap assessment to certification, in one place.</p>
+ <p style="margin-top:10px;font-size:12px;color:var(--dim);">A product by <a href="https://www.energized-inc.com" target="_blank" style="color:var(--teal);text-decoration:none;">Energized Inc.</a> · Energized Empire Sdn. Bhd.<br>Kuala Lumpur, Malaysia · Dubai, UAE</p>
+ </div>
+ <div class="footer-col">
+ <div class="footer-col-title">Product</div>
+ <ul>
+ <li><a href="features.html">Features</a></li>
+ <li><a href="pricing.html">Pricing</a></li>
+ <li><a href="ai.html">AI Capabilities</a></li>
+ <li><a href="#">Changelog</a></li>
+ <li><a href="#">Roadmap</a></li>
+ </ul>
+ </div>
+ <div class="footer-col">
+ <div class="footer-col-title">Resources</div>
+ <ul>
+ <li><a href="iso-27001-guide.html">ISO 27001 Guide</a></li>
+ <li><a href="help.html">Help Centre</a></li>
+ <li><a href="blog.html">Blog</a></li>
+ <li><a href="checklist.html">Free Assessment</a></li>
+ </ul>
+ </div>
+ <div class="footer-col">
+ <div class="footer-col-title">Company</div>
+ <ul>
+ <li><a href="about.html">About</a></li>
+ <li><a href="customers.html">Customers</a></li>
+ <li><a href="partners.html">Partners</a></li>
+ <li><a href="contact.html">Contact</a></li>
+ <li><a href="status.html">Status</a></li>
+ </ul>
+ </div>
+ <div class="footer-col">
+ <div class="footer-col-title">Legal</div>
+ <ul>
+ <li><a href="privacy.html">Privacy Policy</a></li>
+ <li><a href="terms.html">Terms of Service</a></li>
+ <li><a href="refund.html">Refund Policy</a></li>
+ <li><a href="cookies.html">Cookie Policy</a></li>
+ </ul>
+ </div>
+ </div>
+ <div class="footer-bottom">
+ <span>© 2026 Ferbe · ferbe.ai · Energized Empire Sdn. Bhd. · All rights reserved</span>
+ <div class="footer-links">
+ <a href="privacy.html">Privacy</a>
+ <a href="terms.html">Terms</a>
+ <a href="refund.html">Refund</a>
+ <a href="cookies.html">Cookies</a>
+ </div>
+ </div>
+ </div>
+</footer>
+<script>
+function toggleMobileMenu(){var n=document.getElementById('mobile-nav');
+ n.style.display=n.style.display==='flex'?'none':'flex';}
+document.addEventListener('click',function(e){
+ var n=document.getElementById('mobile-nav');var b=document.querySelector('.mobile-menu-btn');
+ if(n&&b&&!n.contains(e.target)&&!b.contains(e.target))n.style.display='none';});
+var obs=new IntersectionObserver(function(es){es.forEach(function(e){
+ if(e.isIntersecting)e.target.classList.add('visible');});},{threshold:0.1});
+document.querySelectorAll('.fade-up').forEach(function(el){obs.observe(el);});
+</script>
+</body>
+</html>
