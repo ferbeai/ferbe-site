@@ -479,7 +479,8 @@ footer { border-top: 3px solid transparent; border-image: linear-gradient(90deg,
  </a>
  <ul class="nav-links">
  <li><a href="features.html">Features</a></li>
- <li><a href="ai.html" style="color:var(--purple);font-weight:600;">✦ AI</a></li>
+ <li><a href="ai-governance.html" style="color:var(--yellow-dark);font-weight:600;">AI Governance</a></li>
+    <li><a href="ai.html" style="color:var(--purple);font-weight:600;">✦ AI</a></li>
  <li><a href="pricing.html">Pricing</a></li>
  <li><a href="customers.html">Customers</a></li>
  <li><a href="about.html">About</a></li>
@@ -516,7 +517,11 @@ footer { border-top: 3px solid transparent; border-image: linear-gradient(90deg,
 
 <section class="section">
  <div class="section-inner">
- <div id="blog-filter" style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:32px;"><button data-filter="all" onclick="filterBlog(this)" style="padding:7px 16px;border-radius:100px;font-size:13px;font-weight:600;border:1.5px solid var(--teal);background:var(--teal);color:#fff;cursor:pointer;transition:all 0.2s;white-space:nowrap;">All</button><button data-filter="certification-guide" onclick="filterBlog(this)" style="padding:7px 16px;border-radius:100px;font-size:13px;font-weight:500;border:1.5px solid var(--border);background:var(--card);color:var(--muted);cursor:pointer;transition:all 0.2s;white-space:nowrap;">Certification Guide</button><button data-filter="audit-preparation" onclick="filterBlog(this)" style="padding:7px 16px;border-radius:100px;font-size:13px;font-weight:500;border:1.5px solid var(--border);background:var(--card);color:var(--muted);cursor:pointer;transition:all 0.2s;white-space:nowrap;">Audit Preparation</button><button data-filter="standard-updates" onclick="filterBlog(this)" style="padding:7px 16px;border-radius:100px;font-size:13px;font-weight:500;border:1.5px solid var(--border);background:var(--card);color:var(--muted);cursor:pointer;transition:all 0.2s;white-space:nowrap;">Standard Updates</button><button data-filter="documentation" onclick="filterBlog(this)" style="padding:7px 16px;border-radius:100px;font-size:13px;font-weight:500;border:1.5px solid var(--border);background:var(--card);color:var(--muted);cursor:pointer;transition:all 0.2s;white-space:nowrap;">Documentation</button><button data-filter="management-review" onclick="filterBlog(this)" style="padding:7px 16px;border-radius:100px;font-size:13px;font-weight:500;border:1.5px solid var(--border);background:var(--card);color:var(--muted);cursor:pointer;transition:all 0.2s;white-space:nowrap;">Management Review</button><button data-filter="internal-audit" onclick="filterBlog(this)" style="padding:7px 16px;border-radius:100px;font-size:13px;font-weight:500;border:1.5px solid var(--border);background:var(--card);color:var(--muted);cursor:pointer;transition:all 0.2s;white-space:nowrap;">Internal Audit</button></div>
+ <div id="blog-filter" style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:32px;"><button data-filter="all" onclick="filterBlog(this)" style="padding:7px 16px;border-radius:100px;font-size:13px;font-weight:600;border:1.5px solid var(--teal);background:var(--teal);color:#fff;cursor:pointer;transition:all 0.2s;white-space:nowrap;">All</button><button data-filter="certification-guide" onclick="filterBlog(this)" style="padding:7px 16px;border-radius:100px;font-size:13px;font-weight:500;border:1.5px solid var(--border);background:var(--card);color:var(--muted);cursor:pointer;transition:all 0.2s;white-space:nowrap;">Certification Guide</button><button data-filter="audit-preparation" onclick="filterBlog(this)" style="padding:7px 16px;border-radius:100px;font-size:13px;font-weight:500;border:1.5px solid var(--border);background:var(--card);color:var(--muted);cursor:pointer;transition:all 0.2s;white-space:nowrap;">Audit Preparation</button><button data-filter="standard-updates" onclick="filterBlog(this)" style="padding:7px 16px;border-radius:100px;font-size:13px;font-weight:500;border:1.5px solid var(--border);background:var(--card);color:var(--muted);cursor:pointer;transition:all 0.2s;white-space:nowrap;">Standard Updates</button><button data-filter="documentation" onclick="filterBlog(this)" style="padding:7px 16px;border-radius:100px;font-size:13px;font-weight:500;border:1.5px solid var(--border);background:var(--card);color:var(--muted);cursor:pointer;transition:all 0.2s;white-space:nowrap;">Documentation</button><button data-filter="management-review" onclick="filterBlog(this)" style="padding:7px 16px;border-radius:100px;font-size:13px;font-weight:500;border:1.5px solid var(--border);background:var(--card);color:var(--muted);cursor:pointer;transition:all 0.2s;white-space:nowrap;">Management Review</button><button data-filter="internal-audit" onclick="filterBlog(this)" style="padding:7px 16px;border-radius:100px;font-size:13px;font-weight:500;border:1.5px solid var(--border);background:var(--card);color:var(--muted);cursor:pointer;transition:all 0.2s;white-space:nowrap;">Internal Audit</button><button data-filter="ai-governance" onclick="filterBlog(this)"
+  style="padding:8px 16px;border-radius:100px;font-size:13px;font-weight:500;
+  border:1px solid var(--border);background:var(--card);color:var(--muted);cursor:pointer;
+  transition:all .15s;">AI Governance</button>
+</div>
  
 <div id="featured-card" data-category="certification-guide"
  style="display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center;
@@ -560,7 +565,31 @@ footer { border-top: 3px solid transparent; border-image: linear-gradient(90deg,
 </div>
  <h2 id="more-articles-heading" style="font-family:var(--font-display);font-size:22px;font-weight:800;margin-bottom:24px;letter-spacing:-0.01em;">More articles</h2>
  <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:20px;">
- <div class="blog-card" data-category="audit-preparation"
+ <div class="blog-card" data-category="ai-governance"
+  style="background:var(--card);border:1px solid var(--border);border-radius:var(--radius-lg);
+         overflow:hidden;display:flex;flex-direction:column;transition:box-shadow .2s,transform .2s;">
+  <div style="padding:26px;display:flex;flex-direction:column;flex:1;">
+    <div style="display:flex;gap:8px;margin-bottom:14px;flex-wrap:wrap;">
+      <span style="font-family:var(--font-mono);font-size:10px;font-weight:600;padding:3px 10px;
+        border-radius:100px;background:#FAFFE6;color:#8FAF00;border:1px solid rgba(143,175,0,.3);">AI Governance</span>
+      <span style="font-family:var(--font-mono);font-size:10px;font-weight:600;padding:3px 10px;
+        border-radius:100px;background:var(--yellow-faint);color:var(--yellow-dark);
+        border:1px solid rgba(212,255,0,.4);">New</span>
+    </div>
+    <h3 style="font-family:var(--font-display);font-size:19px;font-weight:800;color:var(--text);
+      line-height:1.3;margin-bottom:10px;letter-spacing:-.01em;">You use AI. Your ISMS doesn&rsquo;t know.</h3>
+    <p style="font-size:14px;color:var(--muted);line-height:1.7;margin-bottom:18px;flex:1;">
+      Almost every ISO 27001 template pack is silent on artificial intelligence. That silence is a
+      documented gap in your risk assessment &mdash; here is why it exists and how to close it.</p>
+    <div style="display:flex;align-items:center;gap:10px;font-size:12px;color:var(--dim);
+      margin-bottom:16px;">
+      <span>28 Jul 2026</span><span>&middot;</span><span>7 min read</span>
+    </div>
+    <a href="blog-ai-governance-iso-27001.html" style="font-size:14px;font-weight:700;
+      color:var(--teal);text-decoration:none;">Read article &rarr;</a>
+  </div>
+</div>
+<div class="blog-card" data-category="audit-preparation"
  style="background:var(--card);border:1px solid var(--border);border-radius:var(--radius);
  overflow:hidden;transition:box-shadow 0.2s,transform 0.2s;"
  onmouseover="this.style.boxShadow='0 8px 32px rgba(15,23,42,0.08)';this.style.transform='translateY(-2px)'"
@@ -726,7 +755,8 @@ footer { border-top: 3px solid transparent; border-image: linear-gradient(90deg,
  <ul>
  <li><a href="features.html">Features</a></li>
  <li><a href="pricing.html">Pricing</a></li>
- <li><a href="ai.html">AI Capabilities</a></li>
+ <li><a href="ai-governance.html">AI Governance</a></li>
+          <li><a href="ai.html">AI Capabilities</a></li>
  <li><a href="#">Changelog</a></li>
  <li><a href="#">Roadmap</a></li>
  </ul>

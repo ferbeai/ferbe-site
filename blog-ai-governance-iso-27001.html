@@ -1,0 +1,615 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>You use AI. Your ISMS doesn't know. — Ferbe</title>
+<meta name="description" content="Almost every ISO 27001 template pack is silent on AI. That silence is a documented gap in your risk assessment. Why it exists, what auditors now ask, and how to close it with controls you already have.">
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap');
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --bg: #F8FAFC; --card: #FFFFFF; --border: #E2E8F0;
+  --teal: #0D7C66; --teal-hi: #0A9070; --teal-faint: rgba(13,124,102,0.07);
+  --yellow: #D4FF00; --yellow-dark: #8FAF00; --yellow-faint: rgba(212,255,0,0.10);
+  --purple: #7C3AED; --purple-hi: #A855F7; --purple-faint: rgba(124,58,237,0.08);
+  --text: #0F172A; --muted: #475569; --dim: #94A3B8;
+  --green: #16A34A; --red: #DC2626; --amber: #D97706;
+  --radius: 12px; --radius-lg: 20px;
+  --font-display: "Plus Jakarta Sans", sans-serif;
+  --font-body: "Inter", sans-serif;
+  --font-mono: "JetBrains Mono", monospace;
+}
+html { scroll-behavior: smooth; }
+body { background: var(--bg); color: var(--text); font-family: var(--font-body); font-size: 15px; line-height: 1.6; -webkit-font-smoothing: antialiased; overflow-x: hidden; }
+
+nav { position: sticky; top: 0; z-index: 100; display: flex; align-items: center; justify-content: space-between; padding: 0 48px; height: 68px; background: rgba(248,250,252,0.94); backdrop-filter: blur(16px); border-bottom: 1px solid var(--border); }
+.nav-logo { display: flex; align-items: center; gap: 10px; text-decoration: none; font-family: var(--font-display); font-weight: 800; font-size: 22px; color: var(--text); letter-spacing: -0.01em; }
+.logo-mark { width: 34px; height: 34px; border-radius: 8px; background: linear-gradient(135deg, var(--teal), #0F9070); display: flex; align-items: center; justify-content: center; font-size: 16px; font-weight: 800; color: var(--yellow); }
+.nav-links { display: flex; gap: 32px; list-style: none; }
+.nav-links a { color: var(--muted); text-decoration: none; font-size: 14px; font-weight: 500; transition: color 0.2s; }
+.nav-links a:hover, .nav-links a.active { color: var(--text); }
+.nav-cta { display: flex; gap: 12px; align-items: center; }
+.btn-ghost { background: none; border: 1px solid var(--border); color: var(--muted); padding: 8px 18px; border-radius: 8px; font-size: 14px; font-weight: 500; cursor: pointer; text-decoration: none; transition: all 0.2s; }
+.btn-ghost:hover { border-color: var(--teal); color: var(--text); }
+.btn-primary { background: var(--teal); color: #fff; padding: 9px 20px; border-radius: 8px; font-size: 14px; font-weight: 600; border: none; cursor: pointer; text-decoration: none; transition: all 0.2s; }
+.btn-primary:hover { background: var(--teal-hi); }
+
+.page-hero { padding: 80px 48px 60px; text-align: center; position: relative; overflow: hidden; }
+.page-hero::before { content: ""; position: absolute; top: -100px; left: 50%; transform: translateX(-50%); width: 800px; height: 500px; background: radial-gradient(ellipse, rgba(124,58,237,0.05) 0%, rgba(212,255,0,0.04) 50%, transparent 70%); pointer-events: none; }
+.eyebrow { display: inline-flex; align-items: center; gap: 8px; background: var(--yellow-faint); border: 1px solid rgba(212,255,0,0.35); border-radius: 100px; padding: 5px 14px 5px 8px; font-family: var(--font-mono); font-size: 12px; font-weight: 600; color: var(--yellow-dark); margin-bottom: 20px; }
+.eyebrow-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--yellow); box-shadow: 0 0 5px var(--yellow); animation: pulse 2s infinite; }
+.eyebrow.purple { background: var(--purple-faint); border-color: rgba(124,58,237,0.25); color: var(--purple); }
+.eyebrow.purple .eyebrow-dot { background: var(--purple); box-shadow: 0 0 5px var(--purple); }
+.eyebrow.teal { background: var(--teal-faint); border-color: rgba(13,124,102,0.25); color: var(--teal); }
+.eyebrow.teal .eyebrow-dot { background: var(--teal); box-shadow: none; }
+@keyframes pulse { 0%,100%{opacity:1;transform:scale(1)}50%{opacity:.5;transform:scale(.8)} }
+.page-hero h1 { font-family: var(--font-display); font-size: clamp(32px, 5vw, 52px); font-weight: 800; line-height: 1.1; letter-spacing: -0.02em; color: var(--text); margin-bottom: 16px; }
+.page-hero h1 .t { color: var(--teal); }
+.page-hero h1 .p { color: var(--purple); }
+.page-hero h1 .y { color: var(--yellow-dark); background: var(--yellow); padding: 0 5px 2px; border-radius: 4px; }
+.page-hero p { font-size: 17px; color: var(--muted); max-width: 560px; margin: 0 auto 32px; line-height: 1.7; }
+
+.section { padding: 80px 48px; }
+.section.alt { background: #F1F5F9; }
+.section.dark { background: linear-gradient(135deg, #0F172A 0%, #1B0E3A 100%); }
+.section-inner { max-width: 1120px; margin: 0 auto; }
+.section-eyebrow { font-family: var(--font-mono); font-size: 12px; font-weight: 600; color: var(--teal); letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 12px; }
+.section-eyebrow.purple { color: var(--purple); }
+.section-title { font-family: var(--font-display); font-size: clamp(26px, 4vw, 40px); font-weight: 800; line-height: 1.15; letter-spacing: -0.02em; color: var(--text); margin-bottom: 14px; }
+.section-title.white { color: #fff; }
+.section-sub { font-size: 16px; color: var(--muted); line-height: 1.7; max-width: 560px; }
+.section-sub.white { color: rgba(255,255,255,0.55); }
+
+.card { background: var(--card); border: 1px solid var(--border); border-radius: var(--radius); padding: 28px; transition: box-shadow 0.2s, transform 0.2s; }
+.card:hover { box-shadow: 0 8px 32px rgba(15,23,42,0.08); transform: translateY(-2px); }
+.card.purple-border { border-color: rgba(124,58,237,0.25); }
+.card.teal-border { border-color: rgba(13,124,102,0.25); }
+
+.grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+.grid-3 { display: grid; grid-template-columns: repeat(3,1fr); gap: 24px; }
+.grid-4 { display: grid; grid-template-columns: repeat(4,1fr); gap: 20px; }
+
+.btn-hero { background: var(--teal); color: #fff; padding: 14px 28px; border-radius: 10px; font-size: 15px; font-weight: 700; border: none; cursor: pointer; text-decoration: none; transition: all 0.2s; font-family: var(--font-display); box-shadow: 0 4px 16px rgba(13,124,102,0.3); display: inline-block; }
+.btn-hero:hover { background: var(--teal-hi); transform: translateY(-1px); }
+.btn-hero.yellow { background: var(--yellow); color: #0F172A; box-shadow: 0 4px 16px rgba(212,255,0,0.3); }
+.btn-hero.yellow:hover { background: #C8F200; }
+.btn-hero.purple { background: var(--purple); box-shadow: 0 4px 16px rgba(124,58,237,0.3); }
+.btn-hero.ghost { background: none; border: 1px solid var(--border); color: var(--muted); box-shadow: none; }
+.btn-hero.ghost:hover { border-color: var(--teal); color: var(--text); }
+.btn-hero.ghost-white { background: none; border: 1px solid rgba(255,255,255,0.25); color: rgba(255,255,255,0.7); box-shadow: none; }
+.btn-hero.ghost-white:hover { border-color: rgba(255,255,255,0.5); color: #fff; }
+
+.check-icon { width: 20px; height: 20px; border-radius: 6px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; font-size: 11px; font-weight: 700; }
+.check-teal { background: rgba(13,124,102,0.1); color: var(--teal); }
+.check-purple { background: rgba(124,58,237,0.1); color: var(--purple); }
+.check-yellow { background: rgba(212,255,0,0.2); color: var(--yellow-dark); }
+
+.tag { display: inline-block; font-family: var(--font-mono); font-size: 11px; font-weight: 600; padding: 3px 10px; border-radius: 100px; }
+.tag.teal { background: var(--teal-faint); border: 1px solid rgba(13,124,102,0.2); color: var(--teal); }
+.tag.purple { background: var(--purple-faint); border: 1px solid rgba(124,58,237,0.2); color: var(--purple); }
+.tag.yellow { background: var(--yellow-faint); border: 1px solid rgba(212,255,0,0.3); color: var(--yellow-dark); }
+
+footer { border-top: 3px solid transparent; border-image: linear-gradient(90deg, var(--teal), var(--purple), var(--yellow)) 1; padding: 60px 48px 36px; background: var(--card); }
+.footer-inner { max-width: 1120px; margin: 0 auto; }
+.footer-top { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr 1fr; gap: 48px; margin-bottom: 48px; }
+.footer-brand p { font-size: 13px; color: var(--dim); line-height: 1.7; margin-top: 12px; max-width: 240px; }
+.footer-col-title { font-family: var(--font-display); font-size: 12px; font-weight: 700; color: var(--muted); letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 14px; }
+.footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 9px; }
+.footer-col a { font-size: 13px; color: var(--dim); text-decoration: none; transition: color 0.2s; }
+.footer-col a:hover { color: var(--teal); }
+.footer-bottom { display: flex; justify-content: space-between; align-items: center; padding-top: 28px; border-top: 1px solid var(--border); font-size: 12px; color: var(--dim); flex-wrap: wrap; gap: 12px; }
+.footer-links { display: flex; gap: 20px; }
+.footer-links a { color: var(--dim); text-decoration: none; transition: color 0.2s; }
+.footer-links a:hover { color: var(--muted); }
+
+.fade-up { opacity: 0; transform: translateY(20px); transition: opacity 0.55s ease, transform 0.55s ease; }
+.fade-up.visible { opacity: 1; transform: translateY(0); }
+
+.cta-strip { background: linear-gradient(135deg, #0F172A 0%, #1B0E3A 100%); border-radius: 24px; padding: 52px 60px; display: flex; align-items: center; justify-content: space-between; gap: 40px; flex-wrap: wrap; position: relative; overflow: hidden; margin: 0 48px 80px; max-width: 1120px; margin-left: auto; margin-right: auto; }
+.cta-strip::before { content: ""; position: absolute; top: -80px; right: -80px; width: 300px; height: 300px; background: radial-gradient(circle, rgba(124,58,237,0.2) 0%, transparent 65%); pointer-events: none; }
+.cta-strip h2 { font-family: var(--font-display); font-size: 26px; font-weight: 800; color: #fff; margin-bottom: 6px; letter-spacing: -0.01em; position: relative; }
+.cta-strip p { font-size: 14px; color: rgba(255,255,255,0.5); position: relative; }
+.cta-strip-actions { display: flex; gap: 12px; align-items: center; flex-wrap: wrap; position: relative; }
+
+@media (max-width: 960px) {
+  nav { padding: 0 20px; }
+  .nav-links { display: none; }
+  .page-hero, .section { padding: 60px 20px; }
+  .grid-2, .grid-3, .grid-4 { grid-template-columns: 1fr; }
+  .footer-top { grid-template-columns: 1fr 1fr; gap: 32px; }
+  .footer-brand { grid-column: 1/-1; }
+  .cta-strip { margin: 0 20px 60px; padding: 36px 28px; flex-direction: column; }
+}
+/* ── NAV MOBILE FIXES ── */
+@media (max-width: 768px) {
+  nav {
+    padding: 0 20px !important;
+    position: relative !important;
+  }
+  .nav-links { display: none !important; }
+  .nav-cta { display: none !important; }
+  .mobile-menu-btn {
+    display: flex !important;
+    margin-left: auto !important;
+  }
+}
+
+/* ═══════════════════════════════════════════════
+   FERBE MOBILE RESPONSIVE — injected fix
+   Breakpoints: 768px (tablet), 480px (phone)
+   ═══════════════════════════════════════════════ */
+
+/* ── Shared layout containers ── */
+@media (max-width: 768px) {
+  /* Section inner containers with hardcoded padding */
+  .section-inner,
+  [style*="max-width:1120px"],
+  [style*="max-width: 1120px"] {
+    padding-left: 20px !important;
+    padding-right: 20px !important;
+  }
+
+  /* All inline 2-col grids → single column */
+  [style*="grid-template-columns:1fr 1fr"],
+  [style*="grid-template-columns: 1fr 1fr"] {
+    grid-template-columns: 1fr !important;
+    gap: 32px !important;
+  }
+
+  /* All inline 2-col grids with explicit fractions */
+  [style*="grid-template-columns:1fr 320px"],
+  [style*="grid-template-columns:1fr 300px"],
+  [style*="grid-template-columns:1fr 280px"],
+  [style*="grid-template-columns:1fr 260px"] {
+    grid-template-columns: 1fr !important;
+    gap: 32px !important;
+  }
+
+  /* 3-col grids → 1 col */
+  [style*="grid-template-columns:repeat(3,1fr)"],
+  [style*="grid-template-columns: repeat(3,1fr)"],
+  [style*="grid-template-columns:repeat(3, 1fr)"] {
+    grid-template-columns: 1fr !important;
+    gap: 16px !important;
+  }
+
+  /* 4-col grids → 2 col */
+  [style*="grid-template-columns:repeat(4,1fr)"],
+  [style*="grid-template-columns: repeat(4,1fr)"] {
+    grid-template-columns: 1fr 1fr !important;
+    gap: 12px !important;
+  }
+
+  /* Sidebar + content layouts used in ISO guide, blog posts */
+  [style*="grid-template-columns:1fr 300px"],
+  [style*="display:grid;grid-template-columns:1fr"] {
+    grid-template-columns: 1fr !important;
+  }
+
+  /* Sticky sidebar — unstick on mobile */
+  [style*="position:sticky"],
+  [style*="position: sticky"] {
+    position: static !important;
+  }
+
+  /* Horizontal flex rows → column */
+  .hero-actions,
+  .cta-strip-actions {
+    flex-direction: column !important;
+    width: 100% !important;
+  }
+  .hero-actions a,
+  .cta-strip-actions a {
+    width: 100% !important;
+    text-align: center !important;
+    box-sizing: border-box !important;
+  }
+
+  /* Dark outcome strips: 4-col → 2-col */
+  [style*="grid-template-columns:repeat(4,1fr)"][style*="background:#0F172A"],
+  [style*="grid-template-columns:repeat(4,1fr)"][style*="gap:1px"] {
+    grid-template-columns: 1fr 1fr !important;
+  }
+
+  /* Padding fixes for dark full-bleed sections */
+  [style*="padding:48px"],
+  [style*="padding: 48px"],
+  [style*="padding:64px"],
+  [style*="padding:80px 48px"],
+  [style*="padding: 80px 48px"] {
+    padding: 40px 20px !important;
+  }
+  [style*="padding:40px 48px"] {
+    padding: 32px 20px !important;
+  }
+
+  /* Blog grid: 3-col → 1-col */
+  [style*="grid-template-columns:repeat(3,1fr)"] {
+    grid-template-columns: 1fr !important;
+  }
+
+  /* Industry tiles: 4-col → 2-col */
+  [style*="grid-template-columns:repeat(4,1fr)"] {
+    grid-template-columns: 1fr 1fr !important;
+    gap: 10px !important;
+  }
+
+  /* Features page stat rows */
+  [style*="grid-template-columns:repeat(2,1fr)"] {
+    grid-template-columns: 1fr !important;
+  }
+
+  /* Typography scale down */
+  .section-title {
+    font-size: clamp(22px, 6vw, 36px) !important;
+  }
+  .page-hero h1 {
+    font-size: clamp(26px, 7vw, 44px) !important;
+  }
+
+  /* Nav mobile burger (already hidden via .nav-links display:none) */
+  .nav-links { display: none !important; }
+
+  /* Pricing page: billing toggle layout */
+  [style*="display:flex"][style*="justify-content:center"][style*="margin-bottom:4"] {
+    flex-wrap: wrap !important;
+  }
+
+  /* CTA strip */
+  .cta-strip {
+    flex-direction: column !important;
+    gap: 24px !important;
+    text-align: center !important;
+  }
+}
+
+/* ── SCREEN MOCKS: hide on mobile, show placeholder ── */
+@media (max-width: 768px) {
+  /* Hero visual: hide tabbed screen switcher entirely */
+  .hero-visual { display: none !important; }
+
+  /* Customers page: hide screens paired with testimonials */
+  [style*="transform:scale(0.88)"],
+  [style*="transform:scale(0.82)"],
+  [style*="transform:scale(0.70)"],
+  [style*="transform:scale(0.7)"],
+  [style*="transform:scale(0.95)"] {
+    display: none !important;
+  }
+
+  /* Help page: category cards — hide internal screen thumbnails */
+  [style*="transform:scale(0.82)"][style*="transform-origin:top left"] {
+    display: none !important;
+  }
+
+  /* Blog article cards: hide screen thumbnail at top */
+  [style*="height:200px"][style*="overflow:hidden"] {
+    display: none !important;
+  }
+
+  /* Contact page demo preview screen */
+  .fade-up [style*="border:1px solid #E2E8F0"][style*="border-radius:14px"] {
+    display: none !important;
+  }
+
+  /* About page screens (journey + PRA) */
+  .fade-up {
+    display: none !important;
+  }
+
+  /* Screen chrome inside help cards */
+  [style*="overflow:hidden;box-shadow:0 8px 40px"] {
+    display: none !important;
+  }
+}
+
+/* ── PHONE-SPECIFIC (<480px) ── */
+@media (max-width: 480px) {
+  /* Hero headline */
+  .hero h1 { font-size: clamp(32px, 9vw, 48px) !important; }
+  .hero p { font-size: 16px !important; }
+
+  /* Page hero sections */
+  .page-hero { padding: 60px 20px 40px !important; }
+  .page-hero h1 { font-size: clamp(24px, 8vw, 38px) !important; }
+
+  /* Dark outcome numbers: 4→2→2 col maintained */
+  [style*="grid-template-columns:repeat(4,1fr)"] {
+    grid-template-columns: 1fr 1fr !important;
+  }
+
+  /* Stats chips in testimonials */
+  [style*="display:flex;gap:16px;flex-wrap:wrap"] {
+    gap: 8px !important;
+  }
+
+  /* Blog featured article: hide screen on phone too */
+  [style*="transform:scale(0.88)"],
+  [style*="transform:scale(0.82)"] {
+    display: none !important;
+  }
+
+  /* Pricing cards */
+  [style*="grid-template-columns:repeat(3,1fr)"] {
+    grid-template-columns: 1fr !important;
+  }
+
+  /* Checklist page 2-col layout */
+  [style*="grid-template-columns:1fr 1fr"] {
+    grid-template-columns: 1fr !important;
+  }
+
+  /* Logo strip */
+  .logos-row { flex-wrap: wrap !important; gap: 8px !important; }
+
+  /* Footer columns */
+  .footer-top { grid-template-columns: 1fr !important; }
+}
+
+/* ── HAMBURGER MENU ── */
+@media (max-width: 768px) {
+  .mobile-menu-btn {
+    display: flex !important;
+  }
+  .mobile-nav {
+    display: none;
+    position: fixed;
+    top: 64px; left: 0; right: 0;
+    background: #fff;
+    border-bottom: 1px solid #E2E8F0;
+    padding: 16px 20px;
+    flex-direction: column;
+    gap: 4px;
+    z-index: 999;
+    box-shadow: 0 8px 24px rgba(15,23,42,0.08);
+  }
+  .mobile-nav.open { display: flex; }
+  .mobile-nav a {
+    padding: 12px 16px;
+    font-size: 15px;
+    font-weight: 600;
+    color: #0F172A;
+    text-decoration: none;
+    border-radius: 8px;
+    transition: background 0.15s;
+  }
+  .mobile-nav a:hover { background: #F8FAFC; }
+  .mobile-nav .mobile-cta {
+    margin-top: 8px;
+    padding: 12px 16px;
+    background: #0D7C66;
+    color: #fff !important;
+    border-radius: 10px;
+    text-align: center;
+  }
+}
+
+
+
+.art-hero{padding:96px 48px 40px;background:linear-gradient(170deg,#F8FAFC,#FFFBEB 50%,#F8FAFC);}
+.art-in{max-width:760px;margin:0 auto;}
+.art-hero h1{font-family:var(--font-display);font-size:clamp(28px,4.4vw,42px);font-weight:800;
+  line-height:1.16;letter-spacing:-.02em;color:var(--text);margin:14px 0 16px;}
+.art-lead{font-size:17px;color:var(--muted);line-height:1.75;}
+.art-meta{display:flex;align-items:center;gap:14px;margin-top:26px;padding-top:22px;
+  border-top:1px solid var(--border);font-size:13px;color:var(--muted);flex-wrap:wrap;}
+.art-av{width:38px;height:38px;border-radius:50%;background:var(--teal);color:#fff;
+  font-family:var(--font-display);font-size:13px;font-weight:800;
+  display:flex;align-items:center;justify-content:center;}
+.art-body{max-width:760px;margin:0 auto;padding:48px 48px 72px;}
+.art-body h2{font-family:var(--font-display);font-size:24px;font-weight:800;color:var(--text);
+  margin:38px 0 14px;letter-spacing:-.02em;line-height:1.25;}
+.art-body h2:first-child{margin-top:0;}
+.art-body p{font-size:16px;color:var(--muted);line-height:1.82;margin-bottom:18px;}
+.art-body strong{color:var(--text);}
+.art-body ul{margin:0 0 20px 0;padding-left:0;list-style:none;}
+.art-body li{font-size:16px;color:var(--muted);line-height:1.8;padding:6px 0 6px 26px;position:relative;}
+.art-body li::before{content:"—";position:absolute;left:0;color:var(--teal);font-weight:700;}
+.pull{padding:22px 26px;background:#FAFFE6;border:1px solid rgba(143,175,0,.3);
+  border-left:4px solid #8FAF00;border-radius:0 12px 12px 0;margin:28px 0;}
+.pull p{font-size:17px;color:var(--text);line-height:1.7;margin:0;font-weight:600;}
+.art-tbl{width:100%;border-collapse:collapse;margin:24px 0;font-size:14px;
+  border:1px solid var(--border);border-radius:12px;overflow:hidden;}
+.art-tbl th{background:var(--bg);font-family:var(--font-mono);font-size:10px;font-weight:700;
+  color:var(--muted);text-transform:uppercase;letter-spacing:.07em;padding:12px 14px;text-align:left;
+  border-bottom:2px solid var(--border);}
+.art-tbl td{padding:13px 14px;border-bottom:1px solid var(--border);color:var(--muted);line-height:1.6;}
+.art-tbl tr:last-child td{border-bottom:none;}
+.art-tbl td:first-child{font-family:var(--font-mono);font-size:12px;font-weight:700;color:var(--teal);white-space:nowrap;}
+@media(max-width:860px){.art-hero{padding:80px 20px 32px;}.art-body{padding:36px 20px 56px;}
+  .art-tbl{display:block;overflow-x:auto;}}
+
+</style>
+</head>
+<body>
+<nav>
+  <a href="index.html" class="nav-logo">
+    <div class="logo-mark">F</div>
+    Ferbe
+  </a>
+  <ul class="nav-links">
+    <li><a href="features.html">Features</a></li>
+    <li><a href="ai-governance.html" style="color:var(--yellow-dark);font-weight:600;">AI Governance</a></li>
+    <li><a href="ai.html" style="color:var(--purple);font-weight:600;">✦ AI</a></li>
+    <li><a href="pricing.html">Pricing</a></li>
+    <li><a href="customers.html">Customers</a></li>
+    <li><a href="about.html">About</a></li>
+  </ul>
+  <div class="nav-cta">
+    <a href="contact.html" class="btn-ghost">Book demo</a>
+    <a href="#" class="btn-primary">Start free trial</a>
+  </div>
+</nav>
+<div class="mobile-nav" id="mobile-nav" style="display:none;">
+  <a href="index.html">Home</a><a href="features.html">Features</a>
+  <a href="ai-governance.html">AI Governance</a><a href="ai.html">AI Assist</a>
+  <a href="pricing.html">Pricing</a><a href="customers.html">Customers</a>
+  <a href="about.html">About</a><a href="partners.html">Partners</a>
+  <a href="blog.html">Blog</a><a href="iso-27001-guide.html">ISO 27001 Guide</a>
+  <a href="checklist.html">Free Assessment</a><a href="contact.html">Contact</a>
+  <a href="#" class="mobile-cta">Start free trial</a>
+</div>
+
+<div class="art-hero">
+  <div class="art-in">
+    <div class="eyebrow"><span class="eyebrow-dot"></span>AI Governance</div>
+    <h1>You use AI. Your ISMS doesn&rsquo;t know.</h1>
+    <p class="art-lead">Almost every ISO 27001 template pack is silent on artificial intelligence. That silence is not neutral &mdash; it is a documented gap sitting in your risk assessment, waiting for an auditor to find.</p>
+    <div class="art-meta">
+      <div class="art-av">FL</div>
+      <div><strong style="color:var(--text);">Falco Lee</strong><br>Founder, Ferbe</div>
+      <span>&middot;</span><span>28 July 2026</span><span>&middot;</span><span>7 min read</span>
+    </div>
+  </div>
+</div>
+
+<div class="art-body">
+  <h2>Try this before you read further</h2>
+  <p>Open whichever ISO 27001 template pack your organisation is working from. Search it for &ldquo;AI&rdquo;.</p>
+  <p>In most cases nothing comes back. Not in the acceptable use policy, not in the supplier assessment, not in the risk register, not in the Statement of Applicability. The word simply is not there.</p>
+  <p>Now ask a second question: does anyone in your organisation use AI? Copilot in Microsoft 365. ChatGPT for drafting an email. An AI feature your CRM vendor switched on last quarter. Someone in engineering using a coding assistant.</p>
+  <div class="pull"><p>If the answer to the second question is yes and the answer to the first is nothing, you have a gap. Not a missing nice-to-have &mdash; a gap.</p></div>
+
+  <h2>Why the silence exists</h2>
+  <p>It is worth being fair about the reason, because it is not laziness.</p>
+  <p>AI governance sits awkwardly between standards. ISO 27001:2022 Annex A contains no control that names artificial intelligence &mdash; Annex A was finalised before generative AI became a routine part of office work. ISO/IEC 42001 exists as a dedicated AI Management System standard, but it is a separate certification with its own audit cycle, and most organisations that simply <em>use</em> AI do not need it.</p>
+  <p>So template providers and consultants face a genuine question: where does AI belong? The path of least resistance is to leave it out and wait for the standards bodies to catch up.</p>
+  <p>That is understandable. It is also not defensible at a Stage 2 audit.</p>
+
+  <h2>Clause 6.1.2 does not care which standard has the control number</h2>
+  <p>The requirement is simple. You must identify risks to information within your ISMS scope.</p>
+  <p>When an employee pastes a customer contract into a public AI tool to summarise it, information within your scope has left your control. It has been transmitted to a third party, processed under terms most people have not read, and possibly retained. That is a data egress event.</p>
+  <p>Whether Annex A has a numbered control for it is beside the point. The risk exists. If your risk assessment does not mention it, your risk assessment is incomplete &mdash; and incompleteness in the risk assessment is a finding, because Clause 6.1.2 is a mandatory clause rather than an optional Annex A control.</p>
+  <p>This is the part organisations tend to miss. They think of AI governance as an advanced topic for AI companies. It is not. It is a basic scoping question for anyone whose staff have access to a browser.</p>
+
+  <h2>What an auditor actually asks</h2>
+  <p>Certification bodies have adjusted faster than template providers. The questions now surfacing at Stage 2:</p>
+  <ul>
+    <li>Does your organisation use AI tools? Which ones?</li>
+    <li>Where does that appear in your risk assessment?</li>
+    <li>What does your acceptable use policy say about AI?</li>
+    <li>Have you assessed your AI vendors as suppliers?</li>
+    <li>Who is accountable when an AI-informed decision goes wrong?</li>
+  </ul>
+  <p>None of these are unreasonable. All of them are difficult to answer from a template pack that never mentions AI.</p>
+
+  <h2>The controls you already have, applied properly</h2>
+  <p>The encouraging part is that you mostly do not need new controls. You need existing controls to acknowledge that AI exists.</p>
+  <table class="art-tbl">
+    <thead><tr><th>Control</th><th>What changes when AI is in scope</th></tr></thead>
+    <tbody>
+      <tr><td>A.5.10</td><td>Acceptable use must state which AI tools are approved and what data must never be entered into any of them</td></tr>
+      <tr><td>A.6.3</td><td>Awareness training should cover prompt injection, data leakage through prompts, and treating AI output as unverified</td></tr>
+      <tr><td>A.5.19&ndash;A.5.21</td><td>AI vendors are suppliers. Contracts raise data residency, training-data use, and opt-out questions that ordinary SaaS agreements do not</td></tr>
+      <tr><td>A.8.12</td><td>Data loss prevention should account for personal data being submitted to unauthorised AI services</td></tr>
+      <tr><td>A.8.23</td><td>Web filtering can enforce your approved AI tool list at the network layer</td></tr>
+      <tr><td>A.5.34</td><td>Personal data processed through AI needs a Data Protection Impact Assessment</td></tr>
+    </tbody>
+  </table>
+  <p>Add a short AI acceptable use policy, a register of tools actually in use, and a named owner, and most organisations have closed the gap.</p>
+
+  <h2>Shadow AI is the harder problem</h2>
+  <p>Shadow IT took years to become a recognised risk category. Shadow AI arrived in months, and it is harder to detect because it leaves less trace. There is no software to install and no procurement request. Someone opens a browser tab.</p>
+  <p>The practical consequence is that your AI tool register is almost certainly incomplete, because the tools that pose the most risk are the ones nobody declared. This is why the acceptable use policy matters more than the technical control: you are trying to change behaviour among people who do not think of what they are doing as a security decision.</p>
+
+  <h2>Where regional regulation is heading</h2>
+  <p>The regulatory picture varies by jurisdiction, and it is moving. In Malaysia, MDEC AI Ethics Principles and the National AI Roadmap set expectations for responsible AI use. Singapore has the IMDA Model AI Governance Framework, with MAS FEAT Principles applying to financial services. The EU AI Act creates binding obligations including risk classification and conformity assessment for high-risk systems. The US has the NIST AI Risk Management Framework; Australia has its AI Ethics Principles and Voluntary AI Safety Standard.</p>
+  <p>None of these replace ISO 27001. All of them are easier to approach if your ISMS already accounts for AI rather than treating it as a separate future project.</p>
+
+  <h2>A reasonable position</h2>
+  <p>You do not need ISO 42001 certification to use Copilot responsibly. You do not need a dedicated AI governance function. What you need is for your existing ISMS to reflect reality.</p>
+  <div class="pull"><p>If AI touches information within your scope, it belongs in your risk assessment &mdash; regardless of which standard has a control number for it.</p></div>
+  <p>That is a defensible position at audit, and it is achievable in a few documents rather than a separate certification programme.</p>
+
+  <h2>How Ferbe handles this</h2>
+  <p>We built AI governance into the Intake Wizard rather than bolting it on. A single question asks whether your organisation uses AI. Answer no and nothing further appears &mdash; nothing is added to your scope that does not belong there. Answer yes and eighteen follow-up questions branch open, covering public versus enterprise tools, which platforms specifically, AI in products, AI in decisions, personal data through AI, code generation, and whether you develop your own models.</p>
+  <p>From those answers, four documents generate populated with your actual tools, up to fifteen Annex A controls re-weight with AI-specific justification, and gap tasks raise where your answers reveal exposure. Your AI obligations are mapped to your jurisdiction.</p>
+  <p>It is included on every plan, including Starter, because we do not think a company using Copilot should pay extra to have their ISMS acknowledge it.</p>
+  <p><a href="ai-governance.html" style="color:var(--teal);font-weight:700;">See how AI Governance works in Ferbe &rarr;</a></p>
+</div>
+
+<div class="cta-strip">
+  <div>
+    <h3 style="font-family:var(--font-display);font-size:24px;font-weight:800;color:#fff;margin-bottom:8px;">Is your AI use governed?</h3>
+    <p style="font-size:15px;color:rgba(255,255,255,.6);line-height:1.7;">The free readiness assessment includes an AI Governance section. Six questions, honest answer, no cost.</p>
+  </div>
+  <div style="display:flex;gap:12px;flex-wrap:wrap;">
+    <a href="checklist.html" class="btn-hero yellow">Start Free Assessment</a>
+    <a href="ai-governance.html" class="btn-hero ghost-white">AI Governance</a>
+  </div>
+</div>
+
+<footer>
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <a href="index.html" class="nav-logo" style="text-decoration:none;">
+          <div class="logo-mark">F</div>
+          Ferbe
+        </a>
+        <p>The ISO 27001:2022 ISMS platform built for Malaysian and Southeast Asian companies. From gap assessment to certification, in one place.</p>
+        <p style="margin-top:10px;font-size:12px;color:var(--dim);">A product by <a href="https://www.energized-inc.com" target="_blank" style="color:var(--teal);text-decoration:none;">Energized Inc.</a> · Energized Empire Sdn. Bhd.<br>Kuala Lumpur, Malaysia · Dubai, UAE</p>
+      </div>
+      <div class="footer-col">
+        <div class="footer-col-title">Product</div>
+        <ul>
+          <li><a href="features.html">Features</a></li>
+          <li><a href="pricing.html">Pricing</a></li>
+          <li><a href="ai-governance.html" style="color:var(--yellow-dark);font-weight:600;">AI Governance</a></li>
+    <li><a href="ai-governance.html">AI Governance</a></li>
+          <li><a href="ai.html">AI Capabilities</a></li>
+          <li><a href="#">Changelog</a></li>
+          <li><a href="#">Roadmap</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <div class="footer-col-title">Resources</div>
+        <ul>
+          <li><a href="iso-27001-guide.html">ISO 27001 Guide</a></li>
+          <li><a href="help.html">Help Centre</a></li>
+          <li><a href="blog.html">Blog</a></li>
+          <li><a href="checklist.html">Free Checklist</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <div class="footer-col-title">Company</div>
+        <ul>
+          <li><a href="about.html">About</a></li>
+          <li><a href="customers.html">Customers</a></li>
+          <li><a href="partners.html">Partners</a></li>
+          <li><a href="contact.html">Contact</a></li>
+          <li><a href="status.html">Status</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <div class="footer-col-title">Legal</div>
+        <ul>
+          <li><a href="privacy.html">Privacy Policy</a></li>
+          <li><a href="terms.html">Terms of Service</a></li>
+          <li><a href="refund.html">Refund Policy</a></li>
+          <li><a href="cookies.html">Cookie Policy</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 Ferbe · ferbe.ai · Energized Empire Sdn. Bhd. · All rights reserved</span>
+      <div class="footer-links">
+        <a href="privacy.html">Privacy</a>
+        <a href="terms.html">Terms</a>
+        <a href="refund.html">Refund</a>
+        <a href="cookies.html">Cookies</a>
+      </div>
+    </div>
+  </div>
+</footer>
+<script>
+function toggleMobileMenu(){var n=document.getElementById('mobile-nav');
+  n.style.display=n.style.display==='flex'?'none':'flex';}
+document.addEventListener('click',function(e){
+  var n=document.getElementById('mobile-nav');var b=document.querySelector('.mobile-menu-btn');
+  if(n&&b&&!n.contains(e.target)&&!b.contains(e.target))n.style.display='none';});
+</script>
+</body>
+</html>

@@ -1,0 +1,844 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI Governance for ISO 27001:2022 — Ferbe</title>
+<meta name="description" content="Most ISO 27001 platforms never ask whether you use AI. Ferbe asks 19 questions at intake, generates four AI governance documents, re-weights 15 Annex A controls, and maps AI obligations to your jurisdiction. Included on every plan.">
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap');
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --bg: #F8FAFC; --card: #FFFFFF; --border: #E2E8F0;
+  --teal: #0D7C66; --teal-hi: #0A9070; --teal-faint: rgba(13,124,102,0.07);
+  --yellow: #D4FF00; --yellow-dark: #8FAF00; --yellow-faint: rgba(212,255,0,0.10);
+  --purple: #7C3AED; --purple-hi: #A855F7; --purple-faint: rgba(124,58,237,0.08);
+  --text: #0F172A; --muted: #475569; --dim: #94A3B8;
+  --green: #16A34A; --red: #DC2626; --amber: #D97706;
+  --radius: 12px; --radius-lg: 20px;
+  --font-display: "Plus Jakarta Sans", sans-serif;
+  --font-body: "Inter", sans-serif;
+  --font-mono: "JetBrains Mono", monospace;
+}
+html { scroll-behavior: smooth; }
+body { background: var(--bg); color: var(--text); font-family: var(--font-body); font-size: 15px; line-height: 1.6; -webkit-font-smoothing: antialiased; overflow-x: hidden; }
+
+nav { position: sticky; top: 0; z-index: 100; display: flex; align-items: center; justify-content: space-between; padding: 0 48px; height: 68px; background: rgba(248,250,252,0.94); backdrop-filter: blur(16px); border-bottom: 1px solid var(--border); }
+.nav-logo { display: flex; align-items: center; gap: 10px; text-decoration: none; font-family: var(--font-display); font-weight: 800; font-size: 22px; color: var(--text); letter-spacing: -0.01em; }
+.logo-mark { width: 34px; height: 34px; border-radius: 8px; background: linear-gradient(135deg, var(--teal), #0F9070); display: flex; align-items: center; justify-content: center; font-size: 16px; font-weight: 800; color: var(--yellow); }
+.nav-links { display: flex; gap: 32px; list-style: none; }
+.nav-links a { color: var(--muted); text-decoration: none; font-size: 14px; font-weight: 500; transition: color 0.2s; }
+.nav-links a:hover, .nav-links a.active { color: var(--text); }
+.nav-cta { display: flex; gap: 12px; align-items: center; }
+.btn-ghost { background: none; border: 1px solid var(--border); color: var(--muted); padding: 8px 18px; border-radius: 8px; font-size: 14px; font-weight: 500; cursor: pointer; text-decoration: none; transition: all 0.2s; }
+.btn-ghost:hover { border-color: var(--teal); color: var(--text); }
+.btn-primary { background: var(--teal); color: #fff; padding: 9px 20px; border-radius: 8px; font-size: 14px; font-weight: 600; border: none; cursor: pointer; text-decoration: none; transition: all 0.2s; }
+.btn-primary:hover { background: var(--teal-hi); }
+
+.page-hero { padding: 80px 48px 60px; text-align: center; position: relative; overflow: hidden; }
+.page-hero::before { content: ""; position: absolute; top: -100px; left: 50%; transform: translateX(-50%); width: 800px; height: 500px; background: radial-gradient(ellipse, rgba(124,58,237,0.05) 0%, rgba(212,255,0,0.04) 50%, transparent 70%); pointer-events: none; }
+.eyebrow { display: inline-flex; align-items: center; gap: 8px; background: var(--yellow-faint); border: 1px solid rgba(212,255,0,0.35); border-radius: 100px; padding: 5px 14px 5px 8px; font-family: var(--font-mono); font-size: 12px; font-weight: 600; color: var(--yellow-dark); margin-bottom: 20px; }
+.eyebrow-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--yellow); box-shadow: 0 0 5px var(--yellow); animation: pulse 2s infinite; }
+.eyebrow.purple { background: var(--purple-faint); border-color: rgba(124,58,237,0.25); color: var(--purple); }
+.eyebrow.purple .eyebrow-dot { background: var(--purple); box-shadow: 0 0 5px var(--purple); }
+.eyebrow.teal { background: var(--teal-faint); border-color: rgba(13,124,102,0.25); color: var(--teal); }
+.eyebrow.teal .eyebrow-dot { background: var(--teal); box-shadow: none; }
+@keyframes pulse { 0%,100%{opacity:1;transform:scale(1)}50%{opacity:.5;transform:scale(.8)} }
+.page-hero h1 { font-family: var(--font-display); font-size: clamp(32px, 5vw, 52px); font-weight: 800; line-height: 1.1; letter-spacing: -0.02em; color: var(--text); margin-bottom: 16px; }
+.page-hero h1 .t { color: var(--teal); }
+.page-hero h1 .p { color: var(--purple); }
+.page-hero h1 .y { color: var(--yellow-dark); background: var(--yellow); padding: 0 5px 2px; border-radius: 4px; }
+.page-hero p { font-size: 17px; color: var(--muted); max-width: 560px; margin: 0 auto 32px; line-height: 1.7; }
+
+.section { padding: 80px 48px; }
+.section.alt { background: #F1F5F9; }
+.section.dark { background: linear-gradient(135deg, #0F172A 0%, #1B0E3A 100%); }
+.section-inner { max-width: 1120px; margin: 0 auto; }
+.section-eyebrow { font-family: var(--font-mono); font-size: 12px; font-weight: 600; color: var(--teal); letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 12px; }
+.section-eyebrow.purple { color: var(--purple); }
+.section-title { font-family: var(--font-display); font-size: clamp(26px, 4vw, 40px); font-weight: 800; line-height: 1.15; letter-spacing: -0.02em; color: var(--text); margin-bottom: 14px; }
+.section-title.white { color: #fff; }
+.section-sub { font-size: 16px; color: var(--muted); line-height: 1.7; max-width: 560px; }
+.section-sub.white { color: rgba(255,255,255,0.55); }
+
+.card { background: var(--card); border: 1px solid var(--border); border-radius: var(--radius); padding: 28px; transition: box-shadow 0.2s, transform 0.2s; }
+.card:hover { box-shadow: 0 8px 32px rgba(15,23,42,0.08); transform: translateY(-2px); }
+.card.purple-border { border-color: rgba(124,58,237,0.25); }
+.card.teal-border { border-color: rgba(13,124,102,0.25); }
+
+.grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+.grid-3 { display: grid; grid-template-columns: repeat(3,1fr); gap: 24px; }
+.grid-4 { display: grid; grid-template-columns: repeat(4,1fr); gap: 20px; }
+
+.btn-hero { background: var(--teal); color: #fff; padding: 14px 28px; border-radius: 10px; font-size: 15px; font-weight: 700; border: none; cursor: pointer; text-decoration: none; transition: all 0.2s; font-family: var(--font-display); box-shadow: 0 4px 16px rgba(13,124,102,0.3); display: inline-block; }
+.btn-hero:hover { background: var(--teal-hi); transform: translateY(-1px); }
+.btn-hero.yellow { background: var(--yellow); color: #0F172A; box-shadow: 0 4px 16px rgba(212,255,0,0.3); }
+.btn-hero.yellow:hover { background: #C8F200; }
+.btn-hero.purple { background: var(--purple); box-shadow: 0 4px 16px rgba(124,58,237,0.3); }
+.btn-hero.ghost { background: none; border: 1px solid var(--border); color: var(--muted); box-shadow: none; }
+.btn-hero.ghost:hover { border-color: var(--teal); color: var(--text); }
+.btn-hero.ghost-white { background: none; border: 1px solid rgba(255,255,255,0.25); color: rgba(255,255,255,0.7); box-shadow: none; }
+.btn-hero.ghost-white:hover { border-color: rgba(255,255,255,0.5); color: #fff; }
+
+.check-icon { width: 20px; height: 20px; border-radius: 6px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; font-size: 11px; font-weight: 700; }
+.check-teal { background: rgba(13,124,102,0.1); color: var(--teal); }
+.check-purple { background: rgba(124,58,237,0.1); color: var(--purple); }
+.check-yellow { background: rgba(212,255,0,0.2); color: var(--yellow-dark); }
+
+.tag { display: inline-block; font-family: var(--font-mono); font-size: 11px; font-weight: 600; padding: 3px 10px; border-radius: 100px; }
+.tag.teal { background: var(--teal-faint); border: 1px solid rgba(13,124,102,0.2); color: var(--teal); }
+.tag.purple { background: var(--purple-faint); border: 1px solid rgba(124,58,237,0.2); color: var(--purple); }
+.tag.yellow { background: var(--yellow-faint); border: 1px solid rgba(212,255,0,0.3); color: var(--yellow-dark); }
+
+footer { border-top: 3px solid transparent; border-image: linear-gradient(90deg, var(--teal), var(--purple), var(--yellow)) 1; padding: 60px 48px 36px; background: var(--card); }
+.footer-inner { max-width: 1120px; margin: 0 auto; }
+.footer-top { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr 1fr; gap: 48px; margin-bottom: 48px; }
+.footer-brand p { font-size: 13px; color: var(--dim); line-height: 1.7; margin-top: 12px; max-width: 240px; }
+.footer-col-title { font-family: var(--font-display); font-size: 12px; font-weight: 700; color: var(--muted); letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 14px; }
+.footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 9px; }
+.footer-col a { font-size: 13px; color: var(--dim); text-decoration: none; transition: color 0.2s; }
+.footer-col a:hover { color: var(--teal); }
+.footer-bottom { display: flex; justify-content: space-between; align-items: center; padding-top: 28px; border-top: 1px solid var(--border); font-size: 12px; color: var(--dim); flex-wrap: wrap; gap: 12px; }
+.footer-links { display: flex; gap: 20px; }
+.footer-links a { color: var(--dim); text-decoration: none; transition: color 0.2s; }
+.footer-links a:hover { color: var(--muted); }
+
+.fade-up { opacity: 0; transform: translateY(20px); transition: opacity 0.55s ease, transform 0.55s ease; }
+.fade-up.visible { opacity: 1; transform: translateY(0); }
+
+.cta-strip { background: linear-gradient(135deg, #0F172A 0%, #1B0E3A 100%); border-radius: 24px; padding: 52px 60px; display: flex; align-items: center; justify-content: space-between; gap: 40px; flex-wrap: wrap; position: relative; overflow: hidden; margin: 0 48px 80px; max-width: 1120px; margin-left: auto; margin-right: auto; }
+.cta-strip::before { content: ""; position: absolute; top: -80px; right: -80px; width: 300px; height: 300px; background: radial-gradient(circle, rgba(124,58,237,0.2) 0%, transparent 65%); pointer-events: none; }
+.cta-strip h2 { font-family: var(--font-display); font-size: 26px; font-weight: 800; color: #fff; margin-bottom: 6px; letter-spacing: -0.01em; position: relative; }
+.cta-strip p { font-size: 14px; color: rgba(255,255,255,0.5); position: relative; }
+.cta-strip-actions { display: flex; gap: 12px; align-items: center; flex-wrap: wrap; position: relative; }
+
+@media (max-width: 960px) {
+  nav { padding: 0 20px; }
+  .nav-links { display: none; }
+  .page-hero, .section { padding: 60px 20px; }
+  .grid-2, .grid-3, .grid-4 { grid-template-columns: 1fr; }
+  .footer-top { grid-template-columns: 1fr 1fr; gap: 32px; }
+  .footer-brand { grid-column: 1/-1; }
+  .cta-strip { margin: 0 20px 60px; padding: 36px 28px; flex-direction: column; }
+}
+/* ── NAV MOBILE FIXES ── */
+@media (max-width: 768px) {
+  nav {
+    padding: 0 20px !important;
+    position: relative !important;
+  }
+  .nav-links { display: none !important; }
+  .nav-cta { display: none !important; }
+  .mobile-menu-btn {
+    display: flex !important;
+    margin-left: auto !important;
+  }
+}
+
+/* ═══════════════════════════════════════════════
+   FERBE MOBILE RESPONSIVE — injected fix
+   Breakpoints: 768px (tablet), 480px (phone)
+   ═══════════════════════════════════════════════ */
+
+/* ── Shared layout containers ── */
+@media (max-width: 768px) {
+  /* Section inner containers with hardcoded padding */
+  .section-inner,
+  [style*="max-width:1120px"],
+  [style*="max-width: 1120px"] {
+    padding-left: 20px !important;
+    padding-right: 20px !important;
+  }
+
+  /* All inline 2-col grids → single column */
+  [style*="grid-template-columns:1fr 1fr"],
+  [style*="grid-template-columns: 1fr 1fr"] {
+    grid-template-columns: 1fr !important;
+    gap: 32px !important;
+  }
+
+  /* All inline 2-col grids with explicit fractions */
+  [style*="grid-template-columns:1fr 320px"],
+  [style*="grid-template-columns:1fr 300px"],
+  [style*="grid-template-columns:1fr 280px"],
+  [style*="grid-template-columns:1fr 260px"] {
+    grid-template-columns: 1fr !important;
+    gap: 32px !important;
+  }
+
+  /* 3-col grids → 1 col */
+  [style*="grid-template-columns:repeat(3,1fr)"],
+  [style*="grid-template-columns: repeat(3,1fr)"],
+  [style*="grid-template-columns:repeat(3, 1fr)"] {
+    grid-template-columns: 1fr !important;
+    gap: 16px !important;
+  }
+
+  /* 4-col grids → 2 col */
+  [style*="grid-template-columns:repeat(4,1fr)"],
+  [style*="grid-template-columns: repeat(4,1fr)"] {
+    grid-template-columns: 1fr 1fr !important;
+    gap: 12px !important;
+  }
+
+  /* Sidebar + content layouts used in ISO guide, blog posts */
+  [style*="grid-template-columns:1fr 300px"],
+  [style*="display:grid;grid-template-columns:1fr"] {
+    grid-template-columns: 1fr !important;
+  }
+
+  /* Sticky sidebar — unstick on mobile */
+  [style*="position:sticky"],
+  [style*="position: sticky"] {
+    position: static !important;
+  }
+
+  /* Horizontal flex rows → column */
+  .hero-actions,
+  .cta-strip-actions {
+    flex-direction: column !important;
+    width: 100% !important;
+  }
+  .hero-actions a,
+  .cta-strip-actions a {
+    width: 100% !important;
+    text-align: center !important;
+    box-sizing: border-box !important;
+  }
+
+  /* Dark outcome strips: 4-col → 2-col */
+  [style*="grid-template-columns:repeat(4,1fr)"][style*="background:#0F172A"],
+  [style*="grid-template-columns:repeat(4,1fr)"][style*="gap:1px"] {
+    grid-template-columns: 1fr 1fr !important;
+  }
+
+  /* Padding fixes for dark full-bleed sections */
+  [style*="padding:48px"],
+  [style*="padding: 48px"],
+  [style*="padding:64px"],
+  [style*="padding:80px 48px"],
+  [style*="padding: 80px 48px"] {
+    padding: 40px 20px !important;
+  }
+  [style*="padding:40px 48px"] {
+    padding: 32px 20px !important;
+  }
+
+  /* Blog grid: 3-col → 1-col */
+  [style*="grid-template-columns:repeat(3,1fr)"] {
+    grid-template-columns: 1fr !important;
+  }
+
+  /* Industry tiles: 4-col → 2-col */
+  [style*="grid-template-columns:repeat(4,1fr)"] {
+    grid-template-columns: 1fr 1fr !important;
+    gap: 10px !important;
+  }
+
+  /* Features page stat rows */
+  [style*="grid-template-columns:repeat(2,1fr)"] {
+    grid-template-columns: 1fr !important;
+  }
+
+  /* Typography scale down */
+  .section-title {
+    font-size: clamp(22px, 6vw, 36px) !important;
+  }
+  .page-hero h1 {
+    font-size: clamp(26px, 7vw, 44px) !important;
+  }
+
+  /* Nav mobile burger (already hidden via .nav-links display:none) */
+  .nav-links { display: none !important; }
+
+  /* Pricing page: billing toggle layout */
+  [style*="display:flex"][style*="justify-content:center"][style*="margin-bottom:4"] {
+    flex-wrap: wrap !important;
+  }
+
+  /* CTA strip */
+  .cta-strip {
+    flex-direction: column !important;
+    gap: 24px !important;
+    text-align: center !important;
+  }
+}
+
+/* ── SCREEN MOCKS: hide on mobile, show placeholder ── */
+@media (max-width: 768px) {
+  /* Hero visual: hide tabbed screen switcher entirely */
+  .hero-visual { display: none !important; }
+
+  /* Customers page: hide screens paired with testimonials */
+  [style*="transform:scale(0.88)"],
+  [style*="transform:scale(0.82)"],
+  [style*="transform:scale(0.70)"],
+  [style*="transform:scale(0.7)"],
+  [style*="transform:scale(0.95)"] {
+    display: none !important;
+  }
+
+  /* Help page: category cards — hide internal screen thumbnails */
+  [style*="transform:scale(0.82)"][style*="transform-origin:top left"] {
+    display: none !important;
+  }
+
+  /* Blog article cards: hide screen thumbnail at top */
+  [style*="height:200px"][style*="overflow:hidden"] {
+    display: none !important;
+  }
+
+  /* Contact page demo preview screen */
+  .fade-up [style*="border:1px solid #E2E8F0"][style*="border-radius:14px"] {
+    display: none !important;
+  }
+
+  /* About page screens (journey + PRA) */
+  .fade-up {
+    display: none !important;
+  }
+
+  /* Screen chrome inside help cards */
+  [style*="overflow:hidden;box-shadow:0 8px 40px"] {
+    display: none !important;
+  }
+}
+
+/* ── PHONE-SPECIFIC (<480px) ── */
+@media (max-width: 480px) {
+  /* Hero headline */
+  .hero h1 { font-size: clamp(32px, 9vw, 48px) !important; }
+  .hero p { font-size: 16px !important; }
+
+  /* Page hero sections */
+  .page-hero { padding: 60px 20px 40px !important; }
+  .page-hero h1 { font-size: clamp(24px, 8vw, 38px) !important; }
+
+  /* Dark outcome numbers: 4→2→2 col maintained */
+  [style*="grid-template-columns:repeat(4,1fr)"] {
+    grid-template-columns: 1fr 1fr !important;
+  }
+
+  /* Stats chips in testimonials */
+  [style*="display:flex;gap:16px;flex-wrap:wrap"] {
+    gap: 8px !important;
+  }
+
+  /* Blog featured article: hide screen on phone too */
+  [style*="transform:scale(0.88)"],
+  [style*="transform:scale(0.82)"] {
+    display: none !important;
+  }
+
+  /* Pricing cards */
+  [style*="grid-template-columns:repeat(3,1fr)"] {
+    grid-template-columns: 1fr !important;
+  }
+
+  /* Checklist page 2-col layout */
+  [style*="grid-template-columns:1fr 1fr"] {
+    grid-template-columns: 1fr !important;
+  }
+
+  /* Logo strip */
+  .logos-row { flex-wrap: wrap !important; gap: 8px !important; }
+
+  /* Footer columns */
+  .footer-top { grid-template-columns: 1fr !important; }
+}
+
+/* ── HAMBURGER MENU ── */
+@media (max-width: 768px) {
+  .mobile-menu-btn {
+    display: flex !important;
+  }
+  .mobile-nav {
+    display: none;
+    position: fixed;
+    top: 64px; left: 0; right: 0;
+    background: #fff;
+    border-bottom: 1px solid #E2E8F0;
+    padding: 16px 20px;
+    flex-direction: column;
+    gap: 4px;
+    z-index: 999;
+    box-shadow: 0 8px 24px rgba(15,23,42,0.08);
+  }
+  .mobile-nav.open { display: flex; }
+  .mobile-nav a {
+    padding: 12px 16px;
+    font-size: 15px;
+    font-weight: 600;
+    color: #0F172A;
+    text-decoration: none;
+    border-radius: 8px;
+    transition: background 0.15s;
+  }
+  .mobile-nav a:hover { background: #F8FAFC; }
+  .mobile-nav .mobile-cta {
+    margin-top: 8px;
+    padding: 12px 16px;
+    background: #0D7C66;
+    color: #fff !important;
+    border-radius: 10px;
+    text-align: center;
+  }
+}
+
+
+
+/* ═══ AI GOVERNANCE PAGE ═══ */
+.g-hero{padding:100px 48px 56px;text-align:center;position:relative;overflow:hidden;
+  background:linear-gradient(170deg,#F8FAFC 0%,#FFFBEB 45%,#F8FAFC 100%);}
+.g-hero::before{content:'';position:absolute;top:-150px;left:50%;transform:translateX(-50%);
+  width:820px;height:520px;pointer-events:none;
+  background:radial-gradient(ellipse,rgba(212,255,0,.14) 0%,rgba(13,124,102,.06) 55%,transparent 72%);}
+.g-hero-in{max-width:780px;margin:0 auto;position:relative;z-index:1;}
+.g-hero h1{font-family:var(--font-display);font-size:clamp(31px,5vw,50px);font-weight:800;
+  line-height:1.13;letter-spacing:-.02em;color:var(--text);margin-bottom:18px;}
+.g-hero h1 mark{background:var(--yellow);color:var(--yellow-dark);padding:0 9px 3px;
+  border-radius:5px;font-style:normal;}
+.g-hero>.g-hero-in>p{font-size:17px;color:var(--muted);line-height:1.75;max-width:620px;margin:0 auto 30px;}
+.g-hero-btns{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;}
+
+/* challenge box */
+.chal{max-width:640px;margin:34px auto 0;padding:22px 26px;background:var(--card);
+  border:1.5px solid var(--border);border-left:4px solid var(--yellow-dark);
+  border-radius:0 12px 12px 0;text-align:left;}
+.chal-l{font-family:var(--font-mono);font-size:10px;font-weight:700;color:var(--yellow-dark);
+  letter-spacing:.1em;text-transform:uppercase;margin-bottom:8px;}
+.chal p{font-size:15px;color:var(--text);line-height:1.75;margin:0;}
+.chal p em{color:var(--muted);font-style:normal;font-size:13.5px;display:block;margin-top:8px;}
+
+/* silence section */
+.sil-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-top:36px;}
+.sil-c{padding:26px;border-radius:var(--radius);border:1px solid var(--border);}
+.sil-c.bad{background:#FEF2F2;border-color:rgba(220,38,38,.22);}
+.sil-c.good{background:#F0FDF4;border-color:rgba(13,124,102,.25);}
+.sil-tag{font-family:var(--font-mono);font-size:10px;font-weight:700;letter-spacing:.09em;
+  text-transform:uppercase;margin-bottom:12px;display:flex;align-items:center;gap:7px;}
+.sil-c.bad .sil-tag{color:#DC2626;}
+.sil-c.good .sil-tag{color:var(--teal);}
+.sil-c h3{font-family:var(--font-display);font-size:17px;font-weight:800;color:var(--text);
+  margin-bottom:10px;letter-spacing:-.01em;}
+.sil-c ul{list-style:none;}
+.sil-c li{font-size:13.5px;color:var(--muted);line-height:1.65;padding:6px 0;
+  display:flex;gap:9px;align-items:flex-start;}
+.sil-c.bad li::before{content:"✗";color:#DC2626;font-weight:800;flex-shrink:0;}
+.sil-c.good li::before{content:"✓";color:var(--teal);font-weight:800;flex-shrink:0;}
+
+/* numbered pipeline */
+.pipe{display:flex;flex-direction:column;gap:14px;margin-top:36px;}
+.pipe-i{display:grid;grid-template-columns:56px 1fr;gap:20px;align-items:start;
+  background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:24px 26px;}
+.pipe-n{width:44px;height:44px;border-radius:12px;background:var(--teal);color:#fff;
+  font-family:var(--font-display);font-size:16px;font-weight:800;
+  display:flex;align-items:center;justify-content:center;}
+.pipe-i h3{font-family:var(--font-display);font-size:17px;font-weight:800;color:var(--text);
+  margin-bottom:7px;letter-spacing:-.01em;}
+.pipe-i>div>p{font-size:14px;color:var(--muted);line-height:1.72;margin-bottom:12px;}
+.pipe-meta{display:flex;gap:8px;flex-wrap:wrap;}
+.pipe-chip{font-family:var(--font-mono);font-size:10.5px;font-weight:600;padding:4px 11px;
+  border-radius:100px;background:var(--teal-faint);color:var(--teal);
+  border:1px solid rgba(13,124,102,.2);}
+.pipe-chip.y{background:var(--yellow-faint);color:var(--yellow-dark);border-color:rgba(212,255,0,.4);}
+
+/* document table */
+.dtbl{width:100%;border-collapse:collapse;margin-top:26px;
+  background:var(--card);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;}
+.dtbl th{font-family:var(--font-mono);font-size:10px;font-weight:700;color:var(--muted);
+  text-transform:uppercase;letter-spacing:.07em;padding:13px 16px;background:var(--bg);
+  border-bottom:2px solid var(--border);text-align:left;}
+.dtbl td{padding:15px 16px;border-bottom:1px solid var(--border);font-size:14px;color:var(--text);}
+.dtbl tr:last-child td{border-bottom:none;}
+.dtbl .ref{font-family:var(--font-mono);font-size:12px;font-weight:700;color:var(--teal);white-space:nowrap;}
+.dtbl .cl{font-family:var(--font-mono);font-size:11.5px;color:var(--muted);white-space:nowrap;}
+.dtbl .dsc{font-size:12.5px;color:var(--muted);line-height:1.6;margin-top:4px;}
+
+/* control chips */
+.ctrl-wrap{margin-top:30px;}
+.ctrl-row{margin-bottom:18px;}
+.ctrl-lbl{font-size:13.5px;color:var(--muted);margin-bottom:9px;}
+.ctrl-lbl b{color:var(--text);font-weight:700;}
+.ctrl-chips{display:flex;gap:7px;flex-wrap:wrap;}
+.cchip{font-family:var(--font-mono);font-size:11.5px;font-weight:700;padding:5px 12px;
+  border-radius:7px;background:var(--teal-faint);color:var(--teal);
+  border:1px solid rgba(13,124,102,.22);}
+
+/* jurisdiction grid */
+.jur{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:32px;}
+.jur-c{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:20px;}
+.jur-f{font-size:22px;margin-bottom:10px;}
+.jur-c h4{font-family:var(--font-display);font-size:14px;font-weight:800;color:var(--text);margin-bottom:7px;}
+.jur-c p{font-size:12.5px;color:var(--muted);line-height:1.65;}
+
+/* gap tasks */
+.gtask{display:flex;align-items:flex-start;gap:13px;padding:15px 18px;
+  background:#FFFBEB;border:1px solid rgba(180,83,9,.2);border-left:3px solid #B45309;
+  border-radius:0 10px 10px 0;margin-bottom:9px;}
+.gtask-code{font-family:var(--font-mono);font-size:10.5px;font-weight:700;color:#B45309;
+  background:#FEF3C7;padding:3px 9px;border-radius:100px;white-space:nowrap;flex-shrink:0;}
+.gtask-t{font-size:13.5px;color:var(--text);line-height:1.6;}
+
+.faq-i{border:1px solid var(--border);border-radius:12px;margin-bottom:10px;overflow:hidden;background:var(--card);}
+.faq-q{padding:18px 22px;font-size:15px;font-weight:600;color:var(--text);cursor:pointer;
+  display:flex;justify-content:space-between;align-items:center;gap:16px;}
+.faq-q:hover{background:var(--bg);}
+.faq-chev{font-size:13px;color:var(--muted);transition:transform .25s;flex-shrink:0;}
+.faq-i.open .faq-chev{transform:rotate(180deg);}
+.faq-a{display:none;padding:0 22px 20px;font-size:14px;color:var(--muted);line-height:1.75;}
+.faq-i.open .faq-a{display:block;}
+
+@media(max-width:860px){
+  .g-hero{padding:80px 20px 44px;}
+  .sil-grid,.jur{grid-template-columns:1fr;}
+  .pipe-i{grid-template-columns:1fr;gap:14px;padding:20px;}
+  .dtbl{display:block;overflow-x:auto;}
+}
+
+</style>
+</head>
+<body>
+<nav>
+  <a href="index.html" class="nav-logo">
+    <div class="logo-mark">F</div>
+    Ferbe
+  </a>
+  <ul class="nav-links">
+    <li><a href="features.html">Features</a></li>
+    <li><a href="ai-governance.html" class="active" style="color:var(--yellow-dark);font-weight:600;">AI Governance</a></li>
+    <li><a href="ai.html" style="color:var(--purple);font-weight:600;">✦ AI</a></li>
+    <li><a href="pricing.html">Pricing</a></li>
+    <li><a href="customers.html">Customers</a></li>
+    <li><a href="about.html">About</a></li>
+  </ul>
+  <div class="nav-cta">
+    <a href="contact.html" class="btn-ghost">Book demo</a>
+    <a href="#" class="btn-primary">Start free trial</a>
+  </div>
+</nav>
+<div class="mobile-nav" id="mobile-nav" style="display:none;">
+  <a href="index.html">Home</a><a href="features.html">Features</a>
+  <a href="ai-governance.html">AI Governance</a><a href="ai.html">AI Assist</a>
+  <a href="pricing.html">Pricing</a><a href="customers.html">Customers</a>
+  <a href="about.html">About</a><a href="partners.html">Partners</a>
+  <a href="blog.html">Blog</a><a href="iso-27001-guide.html">ISO 27001 Guide</a>
+  <a href="checklist.html">Free Assessment</a><a href="contact.html">Contact</a>
+  <a href="#" class="mobile-cta">Start free trial</a>
+</div>
+
+<section class="g-hero">
+  <div class="g-hero-in">
+    <div class="eyebrow"><span class="eyebrow-dot"></span>Included on every plan · No add-on cost</div>
+    <h1>Your ISMS covers your systems.<br>Does it cover <mark>your AI?</mark></h1>
+    <p>Most ISO 27001 platforms never ask whether you use AI. Ferbe asks nineteen questions about it during setup — then rewrites your Statement of Applicability, risk profile, and document set around your answers.</p>
+    <div class="g-hero-btns">
+      <a href="checklist.html" class="btn-hero">Start Free Assessment — check your AI readiness</a>
+      <a href="contact.html" class="btn-hero ghost">Book a demo</a>
+    </div>
+    <div class="chal">
+      <div class="chal-l">Try this right now</div>
+      <p>Open your current ISO 27001 template pack and search for &ldquo;AI&rdquo;.
+      <em>If nothing comes back, that is your gap — and an external auditor will find it before you do.</em></p>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="section-inner">
+    <div class="section-eyebrow">The problem</div>
+    <h2 class="section-title">Undeclared AI is undeclared data egress</h2>
+    <p class="section-sub">Clause 6.1.2 requires you to identify risks to information within your scope. If your organisation uses AI anywhere and your risk assessment is silent on it, that is a hole in your ISMS — not a missing nice-to-have.</p>
+    <div class="sil-grid">
+      <div class="sil-c bad fade-up">
+        <div class="sil-tag"><span>⚠</span>Without AI governance</div>
+        <h3>What an auditor finds at Stage 2</h3>
+        <ul>
+          <li>Staff use ChatGPT with client data. Nothing in the risk register says so.</li>
+          <li>Copilot is enabled across M365. It never appears in the SoA.</li>
+          <li>A vendor added AI features to a product you use. No reassessment happened.</li>
+          <li>Your acceptable use policy predates generative AI entirely.</li>
+          <li>Nobody is named as accountable for AI decisions.</li>
+        </ul>
+      </div>
+      <div class="sil-c good fade-up" style="transition-delay:.06s">
+        <div class="sil-tag"><span>✓</span>With Ferbe</div>
+        <h3>What is in place before they ask</h3>
+        <ul>
+          <li>Your AI tools are named, registered, and classified by risk tier.</li>
+          <li>Fifteen Annex A controls carry AI-specific justification in your SoA.</li>
+          <li>AI vendors are assessed as suppliers under A.5.19 and A.5.20.</li>
+          <li>An AI Acceptable Use Policy names what is approved and what is prohibited.</li>
+          <li>A named AI Governance Owner sits in your roles register.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section alt">
+  <div class="section-inner">
+    <div class="section-eyebrow">How it works</div>
+    <h2 class="section-title">One question at intake changes four things</h2>
+    <p class="section-sub">AI governance is not a module you switch on. It is woven through setup, so your ISMS reflects your AI use from day one.</p>
+    <div class="pipe">
+      <div class="pipe-i fade-up">
+        <div class="pipe-n">1</div>
+        <div>
+          <h3>The Intake Wizard asks</h3>
+          <p>Section 09 opens with a single gateway question: does your organisation use any AI tools or AI-powered services? Answer no and nothing further appears. Answer yes and eighteen follow-up questions branch open — public versus enterprise tools, which platforms specifically, AI in products, AI in decisions, personal data through AI, AI for code, own model development, third-party AI APIs, bias testing, training data governance, and whether anyone owns AI governance.</p>
+          <div class="pipe-meta">
+            <span class="pipe-chip">19 questions</span>
+            <span class="pipe-chip">Conditional branching</span>
+            <span class="pipe-chip">10 named platforms</span>
+          </div>
+        </div>
+      </div>
+      <div class="pipe-i fade-up" style="transition-delay:.05s">
+        <div class="pipe-n">2</div>
+        <div>
+          <h3>Four documents generate — populated with your answers</h3>
+          <p>These are not blank templates. Your approved tool list appears in the acceptable use policy. Your risk classification table is populated with the platforms you actually named. Where you have a gap, the document says so inline rather than leaving a placeholder.</p>
+          <div class="pipe-meta">
+            <span class="pipe-chip y">POL-19</span><span class="pipe-chip y">POL-20</span>
+            <span class="pipe-chip y">SOP-23</span><span class="pipe-chip y">SOP-24</span>
+          </div>
+        </div>
+      </div>
+      <div class="pipe-i fade-up" style="transition-delay:.1s">
+        <div class="pipe-n">3</div>
+        <div>
+          <h3>Your Statement of Applicability re-weights</h3>
+          <p>Up to fifteen Annex A controls shift to high-confidence applicable, each carrying AI-specific justification rather than generic wording. Which controls depends on your answers — using public AI triggers a different set than processing personal data through AI, which differs again from developing your own models.</p>
+          <div class="pipe-meta">
+            <span class="pipe-chip">15 controls</span>
+            <span class="pipe-chip">Answer-dependent</span>
+          </div>
+        </div>
+      </div>
+      <div class="pipe-i fade-up" style="transition-delay:.15s">
+        <div class="pipe-n">4</div>
+        <div>
+          <h3>Gap tasks raise automatically</h3>
+          <p>Where your answers reveal a gap, a task appears in My Tasks with an owner to assign. No hunting through a report to work out what to do next.</p>
+          <div class="pipe-meta">
+            <span class="pipe-chip">5 gap rules</span>
+            <span class="pipe-chip">Auto-assigned</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="section-inner">
+    <div class="section-eyebrow">The documents</div>
+    <h2 class="section-title">The AI Governance group</h2>
+    <p class="section-sub">Four documents, each mapped to an ISO 27001:2022 Annex A control, generated as Word files you can edit and approve.</p>
+    <table class="dtbl">
+      <thead><tr><th>Ref</th><th>Document</th><th>Annex A</th></tr></thead>
+      <tbody>
+      <tr>
+        <td class="ref">POL-19</td>
+        <td><strong>Artificial Intelligence Acceptable Use Policy</strong><div class="dsc">What staff may and may not do with AI tools. Names your approved tools, prohibits the rest, and sets rules for AI-generated code and content.</div></td>
+        <td class="cl">A.5.10</td>
+      </tr><tr>
+        <td class="ref">POL-20</td>
+        <td><strong>AI Governance &amp; Risk Management Policy</strong><div class="dsc">Four-tier risk classification — Prohibited, High-risk, Standard, Minimal — populated with your actual tools, plus governance roles and regulatory obligations for your jurisdiction.</div></td>
+        <td class="cl">A.5.1</td>
+      </tr><tr>
+        <td class="ref">SOP-23</td>
+        <td><strong>AI Tool Onboarding &amp; Risk Assessment Procedure</strong><div class="dsc">The gate before any new AI tool is adopted. Assessment criteria, approval steps, and the approved-tools register.</div></td>
+        <td class="cl">A.5.19</td>
+      </tr><tr>
+        <td class="ref">SOP-24</td>
+        <td><strong>AI Incident Response Procedure</strong><div class="dsc">What happens when AI goes wrong — data leaked into a prompt, a hallucinated output acted on, a model behaving unexpectedly.</div></td>
+        <td class="cl">A.5.26</td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<section class="section alt">
+  <div class="section-inner">
+    <div class="section-eyebrow">Statement of Applicability</div>
+    <h2 class="section-title">Which controls change, and why</h2>
+    <p class="section-sub">Each control carries justification text specific to how you use AI — not a generic note that AI exists.</p>
+    <div class="ctrl-wrap">
+      <div class="ctrl-row fade-up">
+        <div class="ctrl-lbl"><b>If you use AI at all</b> — acceptable use, awareness training covering prompt injection and data leakage, and web filtering to enforce your approved tool list</div>
+        <div class="ctrl-chips">
+          <span class="cchip">A.5.1</span><span class="cchip">A.5.10</span>
+          <span class="cchip">A.6.3</span><span class="cchip">A.8.23</span>
+        </div>
+      </div>
+      <div class="ctrl-row fade-up" style="transition-delay:.05s">
+        <div class="ctrl-lbl"><b>If personal data goes through AI</b> — DPIA requirements, data masking, and loss prevention to stop personal data reaching unauthorised AI services</div>
+        <div class="ctrl-chips">
+          <span class="cchip">A.5.34</span><span class="cchip">A.8.11</span><span class="cchip">A.8.12</span>
+        </div>
+      </div>
+      <div class="ctrl-row fade-up" style="transition-delay:.1s">
+        <div class="ctrl-lbl"><b>If you use third-party AI</b> — OpenAI, Anthropic, Microsoft and Google become suppliers requiring due diligence, contracts addressing data residency and training data opt-out, and supply chain monitoring</div>
+        <div class="ctrl-chips">
+          <span class="cchip">A.5.19</span><span class="cchip">A.5.20</span><span class="cchip">A.5.21</span>
+        </div>
+      </div>
+      <div class="ctrl-row fade-up" style="transition-delay:.15s">
+        <div class="ctrl-lbl"><b>If you develop your own models</b> — secure development lifecycle, architecture and security design, secure coding for training pipelines, and protection of test information</div>
+        <div class="ctrl-chips">
+          <span class="cchip">A.8.25</span><span class="cchip">A.8.27</span><span class="cchip">A.8.28</span>
+          <span class="cchip">A.8.29</span><span class="cchip">A.8.33</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="section-inner">
+    <div class="section-eyebrow">Gap detection</div>
+    <h2 class="section-title">Five gaps Ferbe raises automatically</h2>
+    <p class="section-sub" style="margin-bottom:30px;">Triggered by your intake answers, raised as tasks with owners.</p>
+    <div class="gtask fade-up" style="transition-delay:0.00s">
+      <span class="gtask-code">AI-POL</span>
+      <span class="gtask-t">AI tools in use but no Acceptable Use Policy in place</span>
+    </div><div class="gtask fade-up" style="transition-delay:0.04s">
+      <span class="gtask-code">AI-SHADOW</span>
+      <span class="gtask-t">Employees using public AI tools without policy — shadow AI exposure</span>
+    </div><div class="gtask fade-up" style="transition-delay:0.08s">
+      <span class="gtask-code">AI-RISK</span>
+      <span class="gtask-t">AI used in decision-making but no AI risk assessment conducted</span>
+    </div><div class="gtask fade-up" style="transition-delay:0.12s">
+      <span class="gtask-code">AI-DPIA</span>
+      <span class="gtask-t">Personal data processed through AI without a Data Protection Impact Assessment</span>
+    </div><div class="gtask fade-up" style="transition-delay:0.16s">
+      <span class="gtask-code">AI-DATA</span>
+      <span class="gtask-t">Own models trained without documented training data governance</span>
+    </div>
+  </div>
+</section>
+
+<section class="section alt">
+  <div class="section-inner">
+    <div class="section-eyebrow">Regional coverage</div>
+    <h2 class="section-title">AI obligations mapped to your jurisdiction</h2>
+    <p class="section-sub">Your AI Governance Policy cites the frameworks that actually apply where you operate — resolved from your primary jurisdiction at intake.</p>
+    <div class="jur">
+      <div class="jur-c fade-up" style="transition-delay:0.00s">
+        <div class="jur-f">🇲🇾</div><h4>Malaysia</h4><p>MDEC AI Ethics Principles and the National AI Roadmap responsible AI guidelines.</p></div><div class="jur-c fade-up" style="transition-delay:0.04s">
+        <div class="jur-f">🇸🇬</div><h4>Singapore</h4><p>IMDA Model AI Governance Framework v2 — plus MAS FEAT Principles for financial services.</p></div><div class="jur-c fade-up" style="transition-delay:0.08s">
+        <div class="jur-f">🇪🇺</div><h4>European Union</h4><p>EU AI Act — risk classification, conformity assessment, and transparency obligations.</p></div><div class="jur-c fade-up" style="transition-delay:0.12s">
+        <div class="jur-f">🇬🇧</div><h4>United Kingdom</h4><p>ICO AI Auditing Framework and proposed UK AI regulation.</p></div><div class="jur-c fade-up" style="transition-delay:0.16s">
+        <div class="jur-f">🇺🇸</div><h4>United States</h4><p>NIST AI Risk Management Framework (AI RMF 1.0).</p></div><div class="jur-c fade-up" style="transition-delay:0.20s">
+        <div class="jur-f">🇦🇺</div><h4>Australia</h4><p>AI Ethics Principles and the Voluntary AI Safety Standard (2024).</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="section-inner" style="max-width:800px;">
+    <div class="section-eyebrow">Questions</div>
+    <h2 class="section-title">AI Governance FAQ</h2>
+    <div style="margin-top:32px;">
+      <div class="faq-i"><div class="faq-q" data-faq>We only use AI in a small way — does this apply to us?<span class="faq-chev">▼</span></div><div class="faq-a">That is exactly who this is built for. One person pasting client data into a free ChatGPT account is undeclared data egress. Copilot summarising documents in M365 is AI processing information in your ISMS scope. The risk is not proportional to how much AI you use — it is about whether the use is governed. Ferbe asks the question either way, and if you answer no, no AI documents are generated and nothing is added to your scope.</div></div><div class="faq-i"><div class="faq-q" data-faq>Is this ISO 42001 certification?<span class="faq-chev">▼</span></div><div class="faq-a">No, and we are careful not to claim otherwise. ISO 42001 is a separate AI Management System standard with its own certification path. What Ferbe does is ensure your ISO 27001:2022 ISMS properly accounts for AI — because if AI touches information in your scope, it belongs in your risk assessment regardless of which standard has a control number for it. The AI Governance Policy notes ISO 42001 as a complementary framework worth considering if you develop AI, and records your decision either way.</div></div><div class="faq-i"><div class="faq-q" data-faq>Why do most ISO 27001 template packs leave AI out?<span class="faq-chev">▼</span></div><div class="faq-a">AI governance sits awkwardly between standards. It is not in ISO 27001:2022 Annex A, which was drafted before this became a mainstream operational risk. ISO 42001 exists but is treated as a separate certification most organisations do not need. So providers face a genuine question about where AI belongs — and the easy answer is to leave it out. Our position is that if AI touches information in your scope, it belongs in your ISMS.</div></div><div class="faq-i"><div class="faq-q" data-faq>What actually changes in my Statement of Applicability?<span class="faq-chev">▼</span></div><div class="faq-a">Fifteen Annex A controls are re-weighted to high-confidence applicable, each with AI-specific justification text rather than generic wording. A.6.3 awareness training cites prompt injection, data leakage, and hallucination. A.5.20 supplier agreements cite data residency, training data use, and opt-out. Which controls are affected depends on your answers — using public AI triggers a different set than developing your own models.</div></div><div class="faq-i"><div class="faq-q" data-faq>Is AI Governance an extra cost?<span class="faq-chev">▼</span></div><div class="faq-a">No. It is included on every plan, including Starter. Competitors typically treat AI governance as a separate ISO 42001 framework purchase. We treat it as part of doing ISO 27001 properly when AI is in scope.</div></div><div class="faq-i"><div class="faq-q" data-faq>What if we start using AI after we have already set up our ISMS?<span class="faq-chev">▼</span></div><div class="faq-a">Update your intake answers and regenerate. The AI documents are produced from those answers, so the AI Governance group appears, the SoA re-weights, and any gap tasks are raised. The policy templates explicitly handle the not-yet-using-AI state, so nothing breaks if your position changes later.</div></div>
+    </div>
+  </div>
+</section>
+
+<div class="cta-strip">
+  <div>
+    <h3 style="font-family:var(--font-display);font-size:24px;font-weight:800;color:#fff;margin-bottom:8px;">Find out whether your AI use is governed</h3>
+    <p style="font-size:15px;color:rgba(255,255,255,.6);line-height:1.7;">The free readiness assessment includes an AI Governance section. Six questions, honest answer, no cost.</p>
+  </div>
+  <div style="display:flex;gap:12px;flex-wrap:wrap;">
+    <a href="checklist.html" class="btn-hero yellow">Start Free Assessment</a>
+    <a href="contact.html" class="btn-hero ghost-white">Book a demo</a>
+  </div>
+</div>
+
+<script>
+document.addEventListener('click',function(e){
+  var q=e.target.closest('[data-faq]');
+  if(q) q.parentElement.classList.toggle('open');
+});
+</script>
+
+<footer>
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <a href="index.html" class="nav-logo" style="text-decoration:none;">
+          <div class="logo-mark">F</div>
+          Ferbe
+        </a>
+        <p>The ISO 27001:2022 ISMS platform built for Malaysian and Southeast Asian companies. From gap assessment to certification, in one place.</p>
+        <p style="margin-top:10px;font-size:12px;color:var(--dim);">A product by <a href="https://www.energized-inc.com" target="_blank" style="color:var(--teal);text-decoration:none;">Energized Inc.</a> · Energized Empire Sdn. Bhd.<br>Kuala Lumpur, Malaysia · Dubai, UAE</p>
+      </div>
+      <div class="footer-col">
+        <div class="footer-col-title">Product</div>
+        <ul>
+          <li><a href="features.html">Features</a></li>
+          <li><a href="pricing.html">Pricing</a></li>
+          <li><a href="ai-governance.html" class="active" style="color:var(--yellow-dark);font-weight:600;">AI Governance</a></li>
+    <li><a href="ai-governance.html">AI Governance</a></li>
+          <li><a href="ai.html">AI Capabilities</a></li>
+          <li><a href="#">Changelog</a></li>
+          <li><a href="#">Roadmap</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <div class="footer-col-title">Resources</div>
+        <ul>
+          <li><a href="iso-27001-guide.html">ISO 27001 Guide</a></li>
+          <li><a href="help.html">Help Centre</a></li>
+          <li><a href="blog.html">Blog</a></li>
+          <li><a href="checklist.html">Free Checklist</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <div class="footer-col-title">Company</div>
+        <ul>
+          <li><a href="about.html">About</a></li>
+          <li><a href="customers.html">Customers</a></li>
+          <li><a href="partners.html">Partners</a></li>
+          <li><a href="contact.html">Contact</a></li>
+          <li><a href="status.html">Status</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <div class="footer-col-title">Legal</div>
+        <ul>
+          <li><a href="privacy.html">Privacy Policy</a></li>
+          <li><a href="terms.html">Terms of Service</a></li>
+          <li><a href="refund.html">Refund Policy</a></li>
+          <li><a href="cookies.html">Cookie Policy</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 Ferbe · ferbe.ai · Energized Empire Sdn. Bhd. · All rights reserved</span>
+      <div class="footer-links">
+        <a href="privacy.html">Privacy</a>
+        <a href="terms.html">Terms</a>
+        <a href="refund.html">Refund</a>
+        <a href="cookies.html">Cookies</a>
+      </div>
+    </div>
+  </div>
+</footer>
+<script>
+function toggleMobileMenu(){var n=document.getElementById('mobile-nav');
+  n.style.display=n.style.display==='flex'?'none':'flex';}
+document.addEventListener('click',function(e){
+  var n=document.getElementById('mobile-nav');var b=document.querySelector('.mobile-menu-btn');
+  if(n&&b&&!n.contains(e.target)&&!b.contains(e.target))n.style.display='none';});
+var obs=new IntersectionObserver(function(es){es.forEach(function(e){
+  if(e.isIntersecting)e.target.classList.add('visible');});},{threshold:0.1});
+document.querySelectorAll('.fade-up').forEach(function(el){obs.observe(el);});
+</script>
+</body>
+</html>
